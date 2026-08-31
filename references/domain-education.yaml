@@ -1,0 +1,45 @@
+pack_id: education-research
+version: 2.0.0
+applicability_questions:
+- Does the decision concern education policy, teaching practice, research governance, or allocation of research
+  activity?
+candidates:
+- candidate_id: education.outcome.learning
+  candidate_type: outcome
+  label: Learning and participation outcomes
+  rule: Consider attainment, understanding, persistence, participation, workload, research value, and reproducibility.
+- candidate_id: education.harm.exclusion
+  candidate_type: harm
+  label: Exclusion and burden
+  rule: Consider exclusion, surveillance, stress, workload, opportunity loss, and academic integrity.
+- candidate_id: education.equity.access
+  candidate_type: equity
+  label: Differential access and burden
+  rule: Identify learners, staff, institutions, or communities with differential access, burden, or benefit.
+- candidate_id: education.implementation.capacity
+  candidate_type: implementation
+  label: Education and research capacity
+  rule: Assess staffing, curriculum alignment, technology access, ethics review, timetable, and assessment validity.
+- candidate_id: education.monitoring.learning
+  candidate_type: monitoring
+  label: Learning and implementation monitoring
+  rule: Monitor learning, participation, dropout, workload, equity gaps, and fidelity.
+evidence_source_map:
+- Education trials and quasi-experiments
+- Observational data
+- Implementation studies
+- Qualitative research
+- Institutional data
+jurisdiction_prompts:
+- Education law
+- Disability accommodation
+- Research ethics
+- Privacy
+- Intellectual property
+- Institutional policy
+exclusion_rules:
+- Do not assign formal GRADE certainty to ordinary non-health education or research outcomes.
+composition_rules:
+- Deduplicate candidates by concept while preserving pack provenance.
+- Keep health and non-health outcomes methodologically separate.
+- Record unresolved cross-domain conflicts.

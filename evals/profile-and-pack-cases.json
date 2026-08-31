@@ -1,0 +1,216 @@
+{
+  "cases": [
+    {
+      "case_id": "academic_funding_priority",
+      "query": "研究資金を三つの候補課題へ配分するため、監査可能な意思決定記録を作成してほしい。",
+      "expected_use": "canonical_record",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["academic"],
+      "expected_candidate_criteria": ["academic.scientific_or_scholarly_value", "academic.methodological_credibility", "academic.feasibility_and_capacity", "academic.distribution_of_benefits_and_burdens", "academic.dissemination_and_use"],
+      "formal_grade_expected": false,
+      "assertions": ["all pack candidates receive selection or exclusion reasons", "no formal GRADE label"]
+    },
+    {
+      "case_id": "academic_staff_allocation",
+      "query": "限られた研究人員を複数プロジェクトへ配分したい。学術価値、方法の信頼性、能力、公平性で比較して。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["academic"],
+      "expected_candidate_criteria": ["academic.scientific_or_scholarly_value", "academic.methodological_credibility", "academic.feasibility_and_capacity", "academic.distribution_of_benefits_and_burdens"],
+      "formal_grade_expected": false,
+      "assertions": ["resource allocation is conditional on capacity evidence"]
+    },
+    {
+      "case_id": "academic_transparency_assessment",
+      "query": "研究計画の透明性と再現可能性を評価し、改善条件を示して。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["academic"],
+      "expected_candidate_criteria": ["academic.methodological_credibility", "academic.transparency_and_reproducibility"],
+      "formal_grade_expected": false,
+      "assertions": ["openness is bounded by law, ethics, and context"]
+    },
+    {
+      "case_id": "academic_sharing_method",
+      "query": "研究成果の公開・共有方法を選びたい。アクセス、再利用、倫理、利用可能性を比較して。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["academic"],
+      "expected_candidate_criteria": ["academic.ethics_and_integrity", "academic.transparency_and_reproducibility", "academic.dissemination_and_use"],
+      "formal_grade_expected": false,
+      "assertions": ["human-subject rules are not generalized to all research"]
+    },
+    {
+      "case_id": "academic_feasible_low_value",
+      "query": "実行可能性は高いが学術価値が限定的な研究計画を採択すべきか。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["academic"],
+      "expected_candidate_criteria": ["academic.scientific_or_scholarly_value", "academic.feasibility_and_capacity"],
+      "formal_grade_expected": false,
+      "assertions": ["feasibility does not overwrite scholarly value"]
+    },
+    {
+      "case_id": "academic_high_value_ethics_equity",
+      "query": "学術価値は高いが、公平性と研究倫理に重大な懸念がある計画を評価して。",
+      "expected_use": "canonical_record",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["academic"],
+      "expected_candidate_criteria": ["academic.scientific_or_scholarly_value", "academic.ethics_and_integrity", "academic.distribution_of_benefits_and_burdens"],
+      "formal_grade_expected": false,
+      "assertions": ["no ethics approval is inferred", "stop or modify conditions are explicit"]
+    },
+    {
+      "case_id": "software_monolith_microservices",
+      "query": "6人のチームで12か月以内に新規サービスを構築する。モノリスとマイクロサービスを比較して。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["software_engineering"],
+      "expected_candidate_criteria": ["software.fitness_for_purpose", "software.architectural_quality_tradeoffs", "software.maintainability_and_change_cost", "software.reliability_and_operational_risk", "software.implementation_feasibility", "software.reversibility_and_lock_in"],
+      "formal_grade_expected": false,
+      "assertions": ["recommendation is conditional on team and operational evidence"]
+    },
+    {
+      "case_id": "software_build_managed",
+      "query": "自社開発とマネージドサービスを比較し、運用、セキュリティ、変更費用、ロックインを評価して。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["software_engineering"],
+      "expected_candidate_criteria": ["software.security_risk", "software.maintainability_and_change_cost", "software.reliability_and_operational_risk", "software.reversibility_and_lock_in"],
+      "formal_grade_expected": false,
+      "assertions": ["lock-in claims use case evidence"]
+    },
+    {
+      "case_id": "software_secure_development",
+      "query": "セキュリティ向上策を開発工程へ導入する方針を、監査可能な記録にして。",
+      "expected_use": "canonical_record",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["software_engineering"],
+      "expected_candidate_criteria": ["software.security_risk", "software.implementation_feasibility", "software.user_and_operator_impact"],
+      "formal_grade_expected": false,
+      "assertions": ["pack is not a threat model or security assurance"]
+    },
+    {
+      "case_id": "software_performance_maintainability",
+      "query": "高性能だが保守性が低い実装方式を採用すべきか。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["software_engineering"],
+      "expected_candidate_criteria": ["software.architectural_quality_tradeoffs", "software.maintainability_and_change_cost", "software.performance_and_resource_use"],
+      "formal_grade_expected": false,
+      "assertions": ["performance evidence does not overwrite maintainability"]
+    },
+    {
+      "case_id": "software_lockin_speed",
+      "query": "短期実装速度は高いがベンダーロックインが大きい方式を評価して。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["software_engineering"],
+      "expected_candidate_criteria": ["software.fitness_for_purpose", "software.implementation_feasibility", "software.reversibility_and_lock_in"],
+      "formal_grade_expected": false,
+      "assertions": ["NIST cloud lock-in source is not generalized without case evidence"]
+    },
+    {
+      "case_id": "software_pilot_full_migration",
+      "query": "可逆的な試行導入と全面移行を比較し、停止条件と移行判断を監査可能にして。",
+      "expected_use": "canonical_record",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["software_engineering"],
+      "expected_candidate_criteria": ["software.implementation_feasibility", "software.reversibility_and_lock_in", "software.user_and_operator_impact"],
+      "formal_grade_expected": false,
+      "assertions": ["reversibility and stop conditions are explicit"]
+    },
+    {
+      "case_id": "overapplication_simple_code",
+      "query": "PythonでCSVをJSONへ変換する関数を書いて。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": [],
+      "expected_candidate_criteria": [],
+      "formal_grade_expected": false,
+      "assertions": ["deliver code first", "no EtD table or Canonical Record"]
+    },
+    {
+      "case_id": "underapplication_security_migration",
+      "query": "顧客認証基盤を全面移行する。重大障害とセキュリティ影響があり不可逆性も高いので判断条件を整理して。",
+      "expected_use": "canonical_record",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["software_engineering"],
+      "expected_candidate_criteria": ["software.security_risk", "software.reliability_and_operational_risk", "software.implementation_feasibility", "software.reversibility_and_lock_in"],
+      "formal_grade_expected": false,
+      "assertions": ["high stakes trigger monitoring and stop conditions"]
+    },
+    {
+      "case_id": "academic_exclusion_hiring",
+      "query": "研究者の採用候補者をacademic Domain Packで順位付けして。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": [],
+      "expected_candidate_criteria": [],
+      "formal_grade_expected": false,
+      "assertions": ["academic pack is excluded for hiring"]
+    },
+    {
+      "case_id": "software_exclusion_ui_visual",
+      "query": "ランディングページの見た目をもっと華やかにして。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": [],
+      "expected_candidate_criteria": [],
+      "formal_grade_expected": false,
+      "assertions": ["software engineering pack is not selected for visual design"]
+    },
+    {
+      "case_id": "software_team_size_small",
+      "pair_id": "software-team-size",
+      "changed_dimension": "team_size",
+      "query": "6人のチームで12か月以内に新規サービスを構築する。モノリスとマイクロサービスを比較して。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["software_engineering"],
+      "formal_grade_expected": false,
+      "expected_change_targets": ["software.implementation_feasibility", "software.reliability_and_operational_risk", "recommendation_conditions"],
+      "expected_stable_targets": ["software.security_risk", "software.fitness_for_purpose"],
+      "assertions": ["only team-size-sensitive judgments may change"]
+    },
+    {
+      "case_id": "software_team_size_large",
+      "pair_id": "software-team-size",
+      "changed_dimension": "team_size",
+      "query": "同じ要件と期限だが、独立運用可能な60人のチームで新規サービスを構築する。モノリスとマイクロサービスを比較して。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["software_engineering"],
+      "formal_grade_expected": false,
+      "expected_change_targets": ["software.implementation_feasibility", "software.reliability_and_operational_risk", "recommendation_conditions"],
+      "expected_stable_targets": ["software.security_risk", "software.fitness_for_purpose"],
+      "assertions": ["only team-size-sensitive judgments may change"]
+    },
+    {
+      "case_id": "academic_budget_base",
+      "pair_id": "academic-budget",
+      "changed_dimension": "budget",
+      "query": "同程度の費用で実施できる二つの研究課題へ資金を配分する。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["academic"],
+      "formal_grade_expected": false,
+      "expected_change_targets": ["resources", "academic.feasibility_and_capacity", "allocation"],
+      "expected_stable_targets": ["academic.scientific_or_scholarly_value", "academic.methodological_credibility"],
+      "assertions": ["budget alone does not change scholarly value"]
+    },
+    {
+      "case_id": "academic_budget_constrained",
+      "pair_id": "academic-budget",
+      "changed_dimension": "budget",
+      "query": "研究内容は同じだが、予算は一方しか実施できない水準に減少した。二つの研究課題へ資金を配分する。",
+      "expected_use": "narrative_support",
+      "expected_profile_id": "generic.etd",
+      "expected_domain_pack_ids": ["academic"],
+      "formal_grade_expected": false,
+      "expected_change_targets": ["resources", "academic.feasibility_and_capacity", "allocation"],
+      "expected_stable_targets": ["academic.scientific_or_scholarly_value", "academic.methodological_credibility"],
+      "assertions": ["budget alone does not change scholarly value"]
+    }
+  ]
+}

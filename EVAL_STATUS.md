@@ -1,0 +1,46 @@
+# Evaluation status
+
+Package version 0.7.0 introduces the Formation property contract and internal
+Mermaid diagnostic. The structural checks below have been updated for that
+contract. A clean-context live with/without-skill comparison of the revised
+Formation cases was completed with `gpt-5.6-luna` (high reasoning).
+
+## Completed in this package
+
+- JSON Schema meta-validation
+- Unit, invariant, referential-integrity, governance, and security tests
+- Representative-case validation
+- Failure-case detection
+- Hand-authored record-level metamorphic comparison
+- Eval-definition, output-form, profile, pack, and metamorphic-case validation
+- Local artifact root confinement, size, extension, existence, and SHA-256 checks
+- Separation tests for GRADE evidence assessment, GRADE EtD precheck, and formal human authorization
+- Narrative-upscaling definition checks for premise repair, events and experience, term pragmatics, prior-knowledge learning, and explicit brevity controls
+- Decision Formation definition checks for polarized alternatives, Research versus preset epistemic roles, assumption relaxation, Reverse Projection, EtD feedback routing, and proportionality controls
+- Formation property checks for the minimal Question and Context shapes, empty-action unresolved Questions, alternative comparison cardinality, Mermaid projection, and natural-language correction/reprojection
+- Formation information-gathering scheduling checks for peer Research/Interview selection, queued Interview prompts, independent Research/Preset work, and dependency-triggered early Interview
+- Clean-context live execution of all 13 Decision Formation cases in `evals/decision-formation-cases.json`: one with-skill and one without-skill run per case (26 runs total) using `gpt-5.6-luna` with high reasoning. Strict saved-response grading produced 53/53 assertion passes with the skill and 37/53 without it. The result is qualitative/structural evidence; execution timing and total-token metadata were not captured by the subagent notification channel.
+- Four exploratory clean-context with-skill rounds across four draft iterations for user-derived short prompts, one run per selected prompt per iteration; findings strengthened full-pattern defaults and confirmed term, event, learning, answer-only, and command-only behavior.
+- Final changed-feature comparison in an external workspace: six narrative cases × three repetitions × with/without skill (`final-v0.5.0`), followed by an 18-run with-skill rerun with the same 18 baseline runs reused (`final-v0.5.0-r2`). The first run showed 12/18 with-skill passes; after rule and evidence-grounding fixes, the rerun showed 15/18 with-skill passes. The remaining term case failure was the absence of a small recognition or production test.
+- A final textual rule was added after `final-v0.5.0-r2` to require that small test unless brevity or answer-only constraints apply. This last wording change has not been rerun as a model experiment by design; it is recorded as an unverified residual and is subject to reviewer judgment.
+- `skills-ref` 0.1.5 validation of the installed bytes through a temporary public-name alias was executed during the resumed verification; direct validation of the reconciled `skill-*` path rejects only the directory-name/frontmatter-name mismatch. The package validator now creates the same temporary alias when needed.
+
+## Defined but not executed here
+
+- Further clean-context live Agent repetitions beyond the completed final comparison and rerun
+- Further with-skill versus without-skill comparisons beyond the completed final comparison
+- Repeated output-form and profile/pack selection measurement
+- Prompt-driven metamorphic runs
+- Tool-trace, latency, and token collection
+- Old-version versus new-version comparison
+- Train/validation prompt split
+
+## External human gates not completed
+
+- Real GRADE methodologist review of real evidence products
+- Authorized panel review of recommendation wording and scope
+- Domain-expert and affected-stakeholder evaluation
+
+The included formal artifacts are test fixtures for state transitions. They are not real systematic reviews, GRADE Evidence Profiles, or endorsements. Passing validators demonstrates structural consistency only.
+
+Release CI must still run `validate_skill_package.py --require-skills-ref`; the validator now supplies a temporary public-name alias when the installed directory has a reconciled `skill-*` name. The final textual rule change should not be described as experimentally confirmed unless a later, explicitly justified evaluation is run.

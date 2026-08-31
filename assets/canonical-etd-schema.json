@@ -1,0 +1,3218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/grade-informed-etd-decision-support/canonical-etd-schema-v3.1.json",
+  "title": "Canonical EtD Record v3.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "decision_case",
+    "adaptation",
+    "evidence",
+    "criteria",
+    "additional_criteria",
+    "conclusion",
+    "governance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "3.0.0",
+        "3.1.0"
+      ]
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)+$"
+    },
+    "decision_case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question",
+        "risk_profile"
+      ],
+      "properties": {
+        "question": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "decision_owner",
+            "decision_type",
+            "evidence_question_type",
+            "perspective",
+            "jurisdiction",
+            "setting",
+            "panel_or_owner_mandate",
+            "population",
+            "options",
+            "contrasts",
+            "active_contrast_id",
+            "outcomes",
+            "context",
+            "constraints",
+            "baseline_risk",
+            "decision_thresholds"
+          ],
+          "properties": {
+            "decision_owner": {
+              "type": "string",
+              "minLength": 1
+            },
+            "decision_type": {
+              "type": "string",
+              "enum": [
+                "clinical_recommendation",
+                "public_health_recommendation",
+                "health_system_decision",
+                "health_technology_assessment",
+                "health_in_all_policies",
+                "education_policy",
+                "research_governance",
+                "organization_policy",
+                "product_or_operations",
+                "other"
+              ]
+            },
+            "evidence_question_type": {
+              "type": "string",
+              "enum": [
+                "health_intervention_comparison",
+                "diagnostic_or_screening",
+                "prognostic",
+                "qualitative_or_cerqual",
+                "model_based_hta",
+                "non_health_or_other"
+              ]
+            },
+            "perspective": {
+              "type": "string",
+              "minLength": 1
+            },
+            "jurisdiction": {
+              "type": "string",
+              "minLength": 1
+            },
+            "setting": {
+              "type": "string",
+              "minLength": 1
+            },
+            "panel_or_owner_mandate": {
+              "type": "string",
+              "minLength": 1
+            },
+            "population": {
+              "type": "string",
+              "minLength": 1
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "option_id",
+                  "label",
+                  "description"
+                ],
+                "properties": {
+                  "option_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9._-]+$"
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "minItems": 2
+            },
+            "contrasts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "contrast_id",
+                  "focal_option_id",
+                  "comparator_option_id"
+                ],
+                "properties": {
+                  "contrast_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9._-]+$"
+                  },
+                  "focal_option_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9._-]+$"
+                  },
+                  "comparator_option_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9._-]+$"
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 1
+            },
+            "active_contrast_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._-]+$"
+            },
+            "outcomes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "outcome_id",
+                  "name",
+                  "role",
+                  "importance",
+                  "outcome_type",
+                  "population_importance_rationale",
+                  "time_horizon"
+                ],
+                "properties": {
+                  "outcome_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9._-]+$"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "desirable",
+                      "undesirable"
+                    ]
+                  },
+                  "importance": {
+                    "type": "string",
+                    "enum": [
+                      "critical",
+                      "important",
+                      "not_important"
+                    ]
+                  },
+                  "outcome_type": {
+                    "type": "string",
+                    "enum": [
+                      "health",
+                      "resource",
+                      "process",
+                      "equity",
+                      "other"
+                    ]
+                  },
+                  "population_importance_rationale": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "time_horizon": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "minItems": 1
+            },
+            "context": {
+              "type": "string",
+              "minLength": 1
+            },
+            "constraints": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "baseline_risk": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "decision_thresholds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "risk_profile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "high_stakes",
+            "potential_harm_severity",
+            "reversibility",
+            "scale"
+          ],
+          "properties": {
+            "high_stakes": {
+              "type": "boolean"
+            },
+            "potential_harm_severity": {
+              "type": "string",
+              "enum": [
+                "low",
+                "moderate",
+                "high",
+                "catastrophic",
+                "unknown"
+              ]
+            },
+            "reversibility": {
+              "type": "string",
+              "enum": [
+                "readily_reversible",
+                "partly_reversible",
+                "hard_to_reverse",
+                "irreversible",
+                "unknown"
+              ]
+            },
+            "scale": {
+              "type": "string",
+              "enum": [
+                "individual",
+                "small_group",
+                "organization",
+                "population",
+                "unknown"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "adaptation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "domain_packs_considered",
+        "candidate_assessments",
+        "pack_composition_notes",
+        "critical_outcome_selection_rationale",
+        "equity_subgroups",
+        "jurisdictional_checks",
+        "material_missing_information"
+      ],
+      "properties": {
+        "domain_pack_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+          },
+          "uniqueItems": true,
+          "maxItems": 1
+        },
+        "domain_pack_use_case": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+        },
+        "domain_packs_considered": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "pack_id",
+              "pack_version",
+              "pack_sha256",
+              "selected",
+              "selection_reason",
+              "case_evidence_refs"
+            ],
+            "properties": {
+              "pack_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pack_version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pack_sha256": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{64}$"
+              },
+              "selected": {
+                "type": "boolean"
+              },
+              "selection_reason": {
+                "type": "string",
+                "minLength": 1
+              },
+              "case_evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            }
+          }
+        },
+        "candidate_assessments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "candidate_id",
+              "pack_id",
+              "selected",
+              "selection_reason",
+              "case_evidence_refs",
+              "resulting_record_paths"
+            ],
+            "properties": {
+              "candidate_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pack_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "selected": {
+                "type": "boolean"
+              },
+              "selection_reason": {
+                "type": "string",
+                "minLength": 1
+              },
+              "case_evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "resulting_record_paths": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            }
+          }
+        },
+        "pack_composition_notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "critical_outcome_selection_rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "equity_subgroups": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "jurisdictional_checks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "material_missing_information": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sources",
+        "artifacts",
+        "methods",
+        "search_limitations",
+        "effect_estimates",
+        "certainty_of_effects",
+        "major_gaps"
+      ],
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "title",
+              "source_type",
+              "citation",
+              "date",
+              "provided_by",
+              "doi",
+              "url",
+              "accessed_at",
+              "version",
+              "jurisdiction",
+              "locator"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source_type": {
+                "type": "string",
+                "enum": [
+                  "systematic_review",
+                  "primary_study",
+                  "qualitative_study",
+                  "guideline",
+                  "legal_or_regulatory",
+                  "internal_data",
+                  "stakeholder_input",
+                  "expert_judgment",
+                  "case_document",
+                  "other"
+                ]
+              },
+              "citation": {
+                "type": "string",
+                "minLength": 1
+              },
+              "date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "provided_by": {
+                "type": "string",
+                "enum": [
+                  "user",
+                  "agent_search",
+                  "connected_source",
+                  "internal_data",
+                  "expert",
+                  "other"
+                ]
+              },
+              "doi": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "url": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri"
+              },
+              "accessed_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "version": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "jurisdiction": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "locator": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "artifact_id",
+              "artifact_type",
+              "title",
+              "reference",
+              "source_ids",
+              "satisfies_requirements",
+              "verification"
+            ],
+            "properties": {
+              "artifact_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$"
+              },
+              "artifact_type": {
+                "type": "string",
+                "enum": [
+                  "evidence_profile",
+                  "summary_of_findings",
+                  "systematic_review_report",
+                  "systematic_review_protocol",
+                  "canonical_etd_record",
+                  "recommendation_record",
+                  "other"
+                ]
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reference": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "satisfies_requirements": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "search_strategy",
+                    "study_selection",
+                    "risk_of_bias",
+                    "synthesis_methods",
+                    "certainty_domains",
+                    "outcome_level_certainty",
+                    "desirable_and_undesirable_outcomes",
+                    "evidence_profile_or_sof",
+                    "etd_judgments",
+                    "recommendation_semantics"
+                  ]
+                },
+                "uniqueItems": true
+              },
+              "verification": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "integrity",
+                  "structural_completeness",
+                  "methodological_review"
+                ],
+                "properties": {
+                  "integrity": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "sha256",
+                      "checked_by_type"
+                    ],
+                    "properties": {
+                      "status": {
+                        "$ref": "#/$defs/integrity_status"
+                      },
+                      "sha256": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "pattern": "^[a-fA-F0-9]{64}$"
+                      },
+                      "checked_by_type": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "enum": [
+                          "automated_validator",
+                          "human",
+                          null
+                        ]
+                      }
+                    }
+                  },
+                  "structural_completeness": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "assessed_by_type",
+                      "details"
+                    ],
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "not_assessed",
+                          "passed",
+                          "failed"
+                        ]
+                      },
+                      "assessed_by_type": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "enum": [
+                          "automated_validator",
+                          "human",
+                          null
+                        ]
+                      },
+                      "details": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  },
+                  "methodological_review": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "reviewer",
+                      "reviewed_at",
+                      "notes"
+                    ],
+                    "properties": {
+                      "status": {
+                        "$ref": "#/$defs/review_status"
+                      },
+                      "reviewer": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/$defs/reviewer"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "reviewed_at": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "format": "date-time"
+                      },
+                      "notes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "methods": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "search",
+            "selection",
+            "appraisal",
+            "synthesis"
+          ],
+          "properties": {
+            "search": {
+              "type": "string",
+              "minLength": 1
+            },
+            "selection": {
+              "type": "string",
+              "minLength": 1
+            },
+            "appraisal": {
+              "type": "string",
+              "minLength": 1
+            },
+            "synthesis": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "search_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "effect_estimates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "estimate_id",
+              "contrast_id",
+              "outcome_id",
+              "measure",
+              "relative_effect",
+              "absolute_effect",
+              "confidence_interval",
+              "baseline_risk",
+              "time_horizon",
+              "source_ids"
+            ],
+            "properties": {
+              "estimate_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$"
+              },
+              "contrast_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$"
+              },
+              "outcome_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$"
+              },
+              "measure": {
+                "type": "string",
+                "minLength": 1
+              },
+              "relative_effect": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "absolute_effect": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "confidence_interval": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "baseline_risk": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "time_horizon": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            }
+          }
+        },
+        "certainty_of_effects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "contrast_id",
+              "outcome_id",
+              "evidence_design",
+              "basis",
+              "initial_rating",
+              "final_rating",
+              "domains",
+              "calculation_or_override",
+              "reasons",
+              "artifact_refs"
+            ],
+            "properties": {
+              "contrast_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$"
+              },
+              "outcome_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$"
+              },
+              "evidence_design": {
+                "type": "string",
+                "enum": [
+                  "randomized",
+                  "nonrandomized",
+                  "mixed",
+                  "not_assessed"
+                ]
+              },
+              "initial_rating": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "moderate",
+                  "low",
+                  "very_low",
+                  "not_rated"
+                ]
+              },
+              "final_rating": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "moderate",
+                  "low",
+                  "very_low",
+                  "not_rated"
+                ]
+              },
+              "domains": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "risk_of_bias",
+                  "inconsistency",
+                  "indirectness",
+                  "imprecision",
+                  "publication_bias",
+                  "large_effect",
+                  "dose_response",
+                  "residual_confounding"
+                ],
+                "properties": {
+                  "risk_of_bias": {
+                    "$ref": "#/$defs/certainty_domain"
+                  },
+                  "inconsistency": {
+                    "$ref": "#/$defs/certainty_domain"
+                  },
+                  "indirectness": {
+                    "$ref": "#/$defs/certainty_domain"
+                  },
+                  "imprecision": {
+                    "$ref": "#/$defs/certainty_domain"
+                  },
+                  "publication_bias": {
+                    "$ref": "#/$defs/certainty_domain"
+                  },
+                  "large_effect": {
+                    "$ref": "#/$defs/certainty_domain"
+                  },
+                  "dose_response": {
+                    "$ref": "#/$defs/certainty_domain"
+                  },
+                  "residual_confounding": {
+                    "$ref": "#/$defs/certainty_domain"
+                  }
+                }
+              },
+              "calculation_or_override": {
+                "type": "string",
+                "minLength": 20,
+                "maxLength": 4096,
+                "pattern": "^\\S(?:.*\\S)?$"
+              },
+              "reasons": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "artifact_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "basis": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "major_gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "problem",
+        "desirable_effects",
+        "undesirable_effects",
+        "certainty_of_effects",
+        "values",
+        "balance_of_effects",
+        "resources",
+        "equity",
+        "acceptability",
+        "feasibility"
+      ],
+      "properties": {
+        "problem": {
+          "anyOf": [
+            {"$ref": "#/$defs/criterion_problem"},
+            {"$ref": "#/$defs/criterion_compact_non_applicable"}
+          ]
+        },
+        "desirable_effects": {
+          "anyOf": [
+            {"$ref": "#/$defs/criterion_desirable_effects"},
+            {"$ref": "#/$defs/criterion_compact_non_applicable"}
+          ]
+        },
+        "undesirable_effects": {
+          "anyOf": [
+            {"$ref": "#/$defs/criterion_undesirable_effects"},
+            {"$ref": "#/$defs/criterion_compact_non_applicable"}
+          ]
+        },
+        "certainty_of_effects": {
+          "anyOf": [
+            {"$ref": "#/$defs/criterion_certainty_of_effects"},
+            {"$ref": "#/$defs/criterion_compact_non_applicable"}
+          ]
+        },
+        "values": {
+          "anyOf": [
+            {"$ref": "#/$defs/criterion_values"},
+            {"$ref": "#/$defs/criterion_compact_non_applicable"}
+          ]
+        },
+        "balance_of_effects": {
+          "anyOf": [
+            {"$ref": "#/$defs/criterion_balance_of_effects"},
+            {"$ref": "#/$defs/criterion_compact_non_applicable"}
+          ]
+        },
+        "resources": {
+          "anyOf": [
+            {"$ref": "#/$defs/criterion_resources"},
+            {"$ref": "#/$defs/criterion_compact_non_applicable"}
+          ]
+        },
+        "equity": {
+          "anyOf": [
+            {"$ref": "#/$defs/criterion_equity"},
+            {"$ref": "#/$defs/criterion_compact_non_applicable"}
+          ]
+        },
+        "acceptability": {
+          "anyOf": [
+            {"$ref": "#/$defs/criterion_acceptability"},
+            {"$ref": "#/$defs/criterion_compact_non_applicable"}
+          ]
+        },
+        "feasibility": {
+          "anyOf": [
+            {"$ref": "#/$defs/criterion_feasibility"},
+            {"$ref": "#/$defs/criterion_compact_non_applicable"}
+          ]
+        }
+      }
+    },
+    "additional_criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "criterion_id",
+          "label",
+          "category",
+          "assessment"
+        ],
+        "properties": {
+          "criterion_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9._-]+$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "health",
+              "contextual",
+              "legal",
+              "ethical",
+              "other"
+            ]
+          },
+          "assessment": {
+            "anyOf": [
+              {"$ref": "#/$defs/criterion_additional"},
+              {"$ref": "#/$defs/criterion_compact_non_applicable"}
+            ]
+          }
+        }
+      }
+    },
+    "conclusion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_status",
+        "recommendation",
+        "justification",
+        "decisive_criteria",
+        "applicable_population",
+        "excluded_population",
+        "implementation_conditions",
+        "monitoring",
+        "stop_or_modify_conditions",
+        "reassessment_triggers",
+        "unresolved_uncertainties",
+        "next_actions"
+      ],
+      "properties": {
+        "decision_status": {
+          "type": "string",
+          "enum": [
+            "recommendation_formed",
+            "insufficient_basis"
+          ]
+        },
+        "recommendation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "direction",
+            "strength",
+            "statement",
+            "conditions"
+          ],
+          "properties": {
+            "direction": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "for",
+                "against",
+                null
+              ]
+            },
+            "strength": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "strong",
+                "conditional",
+                null
+              ]
+            },
+            "statement": {
+              "type": "string"
+            },
+            "conditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "justification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decisive_criteria": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "applicable_population": {
+          "type": "string",
+          "minLength": 1
+        },
+        "excluded_population": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "implementation_conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action_item"
+          }
+        },
+        "monitoring": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/monitor_item"
+          }
+        },
+        "stop_or_modify_conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action_item"
+          }
+        },
+        "reassessment_triggers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action_item"
+          }
+        },
+        "unresolved_uncertainties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/uncertainty_item"
+          }
+        },
+        "next_actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action_item"
+          }
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_origin",
+        "methodological_profile",
+        "review_status",
+        "human_review_required",
+        "grade_evidence_assessment",
+        "grade_etd_assessment",
+        "formal_grade_claim_authorization",
+        "etd_framework",
+        "methodological_limitations",
+        "contributors",
+        "conflicts_of_interest",
+        "funding",
+        "panel_composition",
+        "dissenting_judgments",
+        "approved_by",
+        "approved_at",
+        "approval_scope",
+        "methodology_version",
+        "created_at",
+        "created_by",
+        "source_snapshot_date"
+      ],
+      "properties": {
+        "record_origin": {
+          "type": "string",
+          "enum": [
+            "generated_by_skill",
+            "imported_approved_record"
+          ]
+        },
+        "methodological_profile": {
+          "type": "string",
+          "enum": [
+            "grade_informed_etd",
+            "formal_grade_etd_draft"
+          ]
+        },
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "human_approved"
+          ]
+        },
+        "human_review_required": {
+          "type": "boolean"
+        },
+        "grade_evidence_assessment": {
+          "$ref": "#/$defs/claim_assessment"
+        },
+        "grade_etd_assessment": {
+          "$ref": "#/$defs/etd_claim_assessment"
+        },
+        "formal_grade_claim_authorization": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "scope",
+            "authorized_by",
+            "authorized_at",
+            "notes"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "not_authorized",
+                "pending_human_review",
+                "authorized"
+              ]
+            },
+            "scope": {
+              "type": "string",
+              "enum": [
+                "none",
+                "evidence_certainty",
+                "recommendation_or_decision",
+                "both"
+              ]
+            },
+            "authorized_by": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/reviewer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "authorized_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "etd_framework": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "framework_type",
+            "version",
+            "selected_criteria",
+            "omitted_criteria",
+            "added_criteria",
+            "selection_rationale"
+          ],
+          "properties": {
+            "framework_type": {
+              "type": "string",
+              "enum": [
+                "grade_recommendation_framework",
+                "grade_informed_generic_etd"
+              ]
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "selected_criteria": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "omitted_criteria": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "added_criteria": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "selection_rationale": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "methodological_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "contributors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "conflicts_of_interest": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "funding": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "panel_composition": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "dissenting_judgments": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "approved_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "approved_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "approval_scope": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "methodology_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "created_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_snapshot_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "const": "3.1.0"
+          }
+        },
+        "required": [
+          "schema_version"
+        ]
+      },
+      "then": {
+        "required": [
+          "profile_id"
+        ],
+        "properties": {
+          "adaptation": {
+            "required": [
+              "domain_pack_ids",
+              "domain_pack_use_case"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "const": "3.0.0"
+          }
+        },
+        "required": [
+          "schema_version"
+        ]
+      },
+      "then": {
+        "properties": {
+          "criteria": {
+            "properties": {
+              "problem": {"$ref": "#/$defs/criterion_problem"},
+              "desirable_effects": {"$ref": "#/$defs/criterion_desirable_effects"},
+              "undesirable_effects": {"$ref": "#/$defs/criterion_undesirable_effects"},
+              "certainty_of_effects": {"$ref": "#/$defs/criterion_certainty_of_effects"},
+              "values": {"$ref": "#/$defs/criterion_values"},
+              "balance_of_effects": {"$ref": "#/$defs/criterion_balance_of_effects"},
+              "resources": {"$ref": "#/$defs/criterion_resources"},
+              "equity": {"$ref": "#/$defs/criterion_equity"},
+              "acceptability": {"$ref": "#/$defs/criterion_acceptability"},
+              "feasibility": {"$ref": "#/$defs/criterion_feasibility"}
+            }
+          },
+          "additional_criteria": {
+            "items": {
+              "properties": {
+                "assessment": {
+                  "$ref": "#/$defs/criterion_additional"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "execution_status": {
+      "type": "string",
+      "enum": [
+        "not_run",
+        "passed",
+        "failed"
+      ]
+    },
+    "assessment_status": {
+      "type": "string",
+      "enum": [
+        "not_assessed",
+        "requirements_met",
+        "requirements_not_met"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "not_reviewed",
+        "revisions_required",
+        "approved"
+      ]
+    },
+    "integrity_status": {
+      "type": "string",
+      "enum": [
+        "not_checked",
+        "verified",
+        "failed"
+      ]
+    },
+    "applicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reason",
+        "integrated_into"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "applicable",
+            "not_applicable",
+            "outside_mandate",
+            "integrated_elsewhere"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "integrated_into": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "criterion_compact_non_applicable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability"
+      ],
+      "properties": {
+        "applicability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "not_applicable",
+                "outside_mandate",
+                "integrated_elsewhere"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "integrated_into": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "integrated_elsewhere"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "integrated_into"
+                ],
+                "properties": {
+                  "integrated_into": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "support_relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "directness",
+        "consistency",
+        "reviewer_assessment"
+      ],
+      "properties": {
+        "directness": {
+          "type": "string",
+          "enum": [
+            "direct",
+            "indirect",
+            "unclear"
+          ]
+        },
+        "consistency": {
+          "type": "string",
+          "enum": [
+            "consistent",
+            "mixed",
+            "unclear"
+          ]
+        },
+        "reviewer_assessment": {
+          "type": "string",
+          "enum": [
+            "supports",
+            "partially_supports",
+            "does_not_support",
+            "not_assessed"
+          ]
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim",
+        "status",
+        "source_ids",
+        "support_relation"
+      ],
+      "properties": {
+        "claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "source_reported",
+            "verified_against_source",
+            "corroborated",
+            "inferred",
+            "unknown"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "support_relation": {
+          "$ref": "#/$defs/support_relation"
+        }
+      }
+    },
+    "evidence_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source_ids",
+        "rationale"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "empirical_evidence",
+            "stakeholder_input",
+            "panel_judgment",
+            "no_evidence",
+            "integrated_elsewhere"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "subjudgment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "judgment_code",
+        "judgment",
+        "support"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "acceptability_no",
+            "acceptability_probably_no",
+            "acceptability_probably_yes",
+            "acceptability_varies",
+            "acceptability_yes",
+            "balance_favors_comparator",
+            "balance_favors_option",
+            "balance_neutral",
+            "balance_probably_favors_comparator",
+            "balance_probably_favors_option",
+            "balance_varies",
+            "certainty_high",
+            "certainty_low",
+            "certainty_moderate",
+            "certainty_varies",
+            "certainty_very_low",
+            "effect_large",
+            "effect_moderate",
+            "effect_small",
+            "effect_trivial",
+            "effect_varies",
+            "equity_increased",
+            "equity_no_impact",
+            "equity_probably_increased",
+            "equity_probably_reduced",
+            "equity_reduced",
+            "equity_varies",
+            "feasibility_no",
+            "feasibility_probably_no",
+            "feasibility_probably_yes",
+            "feasibility_varies",
+            "feasibility_yes",
+            "not_applicable",
+            "not_rated",
+            "problem_not_priority",
+            "problem_priority",
+            "problem_probably_priority",
+            "resources_large_costs",
+            "resources_large_savings",
+            "resources_moderate_costs",
+            "resources_moderate_savings",
+            "resources_negligible",
+            "resources_varies",
+            "unknown",
+            "values_important_uncertainty",
+            "values_no_important_uncertainty",
+            "values_possible_important_uncertainty",
+            "values_probable_important_uncertainty",
+            "values_varies"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        }
+      }
+    },
+    "criterion_problem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "materiality",
+        "case_specific_question",
+        "evidence",
+        "evidence_basis",
+        "judgment_code",
+        "judgment",
+        "support",
+        "rationale",
+        "assumptions",
+        "limitations",
+        "subjudgments"
+      ],
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "materiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "evaluated",
+            "low_materiality",
+            null
+          ]
+        },
+        "case_specific_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/evidence_basis"
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_applicable",
+            "problem_not_priority",
+            "problem_probably_priority",
+            "problem_priority"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subjudgments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subjudgment"
+          }
+        }
+      }
+    },
+    "criterion_desirable_effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "materiality",
+        "case_specific_question",
+        "evidence",
+        "evidence_basis",
+        "judgment_code",
+        "judgment",
+        "support",
+        "rationale",
+        "assumptions",
+        "limitations",
+        "subjudgments"
+      ],
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "materiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "evaluated",
+            "low_materiality",
+            null
+          ]
+        },
+        "case_specific_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/evidence_basis"
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_applicable",
+            "effect_trivial",
+            "effect_small",
+            "effect_moderate",
+            "effect_large",
+            "effect_varies"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subjudgments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subjudgment"
+          }
+        }
+      }
+    },
+    "criterion_undesirable_effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "materiality",
+        "case_specific_question",
+        "evidence",
+        "evidence_basis",
+        "judgment_code",
+        "judgment",
+        "support",
+        "rationale",
+        "assumptions",
+        "limitations",
+        "subjudgments"
+      ],
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "materiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "evaluated",
+            "low_materiality",
+            null
+          ]
+        },
+        "case_specific_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/evidence_basis"
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_applicable",
+            "effect_trivial",
+            "effect_small",
+            "effect_moderate",
+            "effect_large",
+            "effect_varies"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subjudgments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subjudgment"
+          }
+        }
+      }
+    },
+    "criterion_certainty_of_effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "materiality",
+        "case_specific_question",
+        "evidence",
+        "evidence_basis",
+        "judgment_code",
+        "judgment",
+        "support",
+        "rationale",
+        "assumptions",
+        "limitations",
+        "subjudgments"
+      ],
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "materiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "evaluated",
+            "low_materiality",
+            null
+          ]
+        },
+        "case_specific_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/evidence_basis"
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_applicable",
+            "certainty_high",
+            "certainty_moderate",
+            "certainty_low",
+            "certainty_very_low",
+            "not_rated",
+            "certainty_varies"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subjudgments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subjudgment"
+          }
+        }
+      }
+    },
+    "criterion_values": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "materiality",
+        "case_specific_question",
+        "evidence",
+        "evidence_basis",
+        "judgment_code",
+        "judgment",
+        "support",
+        "rationale",
+        "assumptions",
+        "limitations",
+        "subjudgments"
+      ],
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "materiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "evaluated",
+            "low_materiality",
+            null
+          ]
+        },
+        "case_specific_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/evidence_basis"
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_applicable",
+            "values_no_important_uncertainty",
+            "values_possible_important_uncertainty",
+            "values_probable_important_uncertainty",
+            "values_important_uncertainty",
+            "values_varies"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subjudgments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subjudgment"
+          }
+        }
+      }
+    },
+    "criterion_balance_of_effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "materiality",
+        "case_specific_question",
+        "evidence",
+        "evidence_basis",
+        "judgment_code",
+        "judgment",
+        "support",
+        "rationale",
+        "assumptions",
+        "limitations",
+        "subjudgments"
+      ],
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "materiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "evaluated",
+            "low_materiality",
+            null
+          ]
+        },
+        "case_specific_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/evidence_basis"
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_applicable",
+            "balance_favors_option",
+            "balance_probably_favors_option",
+            "balance_neutral",
+            "balance_probably_favors_comparator",
+            "balance_favors_comparator",
+            "balance_varies"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subjudgments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subjudgment"
+          }
+        }
+      }
+    },
+    "criterion_resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "materiality",
+        "case_specific_question",
+        "evidence",
+        "evidence_basis",
+        "judgment_code",
+        "judgment",
+        "support",
+        "rationale",
+        "assumptions",
+        "limitations",
+        "subjudgments"
+      ],
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "materiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "evaluated",
+            "low_materiality",
+            null
+          ]
+        },
+        "case_specific_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/evidence_basis"
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_applicable",
+            "resources_large_savings",
+            "resources_moderate_savings",
+            "resources_negligible",
+            "resources_moderate_costs",
+            "resources_large_costs",
+            "resources_varies"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subjudgments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subjudgment"
+          }
+        }
+      }
+    },
+    "criterion_equity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "materiality",
+        "case_specific_question",
+        "evidence",
+        "evidence_basis",
+        "judgment_code",
+        "judgment",
+        "support",
+        "rationale",
+        "assumptions",
+        "limitations",
+        "subjudgments"
+      ],
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "materiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "evaluated",
+            "low_materiality",
+            null
+          ]
+        },
+        "case_specific_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/evidence_basis"
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_applicable",
+            "equity_increased",
+            "equity_probably_increased",
+            "equity_no_impact",
+            "equity_probably_reduced",
+            "equity_reduced",
+            "equity_varies"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subjudgments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subjudgment"
+          }
+        }
+      }
+    },
+    "criterion_acceptability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "materiality",
+        "case_specific_question",
+        "evidence",
+        "evidence_basis",
+        "judgment_code",
+        "judgment",
+        "support",
+        "rationale",
+        "assumptions",
+        "limitations",
+        "subjudgments"
+      ],
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "materiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "evaluated",
+            "low_materiality",
+            null
+          ]
+        },
+        "case_specific_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/evidence_basis"
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_applicable",
+            "acceptability_yes",
+            "acceptability_probably_yes",
+            "acceptability_probably_no",
+            "acceptability_no",
+            "acceptability_varies"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subjudgments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subjudgment"
+          }
+        }
+      }
+    },
+    "criterion_feasibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "materiality",
+        "case_specific_question",
+        "evidence",
+        "evidence_basis",
+        "judgment_code",
+        "judgment",
+        "support",
+        "rationale",
+        "assumptions",
+        "limitations",
+        "subjudgments"
+      ],
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "materiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "evaluated",
+            "low_materiality",
+            null
+          ]
+        },
+        "case_specific_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/evidence_basis"
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_applicable",
+            "feasibility_yes",
+            "feasibility_probably_yes",
+            "feasibility_probably_no",
+            "feasibility_no",
+            "feasibility_varies"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subjudgments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subjudgment"
+          }
+        }
+      }
+    },
+    "criterion_additional": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "materiality",
+        "case_specific_question",
+        "evidence",
+        "evidence_basis",
+        "judgment_code",
+        "judgment",
+        "support",
+        "rationale",
+        "assumptions",
+        "limitations",
+        "subjudgments"
+      ],
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "materiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "evaluated",
+            "low_materiality",
+            null
+          ]
+        },
+        "case_specific_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/evidence_basis"
+        },
+        "judgment_code": {
+          "type": "string",
+          "enum": [
+            "acceptability_no",
+            "acceptability_probably_no",
+            "acceptability_probably_yes",
+            "acceptability_varies",
+            "acceptability_yes",
+            "balance_favors_comparator",
+            "balance_favors_option",
+            "balance_neutral",
+            "balance_probably_favors_comparator",
+            "balance_probably_favors_option",
+            "balance_varies",
+            "certainty_high",
+            "certainty_low",
+            "certainty_moderate",
+            "certainty_varies",
+            "certainty_very_low",
+            "effect_large",
+            "effect_moderate",
+            "effect_small",
+            "effect_trivial",
+            "effect_varies",
+            "equity_increased",
+            "equity_no_impact",
+            "equity_probably_increased",
+            "equity_probably_reduced",
+            "equity_reduced",
+            "equity_varies",
+            "feasibility_no",
+            "feasibility_probably_no",
+            "feasibility_probably_yes",
+            "feasibility_varies",
+            "feasibility_yes",
+            "not_applicable",
+            "not_rated",
+            "problem_not_priority",
+            "problem_priority",
+            "problem_probably_priority",
+            "resources_large_costs",
+            "resources_large_savings",
+            "resources_moderate_costs",
+            "resources_moderate_savings",
+            "resources_negligible",
+            "resources_varies",
+            "unknown",
+            "values_important_uncertainty",
+            "values_no_important_uncertainty",
+            "values_possible_important_uncertainty",
+            "values_probable_important_uncertainty",
+            "values_varies"
+          ]
+        },
+        "judgment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support": {
+          "type": "string",
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient",
+            "not_applicable"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subjudgments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subjudgment"
+          }
+        }
+      }
+    },
+    "action_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "action",
+        "owner",
+        "timing",
+        "verification"
+      ],
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "timing": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verification": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "monitor_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "indicator_id",
+        "indicator",
+        "purpose",
+        "owner",
+        "cadence",
+        "threshold"
+      ],
+      "properties": {
+        "indicator_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "indicator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cadence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "threshold": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "uncertainty_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uncertainty_id",
+        "description",
+        "decision_impact",
+        "resolution"
+      ],
+      "properties": {
+        "uncertainty_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_impact": {
+          "type": "string",
+          "enum": [
+            "low",
+            "moderate",
+            "high",
+            "unknown"
+          ]
+        },
+        "resolution": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "identity",
+        "authority_scope"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ai",
+            "automated_validator",
+            "human_methodologist",
+            "authorized_panel"
+          ]
+        },
+        "identity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authority_scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "certainty_domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rating_effect",
+        "rationale"
+      ],
+      "properties": {
+        "rating_effect": {
+          "type": "string",
+          "enum": [
+            "no_change",
+            "downgrade_1",
+            "downgrade_2",
+            "upgrade_1",
+            "upgrade_2",
+            "not_applicable",
+            "unclear"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "claim_assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "automated_precheck",
+        "artifact_refs",
+        "reasons"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/assessment_status"
+        },
+        "automated_precheck": {
+          "$ref": "#/$defs/execution_status"
+        },
+        "artifact_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "etd_claim_assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "automated_precheck",
+        "artifact_refs",
+        "reasons"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "not_assessed",
+            "requirements_not_met",
+            "precheck_passed"
+          ]
+        },
+        "automated_precheck": {
+          "$ref": "#/$defs/execution_status"
+        },
+        "artifact_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

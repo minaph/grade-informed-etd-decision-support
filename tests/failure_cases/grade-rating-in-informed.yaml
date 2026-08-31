@@ -1,0 +1,528 @@
+schema_version: 3.0.0
+decision_case:
+  question:
+    decision_owner: Case decision owner
+    decision_type: product_or_operations
+    perspective: Decision-owner perspective
+    jurisdiction: Specified jurisdiction
+    setting: Case setting
+    panel_or_owner_mandate: May make a provisional recommendation
+    population: Affected population
+    options:
+    - option_id: focal
+      label: Focal option
+      description: Implement the focal option
+    - option_id: current
+      label: Current practice
+      description: Continue current practice
+    outcomes:
+    - outcome_id: benefit
+      name: Important benefit
+      importance: critical
+      time_horizon: 12 months
+      role: desirable
+      outcome_type: other
+      population_importance_rationale: Selected as decision-important for the affected population.
+    - outcome_id: harm
+      name: Important harm
+      importance: critical
+      time_horizon: 12 months
+      role: undesirable
+      outcome_type: other
+      population_importance_rationale: Selected as decision-important for the affected population.
+    context: organization-clear-benefit
+    constraints: []
+    baseline_risk: Case-specific baseline
+    decision_thresholds:
+    - Benefit must exceed material harm and implementation burden
+    evidence_question_type: non_health_or_other
+    contrasts:
+    - contrast_id: focal-vs-current
+      focal_option_id: focal
+      comparator_option_id: current
+    active_contrast_id: focal-vs-current
+  risk_profile:
+    high_stakes: false
+    potential_harm_severity: unknown
+    reversibility: unknown
+    scale: unknown
+adaptation:
+  domain_packs_considered:
+  - pack_id: organization-product-operations
+    selected: true
+    selection_reason: The pack matches the decision domain.
+    case_evidence_refs:
+    - s1
+    pack_version: 2.0.0
+    pack_sha256: 92eba270ab85d3241b58510b3316e1437c1b021a7c77096e7e090135b2dd60b0
+  critical_outcome_selection_rationale: Benefits and harms are decision-critical.
+  equity_subgroups:
+  - Potentially disadvantaged subgroup
+  jurisdictional_checks:
+  - Applicable law and policy checked provisionally.
+  material_missing_information: []
+  candidate_assessments:
+  - candidate_id: organization.outcome.value
+    pack_id: organization-product-operations
+    selected: true
+    selection_reason: Relevant to the case outcomes or harms.
+    case_evidence_refs:
+    - s1
+    resulting_record_paths:
+    - decision_case.question.outcomes
+  - candidate_id: organization.harm.operational
+    pack_id: organization-product-operations
+    selected: true
+    selection_reason: Relevant to the case outcomes or harms.
+    case_evidence_refs:
+    - s1
+    resulting_record_paths:
+    - decision_case.question.outcomes
+  pack_composition_notes: []
+evidence:
+  sources:
+  - source_id: s1
+    title: Case evidence
+    source_type: case_document
+    citation: Case evidence
+    date: '2026-01-01'
+    provided_by: user
+    doi: null
+    url: null
+    accessed_at: null
+    version: '1'
+    jurisdiction: null
+    locator: case file
+  artifacts: []
+  methods:
+    search: User-provided case evidence only.
+    selection: One directly relevant source selected.
+    appraisal: Rapid structured appraisal.
+    synthesis: Narrative synthesis.
+  search_limitations:
+  - No systematic database search was conducted.
+  effect_estimates:
+  - estimate_id: est-benefit
+    outcome_id: benefit
+    measure: narrative estimate
+    relative_effect: null
+    absolute_effect: Case-specific
+    confidence_interval: null
+    baseline_risk: Case-specific
+    time_horizon: 12 months
+    source_ids:
+    - s1
+    contrast_id: focal-vs-current
+  - estimate_id: est-harm
+    outcome_id: harm
+    measure: narrative estimate
+    relative_effect: null
+    absolute_effect: Case-specific
+    confidence_interval: null
+    baseline_risk: Case-specific
+    time_horizon: 12 months
+    source_ids:
+    - s1
+    contrast_id: focal-vs-current
+  certainty_of_effects:
+  - outcome_id: benefit
+    basis: GRADE-informed profile; formal GRADE not performed.
+    domains:
+      risk_of_bias:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      inconsistency:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      indirectness:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      imprecision:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      publication_bias:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      large_effect:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      dose_response:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      residual_confounding:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+    reasons:
+    - Formal GRADE not performed.
+    artifact_refs: []
+    contrast_id: focal-vs-current
+    evidence_design: randomized
+    initial_rating: high
+    final_rating: low
+    calculation_or_override: Final rating follows documented domain judgments; review required.
+  - outcome_id: harm
+    basis: GRADE-informed profile; formal GRADE not performed.
+    domains:
+      risk_of_bias:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      inconsistency:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      indirectness:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      imprecision:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      publication_bias:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      large_effect:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      dose_response:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+      residual_confounding:
+        rating_effect: not_applicable
+        rationale: Formal GRADE not performed.
+    reasons:
+    - Formal GRADE not performed.
+    artifact_refs: []
+    contrast_id: focal-vs-current
+    evidence_design: not_assessed
+    initial_rating: not_rated
+    final_rating: not_rated
+    calculation_or_override: Not rated under the GRADE-informed profile.
+  major_gaps: []
+criteria:
+  problem:
+    applicability:
+      status: applicable
+      reason: 意思決定に関連するため評価する。
+      integrated_into: null
+    materiality: evaluated
+    case_specific_question: problemを案件固有の文脈でどのように判断するか。
+    evidence:
+    - claim: problemに関連する案件情報がある。
+      status: source_reported
+      source_ids:
+      - s1
+      support_relation:
+        directness: unclear
+        consistency: unclear
+        reviewer_assessment: not_assessed
+    judgment_code: unknown
+    judgment: 不明
+    support: limited
+    rationale: Rapid evidence base; criterion requires case judgment.
+    assumptions: []
+    limitations: []
+    subjudgments: []
+    evidence_basis:
+      type: empirical_evidence
+      source_ids:
+      - s1
+      rationale: Basis made explicit for auditability.
+  desirable_effects:
+    applicability:
+      status: applicable
+      reason: 意思決定に関連するため評価する。
+      integrated_into: null
+    materiality: evaluated
+    case_specific_question: desirable_effectsを案件固有の文脈でどのように判断するか。
+    evidence: []
+    judgment_code: effect_large
+    judgment: 大きい
+    support: limited
+    rationale: 大きい
+    assumptions: []
+    limitations: []
+    subjudgments: []
+    evidence_basis:
+      type: panel_judgment
+      source_ids: []
+      rationale: Basis made explicit for auditability.
+  undesirable_effects:
+    applicability:
+      status: applicable
+      reason: 意思決定に関連するため評価する。
+      integrated_into: null
+    materiality: evaluated
+    case_specific_question: undesirable_effectsを案件固有の文脈でどのように判断するか。
+    evidence: []
+    judgment_code: effect_trivial
+    judgment: ごく小さい
+    support: limited
+    rationale: ごく小さい
+    assumptions: []
+    limitations: []
+    subjudgments: []
+    evidence_basis:
+      type: panel_judgment
+      source_ids: []
+      rationale: Basis made explicit for auditability.
+  certainty_of_effects:
+    applicability:
+      status: applicable
+      reason: 意思決定に関連するため評価する。
+      integrated_into: null
+    materiality: evaluated
+    case_specific_question: certainty_of_effectsを案件固有の文脈でどのように判断するか。
+    evidence: []
+    judgment_code: not_rated
+    judgment: 正式評価なし
+    support: limited
+    rationale: 正式評価なし
+    assumptions: []
+    limitations: []
+    subjudgments: []
+    evidence_basis:
+      type: panel_judgment
+      source_ids: []
+      rationale: Basis made explicit for auditability.
+  values:
+    applicability:
+      status: applicable
+      reason: 意思決定に関連するため評価する。
+      integrated_into: null
+    materiality: evaluated
+    case_specific_question: valuesを案件固有の文脈でどのように判断するか。
+    evidence:
+    - claim: valuesに関連する案件情報がある。
+      status: source_reported
+      source_ids:
+      - s1
+      support_relation:
+        directness: unclear
+        consistency: unclear
+        reviewer_assessment: not_assessed
+    judgment_code: unknown
+    judgment: 不明
+    support: limited
+    rationale: Rapid evidence base; criterion requires case judgment.
+    assumptions: []
+    limitations: []
+    subjudgments:
+    - name: outcome_importance
+      judgment_code: values_no_important_uncertainty
+      judgment: 利益と害は重要である。
+      support: limited
+    - name: variability
+      judgment_code: values_possible_important_uncertainty
+      judgment: 関係者間で差があり得る。
+      support: limited
+    - name: uncertainty
+      judgment_code: values_possible_important_uncertainty
+      judgment: 直接調査が限定的である。
+      support: limited
+    - name: stakeholder_conflicts
+      judgment_code: values_no_important_uncertainty
+      judgment: 重大な対立は確認されていない。
+      support: limited
+    evidence_basis:
+      type: empirical_evidence
+      source_ids:
+      - s1
+      rationale: Basis made explicit for auditability.
+  balance_of_effects:
+    applicability:
+      status: applicable
+      reason: 意思決定に関連するため評価する。
+      integrated_into: null
+    materiality: evaluated
+    case_specific_question: balance_of_effectsを案件固有の文脈でどのように判断するか。
+    evidence: []
+    judgment_code: balance_favors_option
+    judgment: 焦点選択肢を支持
+    support: limited
+    rationale: 焦点選択肢を支持
+    assumptions: []
+    limitations: []
+    subjudgments: []
+    evidence_basis:
+      type: panel_judgment
+      source_ids: []
+      rationale: Basis made explicit for auditability.
+  resources:
+    applicability:
+      status: applicable
+      reason: 意思決定に関連するため評価する。
+      integrated_into: null
+    materiality: evaluated
+    case_specific_question: resourcesを案件固有の文脈でどのように判断するか。
+    evidence: []
+    judgment_code: resources_negligible
+    judgment: 追加費用はごく小さい
+    support: limited
+    rationale: 追加費用はごく小さい
+    assumptions: []
+    limitations: []
+    subjudgments: []
+    evidence_basis:
+      type: panel_judgment
+      source_ids: []
+      rationale: Basis made explicit for auditability.
+  equity:
+    applicability:
+      status: applicable
+      reason: 意思決定に関連するため評価する。
+      integrated_into: null
+    materiality: evaluated
+    case_specific_question: equityを案件固有の文脈でどのように判断するか。
+    evidence: []
+    judgment_code: equity_no_impact
+    judgment: 重大な公平性影響なし
+    support: limited
+    rationale: 重大な公平性影響なし
+    assumptions: []
+    limitations: []
+    subjudgments: []
+    evidence_basis:
+      type: panel_judgment
+      source_ids: []
+      rationale: Basis made explicit for auditability.
+  acceptability:
+    applicability:
+      status: applicable
+      reason: 意思決定に関連するため評価する。
+      integrated_into: null
+    materiality: evaluated
+    case_specific_question: acceptabilityを案件固有の文脈でどのように判断するか。
+    evidence: []
+    judgment_code: acceptability_yes
+    judgment: 受容可能
+    support: limited
+    rationale: 受容可能
+    assumptions: []
+    limitations: []
+    subjudgments: []
+    evidence_basis:
+      type: panel_judgment
+      source_ids: []
+      rationale: Basis made explicit for auditability.
+  feasibility:
+    applicability:
+      status: applicable
+      reason: 意思決定に関連するため評価する。
+      integrated_into: null
+    materiality: evaluated
+    case_specific_question: feasibilityを案件固有の文脈でどのように判断するか。
+    evidence: []
+    judgment_code: feasibility_yes
+    judgment: 実行可能
+    support: limited
+    rationale: 実行可能
+    assumptions: []
+    limitations: []
+    subjudgments: []
+    evidence_basis:
+      type: panel_judgment
+      source_ids: []
+      rationale: Basis made explicit for auditability.
+additional_criteria: []
+conclusion:
+  decision_status: recommendation_formed
+  recommendation:
+    direction: for
+    strength: strong
+    statement: 実施を強く推奨する。
+    conditions: []
+  justification: 大きな利益、ごく小さい害、低い追加負担。
+  decisive_criteria:
+  - desirable_effects
+  - undesirable_effects
+  - balance_of_effects
+  applicable_population: Affected population
+  excluded_population: []
+  implementation_conditions:
+  - item_id: impl-1
+    action: Standard rollout controlsを実施する。
+    owner: Decision owner
+    timing: Before implementation
+    verification: Documented review
+  monitoring:
+  - indicator_id: m1
+    indicator: Important benefit
+    purpose: Benefit, harm, equity, or implementation monitoring
+    owner: Implementation owner
+    cadence: Monthly
+    threshold: null
+  - indicator_id: m2
+    indicator: Important harm
+    purpose: Benefit, harm, equity, or implementation monitoring
+    owner: Implementation owner
+    cadence: Monthly
+    threshold: null
+  stop_or_modify_conditions:
+  - item_id: stop-1
+    action: Stop or modify if material harm exceeds threshold.
+    owner: Decision owner
+    timing: Before implementation
+    verification: Documented review
+  reassessment_triggers:
+  - item_id: reassess-1
+    action: Reassess after 6 months or when direct evidence changes.
+    owner: Decision owner
+    timing: Before implementation
+    verification: Documented review
+  unresolved_uncertainties: []
+  next_actions: []
+governance:
+  record_origin: generated_by_skill
+  review_status: draft
+  human_review_required: true
+  methodological_limitations:
+  - Rapid, non-systematic evidence assessment.
+  contributors:
+  - AI-assisted draft
+  conflicts_of_interest:
+  - 未確認
+  funding: null
+  panel_composition: []
+  dissenting_judgments: []
+  approved_by: null
+  approved_at: null
+  approval_scope: null
+  methodology_version: GRADE-informed EtD skill 0.3.0
+  created_at: '2026-07-13T00:00:00Z'
+  created_by: AI-assisted skill
+  source_snapshot_date: '2026-07-13'
+  methodological_profile: grade_informed_etd
+  grade_evidence_assessment:
+    status: not_assessed
+    automated_precheck: not_run
+    artifact_refs: []
+    reasons:
+    - Formal GRADE evidence claim was not assessed.
+  grade_etd_assessment:
+    status: not_assessed
+    automated_precheck: not_run
+    artifact_refs: []
+    reasons:
+    - Formal GRADE EtD claim was not assessed.
+  formal_grade_claim_authorization:
+    status: not_authorized
+    scope: none
+    authorized_by: null
+    authorized_at: null
+    notes:
+    - Authorization is restricted to an external qualified human workflow.
+  etd_framework:
+    framework_type: grade_informed_generic_etd
+    version: v3 profile
+    selected_criteria:
+    - problem
+    - desirable_effects
+    - undesirable_effects
+    - certainty_of_effects
+    - values
+    - balance_of_effects
+    - resources
+    - equity
+    - acceptability
+    - feasibility
+    omitted_criteria: []
+    added_criteria: []
+    selection_rationale: Selected for the decision type and owner mandate.

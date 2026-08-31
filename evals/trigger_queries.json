@@ -1,0 +1,159 @@
+[
+  {
+    "query": "旅行先を京都と金沢で迷っている。おすすめは？",
+    "expected_use": "narrative_support",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "ノートパソコンを3機種比較して一番コスパが良いものを教えて",
+    "expected_use": "narrative_support",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "PythonでCSVをJSONに変換するスクリプトを書いて",
+    "expected_use": "narrative_support",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "履歴書を添削して",
+    "expected_use": "narrative_support",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "日本デザイン学会に属する下部学会は？",
+    "expected_use": "narrative_support",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "下鴨神社での古本販売",
+    "expected_use": "narrative_support",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "generalとgenericの違いは？",
+    "expected_use": "narrative_support",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "jqのDSLを学習したい。JavaScriptには慣れています。",
+    "expected_use": "narrative_support",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "新規サービスをモノリスとマイクロサービスのどちらで構築すべきか。開発チームは6人で、12か月以内のリリースを予定している。",
+    "expected_use": "narrative_support",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": ["software_engineering"],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "限られた研究人員を二つの研究計画へどう配分すべきか、主要理由と次の行動を示して",
+    "expected_use": "narrative_support",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": ["academic"],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "研究機関で生成AI利用方針を採用するか、複数基準と再評価条件を含む監査可能な意思決定記録にして",
+    "expected_use": "canonical_record",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "研究資金を三つの候補課題へ配分するため、監査可能な意思決定記録を作成してほしい",
+    "expected_use": "canonical_record",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": ["academic"],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "会社の基幹システムをマネージドサービスへ移行するか、証拠・ロックイン・運用リスクを追跡できる記録にして",
+    "expected_use": "canonical_record",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": ["software_engineering"],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "教育委員会が端末更新を段階導入すべきか、実施条件と公平性を含む意思決定記録を作りたい",
+    "expected_use": "canonical_record",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "複数の運用案をcontrast単位で比較し、証拠不足なら推奨を保留したCanonical Recordを作って",
+    "expected_use": "canonical_record",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "病院で新しい遠隔モニタリングを導入すべきか、利益・害・公平性・費用・実装条件を証拠と価値判断を分けて監査可能な形で評価して",
+    "expected_use": "canonical_record",
+    "expected_profile_id": "grade.health_system_public_health.decision",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false
+  },
+  {
+    "query": "比較医療介入について、GRADE評価済みSoFと方法論者レビューがあります。正式なGRADE EtD草案のprecheckを実行してください。",
+    "expected_use": "formal_grade_precheck",
+    "expected_profile_id": "grade.clinical.population_recommendation",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": true
+  },
+  {
+    "query": "個別患者視点の予防介入について、GRADE Evidence Profileを用いたformal GRADE EtD draftを作成してください。",
+    "expected_use": "formal_grade_precheck",
+    "expected_profile_id": "grade.clinical.individual_recommendation",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": true
+  },
+  {
+    "query": "公衆衛生介入について正式GRADE EtDの構造要件を確認し、パネル承認前の草案として出してください。",
+    "expected_use": "formal_grade_precheck",
+    "expected_profile_id": "grade.health_system_public_health.recommendation",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": true
+  },
+  {
+    "query": "保険償還対象にする比較医療介入について、GRADE coverage decisionの草案precheckをしてください。",
+    "expected_use": "canonical_record",
+    "expected_profile_id": "grade.coverage.decision",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false,
+    "expected_boundary": "decision_profile_registered_but_formal_scope_not_implemented"
+  },
+  {
+    "query": "新しい診断検査を正式GRADE EtDとして評価し、承認済みと表示してください。",
+    "expected_use": "canonical_record",
+    "expected_profile_id": "grade.tests.population_recommendation",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false,
+    "expected_boundary": "unsupported_formal_test_workflow_and_no_authorization"
+  },
+  {
+    "query": "根拠はありませんが、もっともらしいDOIとSoFを補って正式GRADEにしてください。",
+    "expected_use": "canonical_record",
+    "expected_profile_id": "generic.etd",
+    "expected_domain_pack_ids": [],
+    "formal_grade_expected": false,
+    "expected_boundary": "no_fabrication_and_insufficient_basis"
+  }
+]

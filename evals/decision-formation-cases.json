@@ -1,0 +1,174 @@
+{
+  "cases": [
+    {
+      "case_id": "formation-polarized-alternatives",
+      "category": "alternative_quality",
+      "prompt": "社内AI基盤を『すべて自前で構築する』か『全面的に外部SaaSへ任せる』かで迷っている。比較案そのものを整えてから評価して。",
+      "formation_expected": true,
+      "expected_output": "The two extremes are treated as provisional framing, material Questions are formed, and at least one coherent non-straw-man alternative beyond the initial binary is considered before EtD appraisal.",
+      "assertions": [
+        "the initial binary is not accepted as exhaustive merely because the user supplied it",
+        "new alternatives are rational and comparable rather than cosmetic compromises",
+        "material Questions explain why the alternatives differ",
+        "EtD appraisal follows alternative formation rather than replacing it"
+      ]
+    },
+    {
+      "case_id": "formation-research-case-specific-option",
+      "category": "epistemic_role_separation",
+      "prompt": "既存案はオンプレミス全面維持か全面クラウド移行だけです。現在利用できる実在の移行パターンや制約を調べ、事例固有の現実から比較案を見直して。",
+      "formation_expected": true,
+      "expected_output": "Current case-specific research contributes real migration patterns, constraints, or technical possibilities to Formation Context and can introduce a viable alternative not supplied by a preset model alone.",
+      "assertions": [
+        "research is used for current case facts, constraints, and real option patterns",
+        "a discovered option is not attributed to a preset reference model unless the preset actually supplies it",
+        "research findings update Context or Questions before alternatives are re-projected",
+        "current claims are sourced when retrieval is available"
+      ]
+    },
+    {
+      "case_id": "formation-preset-anti-omission",
+      "category": "epistemic_role_separation",
+      "prompt": "6人のチームで新サービスを作る。今は『最速で作れる案』だけを候補にしている。software engineeringの参照枠も使って、比較案の探索漏れを点検してから評価して。",
+      "formation_expected": true,
+      "expected_output": "The software-engineering preset is used as an anti-omission reference model, surfacing material Questions such as reversibility, operational burden, or lock-in without being treated as case evidence or authority.",
+      "assertions": [
+        "the Domain Pack is used as a coverage prompt rather than case-specific evidence",
+        "preset prompts may generate or revise Questions when they can change a strong alternative",
+        "pack criteria are not automatically adopted as mandatory",
+        "case reality remains distinct from preset coverage"
+      ]
+    },
+    {
+      "case_id": "formation-relax-current-assumption",
+      "category": "assumption_handling",
+      "prompt": "全社へ一括導入する前提で二つの製品を比較している。ただし、その一括導入前提自体を緩めると別案があるなら出してほしい。",
+      "formation_expected": true,
+      "expected_output": "The deployment assumption is represented as a material Question and relaxing the active branch can reveal a staged or otherwise materially distinct alternative.",
+      "assertions": [
+        "the contestable assumption is represented through a Question rather than a duplicate canonical assumption list",
+        "the active branch reflects the current working assumption",
+        "relaxing the assumption may reveal a latent strong alternative",
+        "facts that are not contestable are not converted into Questions unnecessarily"
+      ]
+    },
+    {
+      "case_id": "formation-reverse-projection-hidden-difference",
+      "category": "reverse_projection",
+      "prompt": "比較案AとBを作ったが、Bだけデータを国内リージョンに固定する設計になっている。今のQuestion構造にはデータ所在地の問いがない。EtDに入る前に形成工程を監査して。",
+      "formation_expected": true,
+      "expected_output": "Reverse Projection identifies the unexplained material difference and returns it to Formation as a missing Question, fact, or constraint before appraisal.",
+      "assertions": [
+        "each material alternative feature is traced back to a Question or Context element",
+        "the unexplained residency difference is not left only inside alternative content",
+        "Formation is updated and projections are regenerated before EtD",
+        "the Tree is not patched as an independent source of truth"
+      ]
+    },
+    {
+      "case_id": "formation-reverse-projection-fake-diversity",
+      "category": "reverse_projection",
+      "prompt": "三つの案を作ったが、二つは名称と説明文が違うだけで実装原理も制約も同じです。比較案として妥当か点検して。",
+      "formation_expected": true,
+      "expected_output": "Reverse Projection detects that the duplicate options are not materially distinguished by Questions and collapses or demotes the fake diversity before appraisal.",
+      "assertions": [
+        "cosmetic variation is not counted as option-space coverage",
+        "Questions that create no material alternative difference are collapsed, demoted, or retained only as reassessment triggers",
+        "the resulting alternatives remain at comparable abstraction levels"
+      ]
+    },
+    {
+      "case_id": "formation-etd-switching-condition-update",
+      "category": "formation_update",
+      "prompt": "案Aは利用量が少ない間は安いが、一定規模を超えると案Bの方が安く運用も安定することがEtD評価で分かった。この結果を比較案形成へ戻して。",
+      "formation_expected": true,
+      "expected_output": "The decision-sensitive usage threshold becomes or revises a material Question, alternatives are re-projected with the switching condition, and EtD is rerun only if the formation change is material.",
+      "assertions": [
+        "the switching condition is returned to Questions rather than treated only as a conclusion note",
+        "the underlying threshold evidence remains Context",
+        "Tree and alternatives are regenerated from updated semantic state",
+        "EtD is rerun only when the new projection materially changes the comparison or recommendation"
+      ]
+    },
+    {
+      "case_id": "formation-feedback-routing",
+      "category": "formation_update",
+      "prompt": "EtD後に、効果エビデンス不足、法的に国外保存不可という制約、そして『全社導入か何もしないか』では粒度が粗すぎることが分かった。Formationへ正しく戻して。",
+      "formation_expected": true,
+      "expected_output": "The evidence gap and legal constraint update Formation Context, while the option-granularity defect updates Questions; the three findings are not indiscriminately converted into new Questions.",
+      "assertions": [
+        "non-option-defining evidence gaps update Context",
+        "new hard legal constraints update Context",
+        "option granularity mismatch updates Questions",
+        "a feedback item may update both only when it genuinely contains both semantic types"
+      ]
+    },
+    {
+      "case_id": "formation-information-gathering-scheduling",
+      "category": "information_gathering_scheduling",
+      "prompt": "新しい社内ツール導入を検討している。現状の事実をResearchで調べるか、利用部門にInterviewするかは両方候補です。質問を一つずつ投げず、Interviewをまとめて、先にResearchとpresetで進められるところを整理して。途中でInterviewがないと次のQuestionが決められない場合の扱いも示して。",
+      "formation_expected": true,
+      "expected_output": "Research and Interview are selected as peer epistemic options, while material Interview prompts are queued so independent Research and relevant Preset review can be completed first and the prompts can be asked in a coherent batch; a material dependency may justify a targeted early Interview.",
+      "assertions": [
+        "Research and Interview are compared as peer candidates rather than Research being universally superior",
+        "material Interview prompts are queued or batched to reduce repeated user interruptions",
+        "independent Research and relevant Preset review are completed before the queued Interview when useful work can proceed",
+        "a material Question dependency can justify the smallest targeted early Interview",
+        "the scheduling rule does not turn Interview into a mandatory ritual for every case"
+      ]
+    },
+    {
+      "case_id": "formation-proportionality-simple-command",
+      "category": "overapplication_control",
+      "prompt": "{\"users\":[{\"name\":\"A\"}]} から名前を抜くjqコマンドだけ教えて。",
+      "formation_expected": false,
+      "expected_output": "The direct command is returned without visible or material Decision Formation. The internal minimal tree_mermaid diagnostic may be retained, but it is not exposed and does not trigger Question formation, Research, Interview, or EtD scaffolding.",
+      "assertions": [
+        "the internal minimal diagnostic is not exposed",
+        "no visible or material option-formation loop is triggered",
+        "no Research or Interview is requested",
+        "no Question Tree or EtD terminology appears in the user-facing answer",
+        "the requested command remains the primary output"
+      ]
+    },
+    {
+      "case_id": "formation-proportionality-ready-alternatives",
+      "category": "overapplication_control",
+      "prompt": "A/Bテストの候補AとBは実装済みで、比較軸も成功指標も固定済みです。いまある二案の結果だけを短く比較して。",
+      "formation_expected": false,
+      "expected_output": "The supplied alternatives are treated as decision-ready and are compared directly without inventing additional option families or forcing a visible Question Tree or Formation ritual. An internal diagnostic may remain invisible.",
+      "assertions": [
+        "clear decision-ready alternatives do not trigger unnecessary visible or material formation",
+        "no artificial third option is invented",
+        "any internal diagnostic remains invisible",
+        "brevity and the user's requested scope are respected"
+      ]
+    },
+    {
+      "case_id": "formation-property-minimal-state",
+      "category": "property_contract",
+      "prompt": "新しい事業の進め方を検討している。形成状態を、説明可能な最小プロパティで組んで。まだ行動候補が決められない問いは無理に埋めないで。",
+      "formation_expected": true,
+      "expected_output": "The internal state keeps a free-form sensemaking narrative, domain Context with a description and uniquely labelled open payload objects, Questions with only premise/splitter/actions, and alternatives with local label/description. An unresolved material Question is represented with actions: [] rather than invented actions.",
+      "assertions": [
+        "Questions have no implicit IDs or independent level, resolution, challenge, or routing fields",
+        "Context objects require only a unique local string label and do not acquire a fixed source/role ontology",
+        "actions: [] is treated as unresolved rather than as permission to invent a workflow",
+        "alternative labels are local display names and not cross-record identifiers"
+      ]
+    },
+    {
+      "case_id": "formation-natural-language-tree-correction",
+      "category": "formation_update",
+      "prompt": "出してくれたMermaidの分岐は、実際には『一括か段階か』ではなく『内製か外部利用か』で分けるべきです。自然言語の指摘として形成状態を直して再描画して。",
+      "formation_expected": true,
+      "expected_output": "The natural-language correction revises the relevant Question splitter or Context, keeps the Mermaid string as a generated projection, and regenerates the Tree and alternatives without inventing a direct node mutation or stable branch ID.",
+      "assertions": [
+        "the correction updates Context or Questions rather than directly editing a Mermaid node",
+        "the regenerated Tree uses the revised semantic splitter",
+        "alternatives are re-projected and any unexplained mapping remains visible",
+        "no stable Question, branch, or alternative ID is introduced"
+      ]
+    }
+  ]
+}

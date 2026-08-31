@@ -1,0 +1,14 @@
+interface:
+  display_name: GRADE-informed EtD Decision Support
+  short_description: Proportional EtD support for decisions and everyday answers
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+  default_prompt: Use $grade-informed-etd-decision-support to turn this request into
+    proportional, actionable decision support.
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
