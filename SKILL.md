@@ -27,6 +27,11 @@ Never reduce these claims to one boolean. Treat every generated output as a draf
 - Read `references/question-formation.md` when material option formation is
   needed, when the user asks to inspect the structure, or when EtD appraisal
   exposes an option-definition defect or material switching condition.
+- Read `references/model-design.md` when designing, revising, or evaluating a
+  Preset reference model, a dynamic case-specific model definition, or the
+  boundary between either definition and its case instance. Do not read it
+  merely to apply an existing model. Keep its Model design, property design,
+  and case-instance boundaries separate.
 - Read `references/official-grade-profiles.yaml` when choosing a Reference Profile.
 - Read `references/adaptation-rules.md` when choosing outcomes, evidence needs, criteria, subgroups, a Domain Pack, or implementation constraints.
 - Read the selected `references/domain-*.yaml` only when its scope questions fit the case.
