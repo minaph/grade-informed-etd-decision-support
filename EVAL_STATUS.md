@@ -7,9 +7,10 @@ Formation cases was completed with `gpt-5.6-luna` (high reasoning).
 
 ## Generic EtD consolidation
 
-The report definition and reporting patterns now reside in
-`references/generic-etd-model.md`. Request interpretation and information
-gathering remain in `references/narrative-upscaling.md`. Narrative eval
+The evaluation and report definition reside in
+`references/generic-etd-model.md`. Answer enrichment, topic-specific additions,
+and stopping remain separate rules in `references/narrative-upscaling.md`,
+alongside interpretation and information gathering. Narrative eval
 expectations have been aligned with purpose-dependent reporting; fixed counts
 of lenses, images, variants, and exercises are no longer universal pass criteria.
 The historical results below apply to their earlier prompts and rules, not to

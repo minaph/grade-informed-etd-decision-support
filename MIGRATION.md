@@ -4,8 +4,9 @@
 
 Use `references/generic-etd-model.md` for generic evaluation and reporting.
 The entrypoint and related references now route to this single definition.
-`references/narrative-upscaling.md` retains only interpretation and information
-gathering; its former report patterns are in the model. Narrative evaluation
+`references/narrative-upscaling.md` remains a separate rule for answer
+enrichment, topic-specific additions, and stopping. The generic model owns
+evaluation and recommendation; it refers to Narrative Upscaling for enrichment. Narrative evaluation
 cases now assess purpose-dependent additions rather than fixed counts of
 lenses, images, variants, or exercises.
 

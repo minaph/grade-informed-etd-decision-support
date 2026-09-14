@@ -40,7 +40,7 @@ rules:
   current_location: references/narrative-upscaling.md and references/generic-etd-model.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: Request interpretation supplies case material; the generic report model owns criteria, recommendation, and purpose-dependent reporting depth.
+  rationale: Narrative Upscaling selects purpose-dependent additions and stopping; the generic report model owns evaluation and recommendation. Interpretation supplies case material to both.
 - rule_id: non-applicable-full-object
   current_location: assets/canonical-etd-schema.json@3.0.0
   rule_origin: local_design_choice

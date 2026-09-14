@@ -109,8 +109,10 @@ reporting depth for ordinary requests. Understanding and explanation are also
 covered as taking a position. It collects the common reporting guidance
 previously spread across the entrypoint and Narrative Upscaling reference.
 
-[Request interpretation](references/narrative-upscaling.md) now covers input
-interpretation and information gathering only. Decision Structuring remains a
+[Narrative Upscaling](references/narrative-upscaling.md) is a separate rule
+for choosing supplementary explanation, examples, experience accounts, and
+learning support, including when to stop expanding. It also guides request
+interpretation and information gathering. Decision Structuring remains a
 separate subskill. Canonical Record formats, official GRADE profiles, and their
 validators retain their own scope and compatibility requirements.
 

@@ -80,9 +80,11 @@ Use `references/generic-etd-model.md` for the report unit, candidate evaluation
 items, evidence and uncertainty, recommendation, and reporting depth. Its model
 also covers understanding and explanation as taking a position.
 
-Use `references/narrative-upscaling.md` when request interpretation or targeted
-information gathering is needed. It supplies case material to the model and to
-Decision Structuring; it does not define a separate report model.
+Use `references/narrative-upscaling.md` as the separate rule for deciding
+whether and how to enrich the answer with background, examples, experience, or
+learning support. It also guides interpretation and targeted information
+gathering. Use the generic model for evaluation and recommendation, and
+Decision Structuring for the option structure.
 Do not generate `assets/canonical-etd-template.yaml` or run record validators
 for this output form.
 

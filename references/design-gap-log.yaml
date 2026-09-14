@@ -20,7 +20,7 @@ gaps:
 - gap_id: narrative-depth
   area: output
   observation: Rigid depth levels are not evidenced, but short prompts repeatedly underapply decision support when they hide premise, framing, pragmatic, experiential, or learning variation.
-  current_handling: Use references/generic-etd-model.md for reporting depth and related information; use references/narrative-upscaling.md only for interpretation and information gathering.
+  current_handling: Use references/narrative-upscaling.md for purpose-dependent answer enrichment and stopping; use references/generic-etd-model.md for evaluation and recommendation.
   reconsider_when: Clean-context evaluation after version 0.5 shows repeated underapplication or overapplication in at least two query families.
 - gap_id: multiple-domain-pack-composition
   area: adaptation
