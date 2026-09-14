@@ -24,6 +24,7 @@ Never reduce these claims to one boolean. Treat every generated output as a draf
   internal formation diagnostic. Its references are relative to that subskill.
   Keep its Tree and property object invisible when the request is narrow or
   answer-only. The parent supplies interpretation and owns research/interviews.
+  Initialize the pinned submodule with `git submodule update --init --recursive`.
 - Read `references/narrative-upscaling.md` for `narrative_support` when the request may contain a premise or category mismatch, competing summary lenses, term-use or experience variation, planning or action, a learning intention, or an overapplication risk.
 - Read `references/question-formation.md` when material option formation is
   needed, when the user asks to inspect the structure, or when EtD appraisal

@@ -1,5 +1,14 @@
 # Migration
 
+## Decision-structuring independent repository
+
+`skills/decision-structuring` is now a pinned Git submodule sourced from
+`https://github.com/minaph/decision-structuring.git`. After updating this parent,
+run `git submodule update --init --recursive` to obtain both dependencies.
+The decision-structuring files are no longer covered by the parent manifest;
+its gitlink and clean checkout are validated instead. The skill entrypoint and
+reference paths are unchanged, so callers need no model-data migration.
+
 ## Decision-structuring extraction
 
 Use `skills/decision-structuring/SKILL.md` for the reusable formation model and

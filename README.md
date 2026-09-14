@@ -23,21 +23,27 @@ This layer is a local GRADE-informed extension, not an official GRADE EtD compon
 ### Reusable decision-structuring subskill
 
 `skills/decision-structuring/SKILL.md` owns the property model and the formation,
-Reverse Projection, and correction workflow. It is maintained in this repository
-and included in the parent manifest, rather than published as a separate Git
-submodule. It can structure supplied material without an EtD criterion model.
+Reverse Projection, and correction workflow. It is maintained independently in
+`minaph/decision-structuring` and pinned here as a Git submodule. The parent
+manifest excludes its files; package validation checks the pinned commit,
+initialization, clean checkout, metadata, and local references.
 
 The caller owns request interpretation, research and interviews, appraisal,
 and presentation. The subskill returns missing-information needs and material
 changes. Generic EtD can consume its results and supply feedback without a
 fixed schema mapping. Parent-specific orchestration remains in
-`references/question-formation.md`; the old property reference redirects to
-the subskill instead of duplicating the contract.
+`references/question-formation.md`.
 
-To invoke it independently, supply `skills/decision-structuring/SKILL.md` and
-its references to the agent, with the case material and interpretation. Ordinary
-use needs no external appraisal method. Substantial model-definition work also
-uses the `conceptual-modeling` skill, supplied by the caller.
+Initialize both dependencies with `git submodule update --init --recursive`.
+A normal source ZIP does not include their contents. For independent use, clone
+`https://github.com/minaph/decision-structuring.git` and register that checkout
+as the `decision-structuring` skill. Substantial model-definition work also uses
+`conceptual-modeling`, supplied by the caller.
+
+Maintain the independent checkout separately from the parent's pinned checkout.
+Commit and push changes in the independent repository, fetch that commit in
+`skills/decision-structuring`, check it out, then stage the gitlink and validate
+and commit the parent. Do not edit the pinned checkout as a separate copy.
 
 ### Formation properties
 

@@ -1,3 +1,6 @@
 [submodule "skills/conceptual-modeling"]
 	path = skills/conceptual-modeling
 	url = https://github.com/minaph/conceptual-modeling.git
+[submodule "skills/decision-structuring"]
+	path = skills/decision-structuring
+	url = https://github.com/minaph/decision-structuring.git

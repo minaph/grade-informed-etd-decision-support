@@ -13,7 +13,7 @@ from pathlib import Path
 import yaml
 from jsonschema import Draft202012Validator
 
-from modeling_dependency import package_files, validate_modeling_dependency
+from modeling_dependency import DECISION_PATH, package_files, validate_modeling_dependency, validate_pinned_skill
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -105,6 +105,7 @@ def main() -> int:
             errors.append(f"manifest hash mismatch: {relative}")
 
     errors.extend(validate_modeling_dependency(ROOT))
+    errors.extend(validate_pinned_skill(ROOT, DECISION_PATH))
     errors.extend(validate_decision_subskill(ROOT))
 
     eval_result = subprocess.run(
