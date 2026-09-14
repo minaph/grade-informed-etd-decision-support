@@ -63,6 +63,19 @@ Research and preset models can disagree without either being automatically
 privileged. Route the disagreement to Context or Questions according to the
 kind of claim at issue.
 
+Model CQs belong to a model's expression requirements; Questions belong to the
+current situation and task. Use `references/preset-routing.md` when selecting a
+model by whether its CQs and definitions preserve the distinctions needed by
+material Questions. This is semantic coverage, not text matching or automatic
+resolution of a Question. One Question may draw on several CQs and case-specific
+values or constraints. Candidate models can also reveal missing material
+Questions; update Context or Questions before re-projecting. Do not turn every
+CQ into a Question or add CQ references to the Formation property contract.
+
+The independent conceptual-modeling skill does not depend on Formation or EtD.
+The parent translates relevant modeling results into Context and Questions and
+coordinates any requested interview with the scheduling rules below.
+
 ### Selection versus scheduling
 
 Treat Research and Interview as peer candidates when deciding which uncertainty

@@ -13,6 +13,8 @@ from pathlib import Path
 import yaml
 from jsonschema import Draft202012Validator
 
+from modeling_dependency import package_files, validate_modeling_dependency
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -61,26 +63,20 @@ def main() -> int:
         if relative in manifest_entries:
             errors.append(f"duplicate manifest path: {relative}")
         manifest_entries[relative] = digest
-    package_files = {
-        "./" + path.relative_to(ROOT).as_posix(): path
-        for path in ROOT.rglob("*")
-        if path.is_file()
-        and path != manifest_path
-        and "__pycache__" not in path.parts
-        and path.suffix != ".pyc"
-        and ".test-deps" not in path.parts
-    }
-    missing_manifest = sorted(set(package_files) - set(manifest_entries))
-    stale_manifest = sorted(set(manifest_entries) - set(package_files))
+    parent_files = package_files(ROOT)
+    missing_manifest = sorted(set(parent_files) - set(manifest_entries))
+    stale_manifest = sorted(set(manifest_entries) - set(parent_files))
     if missing_manifest:
         errors.append(f"manifest is missing files: {missing_manifest}")
     if stale_manifest:
         errors.append(f"manifest lists absent or excluded files: {stale_manifest}")
-    for relative, path in package_files.items():
+    for relative, path in parent_files.items():
         expected = manifest_entries.get(relative)
         actual = hashlib.sha256(path.read_bytes()).hexdigest()
         if expected is not None and expected.lower() != actual:
             errors.append(f"manifest hash mismatch: {relative}")
+
+    errors.extend(validate_modeling_dependency(ROOT))
 
     eval_result = subprocess.run(
         [sys.executable, str(ROOT / "scripts/validate_evals.py")],
@@ -102,7 +98,7 @@ def main() -> int:
     if profile_result.returncode:
         errors.append(profile_result.stdout + profile_result.stderr)
 
-    executable = shutil.which("skills-ref")
+    executable = shutil.which("skills-ref") or shutil.which("agentskills")
     if executable:
         validation_path = ROOT
         temp_dir = None
@@ -123,6 +119,12 @@ def main() -> int:
                 temp_dir.cleanup()
         if completed.returncode:
             errors.append("skills-ref validation failed:\n" + completed.stdout + completed.stderr)
+        child_validation = subprocess.run(
+            [executable, "validate", str(ROOT / "skills/conceptual-modeling")],
+            capture_output=True, text=True, check=False,
+        )
+        if child_validation.returncode:
+            errors.append("child skills-ref validation failed:\n" + child_validation.stdout + child_validation.stderr)
     elif args.require_skills_ref:
         errors.append("skills-ref is required but unavailable")
     else:

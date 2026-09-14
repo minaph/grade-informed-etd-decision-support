@@ -27,11 +27,15 @@ Never reduce these claims to one boolean. Treat every generated output as a draf
 - Read `references/question-formation.md` when material option formation is
   needed, when the user asks to inspect the structure, or when EtD appraisal
   exposes an option-definition defect or material switching condition.
-- Read `references/model-design.md` when designing, revising, or evaluating a
-  Preset reference model, a dynamic case-specific model definition, or the
-  boundary between either definition and its case instance. Do not read it
-  merely to apply an existing model. Keep its Model design, property design,
-  and case-instance boundaries separate.
+- Read `references/preset-routing.md` when model selection, scope, granularity,
+  or the relation between model CQs and case-specific Questions matters.
+  The parent owns model routing and the handoff to Formation and EtD.
+- Use the pinned `skills/conceptual-modeling/SKILL.md` for conceptual-model
+  requirements interviewing, applicability evaluation, definition, or revision.
+  Its references are relative to that child skill. Ordinary application of a
+  sufficient existing definition does not require the full modeling workflow.
+  If the dependency is absent, initialize the submodule as described in README;
+  do not silently substitute a separately installed version.
 - Read `references/official-grade-profiles.yaml` when choosing a Reference Profile.
 - Read `references/adaptation-rules.md` when choosing outcomes, evidence needs, criteria, subgroups, a Domain Pack, or implementation constraints.
 - Read the selected `references/domain-*.yaml` only when its scope questions fit the case.

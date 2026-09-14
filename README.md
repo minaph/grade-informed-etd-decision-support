@@ -48,6 +48,51 @@ semantic state in ordinary language, after which the Tree and alternatives are
 re-generated. Labels are local names rather than stable IDs, and no fixed
 `source`/`role` schema is imposed on Context objects.
 
+## Conceptual modeling dependency
+
+Conceptual modeling is maintained independently at
+`https://github.com/minaph/conceptual-modeling` and pinned as a Git submodule at
+`skills/conceptual-modeling`. Its `SKILL.md` is the entry point; its interview
+guide is separate from its integrated applicability, definition, and revision
+guide. The child does not require Formation, EtD, or the parent's presets.
+
+The parent manages model routing and the CQ-to-Question relationship in
+`references/preset-routing.md`. CQs belong to model expression requirements;
+Questions belong to the current situation and task. Routing checks semantic
+coverage, the backing definition, and case information separately. This change
+does not revise existing preset contents or their schemas.
+
+After cloning the parent, initialize its pinned dependency:
+
+```bash
+git submodule update --init --recursive
+```
+
+A recursive Git clone is also supported. A source ZIP or a plain `git archive`
+of the parent is not a complete installation; use a Git checkout with the
+submodule initialized. Installing the child alone means placing that complete
+repository in the host's skill search path or explicitly supplying its
+`SKILL.md`. Submodule storage does not itself register a standalone skill.
+
+For development, keep the independent checkout and the parent's pinned checkout
+distinct. Commit and publish a reviewed child revision first, fetch it into the
+submodule, check out that specific commit, then stage the gitlink and run parent
+validation before committing the parent update. Do not substitute a separately
+installed child version or use `git submodule update --remote` for normal use.
+
+The parent manifest excludes the submodule's contents and Git metadata. The
+package validator checks the indexed gitlink, initialized checkout, commit
+match, clean child tree, child frontmatter, and local document references.
+It also runs the `skills-ref` package CLI (`skills-ref` or `agentskills`) for
+both skills when available. Run
+`python scripts/update_manifest.py` after changing parent files. Validation
+requires Git metadata and the initialized submodule; stage an intentional child
+version update with `git add skills/conceptual-modeling` before validating it.
+
+The former `references/model-design.md` and the revised guide have been replaced
+by the independent skill and the parent's routing document. Their pre-extraction
+versions remain in commit `58ecb5d` for comparison.
+
 ## Narrative upscaling
 
 For short factual, event, terminology, comparison, and learning requests, `narrative_support` now runs a materiality-gated latent decision and agency pass. It preserves the literal answer, then checks whether premise repair, alternative framing, actual use or reception, historical development, lived experience, or user-controllable variables would change understanding or action.
