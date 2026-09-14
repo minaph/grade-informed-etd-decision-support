@@ -27,15 +27,13 @@ Never reduce these claims to one boolean. Treat every generated output as a draf
 - Read `references/question-formation.md` when material option formation is
   needed, when the user asks to inspect the structure, or when EtD appraisal
   exposes an option-definition defect or material switching condition.
-- Read `references/preset-routing.md` when model selection, scope, granularity,
-  or the relation between model CQs and case-specific Questions matters.
-  The parent owns model routing and the handoff to Formation and EtD.
-- Use the pinned `skills/conceptual-modeling/SKILL.md` for conceptual-model
-  requirements interviewing, applicability evaluation, definition, or revision.
-  Its references are relative to that child skill. Ordinary application of a
-  sufficient existing definition does not require the full modeling workflow.
-  If the dependency is absent, initialize the submodule as described in README;
-  do not silently substitute a separately installed version.
+- モデルの選択、適用範囲、詳しさを検討する際は、`references/preset-routing.md` を読みます。
+  親スキルは、能力質問（CQ）と意思決定の問い（Questions）の対応を確認し、
+  モデリングの成果を選択肢の形成（Formation）と意思決定評価（EtD）へ反映します。
+- 概念モデルの要件の聞き取り、適用評価、定義、改訂には、固定した版の
+  `skills/conceptual-modeling/SKILL.md` を使います。その中の参照は、概念モデリング
+  スキルのルートから解決します。通常の適用では既存定義に沿って記録を作ります。
+  依存先を取得する際は、READMEのサブモジュール（submodule）初期化手順に従います。
 - Read `references/official-grade-profiles.yaml` when choosing a Reference Profile.
 - Read `references/adaptation-rules.md` when choosing outcomes, evidence needs, criteria, subgroups, a Domain Pack, or implementation constraints.
 - Read the selected `references/domain-*.yaml` only when its scope questions fit the case.

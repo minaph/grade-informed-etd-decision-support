@@ -48,50 +48,33 @@ semantic state in ordinary language, after which the Tree and alternatives are
 re-generated. Labels are local names rather than stable IDs, and no fixed
 `source`/`role` schema is imposed on Context objects.
 
-## Conceptual modeling dependency
+## 概念モデリングスキルの利用と管理
 
-Conceptual modeling is maintained independently at
-`https://github.com/minaph/conceptual-modeling` and pinned as a Git submodule at
-`skills/conceptual-modeling`. Its `SKILL.md` is the entry point; its interview
-guide is separate from its integrated applicability, definition, and revision
-guide. The child does not require Formation, EtD, or the parent's presets.
+概念モデリングスキルは、`https://github.com/minaph/conceptual-modeling` で独立して管理しています。親スキルは、`skills/conceptual-modeling` にGitサブモジュール（submodule）として配置し、使用するコミットを固定します。`SKILL.md` が入口で、聞き取りの文書と、適用評価・定義・改訂をまとめた文書を参照できます。概念モデリングスキルは、単独でも利用できます。
 
-The parent manages model routing and the CQ-to-Question relationship in
-`references/preset-routing.md`. CQs belong to model expression requirements;
-Questions belong to the current situation and task. Routing checks semantic
-coverage, the backing definition, and case information separately. This change
-does not revise existing preset contents or their schemas.
+親スキルは、`references/preset-routing.md` に沿って、モデルの選択と意思決定への反映を担当します。能力質問（CQ）はモデルの表現要件に属し、意思決定の問い（Questions）は現在の状況と作業目的に属します。モデルの選択では、必要な意味との対応、モデル定義の裏付け、事例の情報を分けて確認します。個別の参照モデルには、それぞれの定義と記録形式を適用します。
 
-After cloning the parent, initialize its pinned dependency:
+### 取得と利用
+
+親リポジトリを取得した後は、次のコマンドで固定版の依存先を初期化します。親と依存先を一度に取得する場合は、Gitの再帰的なクローンも利用できます。
 
 ```bash
 git submodule update --init --recursive
 ```
 
-A recursive Git clone is also supported. A source ZIP or a plain `git archive`
-of the parent is not a complete installation; use a Git checkout with the
-submodule initialized. Installing the child alone means placing that complete
-repository in the host's skill search path or explicitly supplying its
-`SKILL.md`. Submodule storage does not itself register a standalone skill.
+完全な利用環境を用意するには、Gitの管理情報を含む作業ディレクトリと、初期化済みのサブモジュールを使います。親のソースZIPや通常の `git archive` には、依存先の内容が含まれません。概念モデリングスキルを単独で使う場合は、リポジトリ全体を利用アプリケーションのスキル探索場所へ配置するか、`SKILL.md` を明示します。サブモジュールとしての配置と、単独スキルとしての登録は、それぞれ行います。
 
-For development, keep the independent checkout and the parent's pinned checkout
-distinct. Commit and publish a reviewed child revision first, fetch it into the
-submodule, check out that specific commit, then stage the gitlink and run parent
-validation before committing the parent update. Do not substitute a separately
-installed child version or use `git submodule update --remote` for normal use.
+### 使用版の更新
 
-The parent manifest excludes the submodule's contents and Git metadata. The
-package validator checks the indexed gitlink, initialized checkout, commit
-match, clean child tree, child frontmatter, and local document references.
-It also runs the `skills-ref` package CLI (`skills-ref` or `agentskills`) for
-both skills when available. Run
-`python scripts/update_manifest.py` after changing parent files. Validation
-requires Git metadata and the initialized submodule; stage an intentional child
-version update with `git add skills/conceptual-modeling` before validating it.
+開発用の独立リポジトリと、親スキルが使う固定版の作業ディレクトリを分けて管理します。更新時は、レビューした変更を独立リポジトリでコミットして公開し、親のサブモジュールでそのコミットを取得します。その後、対象コミットへ切り替え、参照コミットを記録するGitリンク（gitlink）をステージして、親側の検証とコミットを行います。通常の利用では、親が記録したコミットを使います。
 
-The former `references/model-design.md` and the revised guide have been replaced
-by the independent skill and the parent's routing document. Their pre-extraction
-versions remain in commit `58ecb5d` for comparison.
+### 検証と変更前の記録
+
+親のファイルのハッシュ一覧（manifest）と、依存先の固定コミットは分けて検証します。パッケージ検証では、Gitリンク、初期化状態、コミットの一致、未記録の変更、依存先のスキル情報と文書参照を確認します。`skills-ref` パッケージのコマンド（`skills-ref` または `agentskills`）が使える場合は、親と依存先の形式検査も実行します。
+
+親のファイルを変更した後は、`python scripts/update_manifest.py` でハッシュ一覧を更新します。依存先の版を変更した場合は、`git add skills/conceptual-modeling` でGitリンクをステージしてから検証します。検証にはGitの管理情報と、初期化済みのサブモジュールを使います。
+
+旧 `references/model-design.md` と改訂ガイドの内容は、独立スキルと親のモデル選択文書へ引き継ぎました。分離前の文書は、コミット `58ecb5d` で確認できます。
 
 ## Narrative upscaling
 

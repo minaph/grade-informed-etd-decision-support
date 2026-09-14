@@ -63,18 +63,16 @@ Research and preset models can disagree without either being automatically
 privileged. Route the disagreement to Context or Questions according to the
 kind of claim at issue.
 
-Model CQs belong to a model's expression requirements; Questions belong to the
-current situation and task. Use `references/preset-routing.md` when selecting a
-model by whether its CQs and definitions preserve the distinctions needed by
-material Questions. This is semantic coverage, not text matching or automatic
-resolution of a Question. One Question may draw on several CQs and case-specific
-values or constraints. Candidate models can also reveal missing material
-Questions; update Context or Questions before re-projecting. Do not turn every
-CQ into a Question or add CQ references to the Formation property contract.
+能力質問（CQ）はモデル定義の表現要件に属し、意思決定の問い（Questions）は現在の状況と作業目的に属します。
+モデルを選ぶ際は、`references/preset-routing.md` に沿って、能力質問と定義が重要な区別を表現できるか確認します。
+一つの意思決定の問いを複数の能力質問が支えることもあり、事例固有の価値や制約は別途確認します。
 
-The independent conceptual-modeling skill does not depend on Formation or EtD.
-The parent translates relevant modeling results into Context and Questions and
-coordinates any requested interview with the scheduling rules below.
+候補モデルから重要な論点が見つかった場合は、状況の記述（Context）または意思決定の問いへ反映してから、
+分岐図と選択肢を再生成します。能力質問は、判断に関係するものを選んで使います。
+能力質問との対応は補足の文章に記録し、形成用の記録には既存の形式を用います。
+
+概念モデリングスキルは、単独で利用できる汎用的な作業手順を提供します。
+親スキルは、その成果を状況の記述と意思決定の問いへ反映し、聞き取りの時期を次節の規則に沿って調整します。
 
 ### Selection versus scheduling
 
