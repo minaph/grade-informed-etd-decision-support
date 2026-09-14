@@ -1,4 +1,8 @@
-# Recommendation Rules
+# Canonical Record Recommendation Rules
+
+For generic report recommendations, use [Generic EtD model](generic-etd-model.md).
+The rules below govern stored Canonical Record states and controlled fields;
+they do not replace the report model's recommendation principles.
 
 ## Process state
 

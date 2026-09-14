@@ -101,11 +101,18 @@ git submodule update --init --recursive
 
 旧 `references/model-design.md` と改訂ガイドの内容は、独立スキルと親のモデル選択文書へ引き継ぎました。分離前の文書は、コミット `58ecb5d` で確認できます。
 
-## Narrative upscaling
+## Generic EtD report model
 
-For short factual, event, terminology, comparison, and learning requests, `narrative_support` now runs a materiality-gated latent decision and agency pass. It preserves the literal answer, then checks whether premise repair, alternative framing, actual use or reception, historical development, lived experience, or user-controllable variables would change understanding or action.
+[Generic EtD model](references/generic-etd-model.md) is the single definition of
+report content, evaluation items, evidence and uncertainty, recommendation, and
+reporting depth for ordinary requests. Understanding and explanation are also
+covered as taking a position. It collects the common reporting guidance
+previously spread across the entrypoint and Narrative Upscaling reference.
 
-When they do, the response adds only the high-yield dimensions and connects them to a low-regret default, meaningful variants, tradeoffs, switching conditions, or a learning action. Explicit brevity constraints and marginal-usefulness stop rules prevent encyclopedic expansion or visible EtD scaffolding.
+[Request interpretation](references/narrative-upscaling.md) now covers input
+interpretation and information gathering only. Decision Structuring remains a
+separate subskill. Canonical Record formats, official GRADE profiles, and their
+validators retain their own scope and compatibility requirements.
 
 ## Reference Profiles
 
@@ -117,7 +124,9 @@ When they do, the response adds only the high-yield dimensions and connects them
 - test recommendations from individual and population perspectives;
 - test coverage decisions.
 
-`generic.etd` is a local extension for non-GRADE work. Public GRADEpro documentation permits organisations to modify templates, so the registry records sourced defaults rather than claiming immutable minimum requirements.
+The registry entry `generic.etd` retains the existing Canonical Record slots
+for compatibility. Ordinary report criteria are defined in
+`references/generic-etd-model.md`, not by that slot list.
 
 ## Domain Packs
 

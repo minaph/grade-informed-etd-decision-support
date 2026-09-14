@@ -1,5 +1,18 @@
 # Migration
 
+## Generic EtD report definition
+
+Use `references/generic-etd-model.md` for generic evaluation and reporting.
+The entrypoint and related references now route to this single definition.
+`references/narrative-upscaling.md` retains only interpretation and information
+gathering; its former report patterns are in the model. Narrative evaluation
+cases now assess purpose-dependent additions rather than fixed counts of
+lenses, images, variants, or exercises.
+
+Canonical Schema 3.1.0, its stored `generic.etd` profile slots, and record
+validators are unchanged. These are record-format requirements, not the generic
+report model. No migration of existing stored records is required.
+
 ## Decision-structuring independent repository
 
 `skills/decision-structuring` is now a pinned Git submodule sourced from

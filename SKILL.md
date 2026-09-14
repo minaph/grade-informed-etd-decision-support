@@ -1,6 +1,6 @@
 ---
 name: grade-informed-etd-decision-support
-description: "Apply GRADE Evidence-to-Decision principles proportionately to ordinary answers and artifacts, including short factual, comparison, event, terminology, and learning requests whose usefulness changes with framing, actual use, experience, or user-controllable choices; form fair, decision-ready alternatives when a supplied option set is missing, coarse, extreme, straw-man-like, or materially incomplete; or create an auditable Canonical EtD Record for consequential decisions. Use when a request benefits from explicit goals, alternatives, effects, evidence, values, resources, equity, acceptability, feasibility, implementation, reassessment, or a materially useful latent decision or agency layer. Do not invoke merely because any answer could be expanded. Formal GRADE claims require supported health-intervention scope plus qualified human methodological and panel authorization outside the AI workflow."
+description: "Use a GRADE-inspired generic EtD report model for everyday and cross-domain evaluation, explanation, and recommendations, including taking a position on how to understand or explain a topic. Structure missing or incoherent options with the decision-structuring subskill. Use the separate Canonical Record workflow when auditability, machine readability, implementation tracking, or a formal GRADE precheck is requested. Do not invoke merely because an answer could be expanded. Formal GRADE claims require supported scope and qualified human authorization."
 ---
 
 # GRADE-informed EtD Decision Support
@@ -19,7 +19,10 @@ Never reduce these claims to one boolean. Treat every generated output as a draf
 
 ## Read references conditionally
 
-- Read `references/grade-core.md` for every case.
+- Read `references/generic-etd-model.md` for generic EtD evaluation and reporting,
+  including `narrative_support`. It is the authoritative report model.
+- Read `references/grade-core.md` for GRADE evidence, official-profile boundaries,
+  or Canonical Record methodological requirements.
 - Use `skills/decision-structuring/SKILL.md` for every case to generate the
   internal formation diagnostic. Its references are relative to that subskill.
   Keep its Tree and property object invisible when the request is narrow or
@@ -37,7 +40,7 @@ Never reduce these claims to one boolean. Treat every generated output as a draf
   スキルのルートから解決します。通常の適用では既存定義に沿って記録を作ります。
   依存先を取得する際は、READMEのサブモジュール（submodule）初期化手順に従います。
 - Read `references/official-grade-profiles.yaml` when choosing a Reference Profile.
-- Read `references/adaptation-rules.md` when choosing outcomes, evidence needs, criteria, subgroups, a Domain Pack, or implementation constraints.
+- Read `references/adaptation-rules.md` for Canonical Record adaptation and Domain Pack mapping; use the generic model for ordinary report criteria.
 - Read the selected `references/domain-*.yaml` only when its scope questions fit the case.
 - Read `references/recommendation-rules.md` before forming a conclusion in a Canonical Record.
 - Read `references/grade-claim-rules.md` when GRADE-rated evidence or formal GRADE labeling is considered.
@@ -73,21 +76,15 @@ by itself authorize Research, Interview, EtD, or visible option formation.
 
 Use for ordinary questions, explanations, comparisons, writing, translation, code, product choices, professional advice, and other requests where a full audit record would not help.
 
-- Deliver the requested answer or artifact first.
-- After identifying the literal deliverable, run a latent decision and agency pass: test whether structure, meaning, framing, actual use or reception, history, experience, or user-controllable variables would materially change understanding or action.
-- Correct a false premise before broadening. Introduce nearby interpretations as alternatives rather than silently substituting one for the user's wording.
-- Select only the high-yield variation axes. For a choice or action, connect them to a low-regret default, credible variants, tradeoffs, and switching conditions. For a knowledge or learning request, connect them to useful frames, real-world use, diagnostics, or practice.
-- For an unqualified hierarchy or category question, public-event fragment, or term contrast, use the relevant lenses in `references/narrative-upscaling.md`; do not treat a named query family as a mandatory checklist.
-- When a hierarchy, event setting, term use, or other variation could change understanding or action, use separate evidence checks and state unsupported or unavailable dimensions rather than silently filling them. Do not infer private context such as current location.
-- Apply relevant EtD principles internally and express them in natural language.
-- Distinguish facts, inferences, uncertainty, value judgments, and recommendations when consequential.
-- Consider benefits and harms together; add resources, equity, acceptability, feasibility, implementation, or reassessment only when material.
-- State operative conditions and the next action when recommending.
-- Use current sources for unstable facts and multiple dated reports or images for experience synthesis when they materially help. Never infer private context such as current location.
-- Stop when added material is repetitive, weakly supported, invasive, or unlikely to change understanding or action. Respect answer-only, command-only, and fixed-format constraints.
-- Do not generate `assets/canonical-etd-template.yaml` or run record validators.
+Use `references/generic-etd-model.md` for the report unit, candidate evaluation
+items, evidence and uncertainty, recommendation, and reporting depth. Its model
+also covers understanding and explanation as taking a position.
 
-Scale depth by stakes, harm, reversibility, affected groups, uncertainty, accountability, and the detail requested. Prefer a direct answer over visible framework scaffolding.
+Use `references/narrative-upscaling.md` when request interpretation or targeted
+information gathering is needed. It supplies case material to the model and to
+Decision Structuring; it does not define a separate report model.
+Do not generate `assets/canonical-etd-template.yaml` or run record validators
+for this output form.
 
 When option formation is material, use the Decision Formation loop in
 `references/question-formation.md` and invoke `skills/decision-structuring/SKILL.md`:
@@ -118,9 +115,12 @@ Use when the user requests an auditable or machine-readable record, when an orga
 
 Formal GRADE prechecks run only on a Canonical Record.
 
-## Select the Reference Profile
+## Select the Canonical or GRADE Reference Profile
 
-Resolve inheritance using `references/official-grade-profiles.yaml`.
+For Canonical Records and official GRADE profile selection, resolve inheritance
+using `references/official-grade-profiles.yaml`. The registry's `generic.etd`
+criteria list preserves Canonical compatibility; it does not define the report
+model or impose ten headings on narrative support.
 
 - Use the matching `grade.*` profile when question family, perspective, and conclusion form are known and the case is a GRADE health question.
 - For an official profile in a Schema 3.1 record, set `decision_case.question.perspective` to the profile's controlled `individual` or `population` value.
@@ -131,7 +131,7 @@ Resolve inheritance using `references/official-grade-profiles.yaml`.
 
 Profile criteria are defaults derived from the cited public templates. GRADEpro allows organizations to modify templates. Record local omissions or additions and their rationale.
 
-## Select at most one Domain Pack
+## Select at most one Domain Pack for a Canonical Record
 
 Use no pack unless its scope questions fit the case.
 
@@ -267,7 +267,8 @@ Treat findings as review signals. Passing proves structural consistency only.
 
 ## Output order
 
-For narrative support, deliver the requested outcome first and include only decision material that helps the user act.
+For narrative support, follow the reporting definition in
+`references/generic-etd-model.md`.
 
 For a Canonical Record report, use:
 

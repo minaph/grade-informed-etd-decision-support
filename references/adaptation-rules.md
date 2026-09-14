@@ -2,7 +2,10 @@
 
 ## Purpose
 
-Adapt selected Reference Profile criteria to a case without creating domain-specific pipelines or implying external endorsement.
+This reference governs Canonical Record adaptation and Domain Pack mapping.
+For generic report criteria and case-specific additions, use
+[Generic EtD model](generic-etd-model.md). Canonical constraints below apply
+when that record format is requested, not as additional report-model fields.
 
 ## Case derivation
 

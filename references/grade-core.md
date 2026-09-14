@@ -1,12 +1,11 @@
 # Core Methodological Position
 
-## Proportional use
+## Scope
 
-Use GRADE EtD concepts proportionately. Ordinary requests use `narrative_support` and expose only decision material that helps the user. Create a Canonical Record only when auditability, organizational accountability, machine readability, later reassessment, or a formal GRADE precheck is needed.
-
-Do not equate a short prompt with a context-free need. For ordinary requests, answer the literal request first, then test once for a materially useful latent decision, experience, or learning layer. Expand around consequential variation and user agency; stop before the framework becomes visible scaffolding or unsupported scope growth.
-
-`generic.etd` is a local extension for non-GRADE work. It is not an official GRADE template.
+For ordinary generic EtD evaluation and reports, use
+[Generic EtD model](generic-etd-model.md). This reference covers GRADE evidence,
+formal claims, and Canonical Record compatibility. The report model owns its
+criteria, recommendation principles, and reporting depth.
 
 ## Separate claims
 

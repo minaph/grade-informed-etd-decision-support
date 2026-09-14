@@ -203,14 +203,16 @@
       "id": "narrative-category-repair-ja",
       "category": "narrative_upscaling",
       "prompt": "日本デザイン学会に属する下部学会は？",
-      "expected_output": "The literal organizational question is answered first; any unsupported premise is calibrated, nearby categories are investigated without substitution, and framing choices are made explicit without visible EtD scaffolding.",
-      "files": [],
+      "expected_output": "The organizational relation is answered with calibrated evidence. Where framing matters, the report takes a defensible explanatory position and explains its scope without imposing a fixed number of lenses.",
+      "files": [
+        "references/generic-etd-model.md",
+        "references/narrative-upscaling.md"
+      ],
       "assertions": [
         "the literal question is answered before broadening",
         "no subordinate body is invented and an absence claim is calibrated to the searched sources",
-        "research groups and related societies are presented as distinct nearby categories rather than synonyms",
-        "at least two legitimate summary lenses are named with a brief account of how they change the description",
-        "a defensible neutral framing and the conditions for choosing another framing are given",
+        "research groups and related societies are distinguished when used to clarify the queried relation",
+        "the explanation adopts a defensible framing and explains material limits or competing interpretations",
         "no EtD table or Canonical Record is emitted"
       ]
     },
@@ -218,15 +220,17 @@
       "id": "narrative-event-experience-ja",
       "category": "narrative_upscaling",
       "prompt": "下鴨神社での古本販売",
-      "expected_output": "The event is identified and its current status is verified, then historical visual and report evidence is translated into experience variables, a low-regret visit plan, variants, and explicit context limits.",
-      "files": [],
+      "expected_output": "The event and intended activity are interpreted without silently assuming attendance rather than selling. Current material facts are verified, and the report gives a clear position with reasons and conditions when the available information supports one.",
+      "files": [
+        "references/generic-etd-model.md",
+        "references/narrative-upscaling.md"
+      ],
       "assertions": [
-        "the current or next schedule and constraints are checked against an official source and not extrapolated from an earlier year",
-        "several sourced images from more than one source form a compact gallery when image retrieval is available",
-        "at least two available dated reports are synthesized as historical samples rather than a guarantee",
-        "experience variables become preparation and a first-pass way to move through or search the venue",
-        "weather advice depends on the relevant date and route advice depends on a provided or authorized starting point",
-        "a low-regret plan, at least two credible priority-based variants, and their tradeoffs are present",
+        "material current schedule and constraints are checked against an official source rather than extrapolated from an earlier year",
+        "attendance and selling are distinguished when the fragment leaves the intended activity unclear",
+        "images and dated experience reports, if used, support a relevant comparison and are not presented as guarantees",
+        "weather and location-specific advice uses the relevant date and a supplied or authorized starting point",
+        "a supported recommendation is stated with reasons and conditions, or the information needed to choose is explicit",
         "facts, report synthesis, and recommendations remain distinguishable"
       ]
     },
@@ -234,14 +238,17 @@
       "id": "narrative-term-pragmatics-ja",
       "category": "narrative_upscaling",
       "prompt": "generalとgenericの違いは？",
-      "expected_output": "A concise present-day semantic distinction leads into explanatory history, everyday pragmatic distribution, reception, and a usable diagnostic without confusing etymology with current meaning.",
-      "files": [],
+      "expected_output": "A concise explanation adopts a useful position on the present-day distinction and illustrates use. History or exercises appear only when they serve the request.",
+      "files": [
+        "references/generic-etd-model.md",
+        "references/narrative-upscaling.md"
+      ],
       "assertions": [
-        "the present-day semantic contrast and diagnostic examples come first",
-        "historical or etymological material is used only to illuminate rather than determine current meaning",
-        "common contemporary settings, collocations, register, or connotations are compared",
-        "sourced usage evidence is distinguished from linguistic intuition",
-        "the user receives a small recognition or production test",
+        "the present-day contrast and useful examples are clear",
+        "historical or etymological material, if included, illuminates rather than determines current meaning",
+        "the explanation identifies a useful distinction for choosing or interpreting the terms",
+        "usage evidence is distinguished from illustrative linguistic judgment",
+        "an exercise is optional and any included exercise serves the explanation or learning purpose",
         "no formal EtD terminology is imposed"
       ]
     },
@@ -249,14 +256,17 @@
       "id": "narrative-prior-knowledge-learning-ja",
       "category": "narrative_upscaling",
       "prompt": "jqのDSLを学習したい。JavaScriptには慣れています。",
-      "expected_output": "The response bridges JavaScript and jq mental models, starts with a working example, and develops into a proportional lesson with practice, feedback, and a transfer task.",
-      "files": [],
+      "expected_output": "The response uses JavaScript knowledge to recommend an approach to learning jq, explains the deciding differences, and supplies a useful example or exercise at the requested depth.",
+      "files": [
+        "references/generic-etd-model.md",
+        "references/narrative-upscaling.md"
+      ],
       "assertions": [
         "JavaScript knowledge is used as a bridge rather than ignored",
-        "the key evaluation-model differences between JavaScript and jq are explicit",
-        "a minimal working example precedes a staged lesson",
-        "practice, a feedback path, and a realistic transfer task are included",
-        "learner-controlled pacing or exercise difficulty is surfaced",
+        "material evaluation-model differences between JavaScript and jq are explicit",
+        "the recommended learning approach is clear and justified rather than an unranked list",
+        "a working example or exercise supports the recommended approach",
+        "the response does not impose a full curriculum or monitoring plan merely to fill the model",
         "no EtD table or Canonical Record is emitted"
       ]
     },
@@ -265,7 +275,10 @@
       "category": "narrative_overapplication_control",
       "prompt": "generalとgenericの違いを一文だけで答えて。",
       "expected_output": "One concise sentence answers the semantic distinction without unsolicited etymology, usage survey, decision scaffolding, or follow-up questions.",
-      "files": [],
+      "files": [
+        "references/generic-etd-model.md",
+        "references/narrative-upscaling.md"
+      ],
       "assertions": [
         "the response is one sentence",
         "the semantic distinction is correct",
@@ -278,7 +291,10 @@
       "category": "narrative_overapplication_control",
       "prompt": "{\"users\":[{\"name\":\"A\"}]} から名前を抜くjqコマンドだけ教えて。",
       "expected_output": "Only the directly usable jq command is returned, with no forced lesson, alternatives, tradeoff analysis, or visible framework.",
-      "files": [],
+      "files": [
+        "references/generic-etd-model.md",
+        "references/narrative-upscaling.md"
+      ],
       "assertions": [
         "the jq command is correct",
         "no curriculum or unrelated alternatives are added",

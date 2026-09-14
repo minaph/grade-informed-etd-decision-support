@@ -37,10 +37,10 @@ rules:
   proposed_action: remove
   rationale: Replace exclusion with proportional narrative support so ordinary requests benefit without receiving a full EtD record.
 - rule_id: narrative-latent-decision-pass
-  current_location: references/narrative-upscaling.md
+  current_location: references/narrative-upscaling.md and references/generic-etd-model.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: A single materiality-gated pass counters underapplication in short requests while literal-first delivery, explicit brevity controls, evidence boundaries, and stop rules contain scope growth.
+  rationale: Request interpretation supplies case material; the generic report model owns criteria, recommendation, and purpose-dependent reporting depth.
 - rule_id: non-applicable-full-object
   current_location: assets/canonical-etd-schema.json@3.0.0
   rule_origin: local_design_choice

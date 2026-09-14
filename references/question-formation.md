@@ -81,7 +81,8 @@ Mermaid node or option label as an independent semantic store.
 ## Hand off to EtD appraisal
 
 Once the alternatives pass Reverse Projection and the two-or-more comparison
-gate, evaluate them with the existing proportional GRADE-informed EtD process.
+gate, evaluate and report them using [Generic EtD model](generic-etd-model.md)
+for generic reports, or the selected official profile for a GRADE case.
 Decision Formation does not alter criteria, evidence rules, Domain Pack rules,
 formal-claim boundaries, or Canonical Record validation. A Domain Pack remains
 a preset reference model, never case evidence or authority.

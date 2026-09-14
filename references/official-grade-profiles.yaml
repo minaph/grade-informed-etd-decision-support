@@ -54,7 +54,7 @@ profiles:
   - feasibility
   exclude_criteria: []
   source_refs: []
-  interpretation_note: Local non-GRADE profile for narrative support and non-health canonical records.
+  interpretation_note: Canonical compatibility profile for non-GRADE records. Report-model definitions and candidate criteria are in references/generic-etd-model.md; this slot list is not a narrative checklist.
 - profile_id: grade.clinical.population_recommendation
   status: reference
   question_family: management

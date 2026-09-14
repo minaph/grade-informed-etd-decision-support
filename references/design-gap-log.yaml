@@ -20,7 +20,7 @@ gaps:
 - gap_id: narrative-depth
   area: output
   observation: Rigid depth levels are not evidenced, but short prompts repeatedly underapply decision support when they hide premise, framing, pragmatic, experiential, or learning variation.
-  current_handling: Answer the literal request, run one latent decision and agency pass, select only materially useful variation axes, and stop by marginal usefulness rather than a fixed response length.
+  current_handling: Use references/generic-etd-model.md for reporting depth and related information; use references/narrative-upscaling.md only for interpretation and information gathering.
   reconsider_when: Clean-context evaluation after version 0.5 shows repeated underapplication or overapplication in at least two query families.
 - gap_id: multiple-domain-pack-composition
   area: adaptation
@@ -30,7 +30,7 @@ gaps:
 - gap_id: generic-recommendation-semantics
   area: conclusion
   observation: for/against and strong/conditional do not fit every non-GRADE decision or artifact-creation task.
-  current_handling: Require direction and strength only for formal_grade_etd_draft; narrative support may use ordinary action language.
+  current_handling: Use references/generic-etd-model.md for generic recommendations; references/recommendation-rules.md governs Canonical direction and strength fields.
   reconsider_when: Multiple canonical non-GRADE decision classes require controlled conclusion semantics.
 - gap_id: alternative-formation-bias
   area: formation
