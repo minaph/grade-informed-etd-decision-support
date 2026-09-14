@@ -1,51 +1,15 @@
-# Decision Formation and Question Formation
+# Parent Integration of Decision Structuring
 
-## Purpose and status
+Use [decision-structuring](../skills/decision-structuring/SKILL.md) to structure,
+check, and revise supplied material. Its property model and workflow own the
+Context-Question-Alternative-Tree contract, formation steps, Reverse Projection,
+and semantic correction rules. Do not redefine those contracts here.
 
-Use Decision Formation when the option space itself can change the quality of
-the answer or EtD comparison: alternatives may be missing, underspecified,
-artificially binary, extreme, straw-man-like, at mismatched abstraction levels,
-or likely to omit a materially different option family.
-
-This is a local GRADE-informed extension. It is not a new component of official
-GRADE EtD and it must not weaken GRADE certainty, EtD precheck, or formal
-human-authorization boundaries.
-
-The property contract is in `references/formation-properties.md`. Read it when
-maintaining the internal formation object. The objective is a small set of
-coherent, realistic, comparable alternatives, not a large tree or an exhaustive
-enumeration of options.
-
-## Source of truth and projections
-
-The principal source of truth is the pair **Formation Context + Questions**:
-
-Questions are the primary meaning unit: preserve a material distinction here
-before projecting it into a Tree or alternative description.
-
-- `context.description` describes the domain situation;
-- `context.objects` is an extensible set of case material, each with a unique
-  local string `label` and otherwise free-form payload;
-- each Question has only `premise`, `splitter`, and `actions`;
-- `actions: []` records a material but unresolved splitter and must not be
-  filled with invented actions.
-
-`sensemaking` is a user-oriented narrative input. It explains the request,
-purpose, framing, premise repairs, latent agency, and practical meaning; it is
-not external evidence and does not replace user values. `alternatives` and
-`tree_mermaid` are generated projections of Context and Questions. They can be
-revised in response to user language, but not by treating a diagram node or
-alternative label as an independent ID or source of truth.
-
-Before projection, promote any material fact, constraint, or distinction found
-in `sensemaking` into Context or a Question. Narrative prose may explain a
-choice, but it must not become an untracked branch.
-
-The Tree is a view of the semantic state, not an independent source of truth.
-The internal representation is the `tree_mermaid` string. Mermaid aliases are
-ephemeral render details, not stable identifiers. Do not add a parallel Tree
-schema, Question IDs, alternative references, or a second assumption registry
-to make the diagram easier to manipulate.
+The parent owns request interpretation, research, interviews, reference-model
+selection, appraisal, and presentation. It supplies material and consumes the
+subskill's structured state and missing-information needs. Generic EtD remains
+an external consumer and feedback source; no EtD-specific fields or criterion
+mapping are required by the subskill.
 
 ## Epistemic roles
 
@@ -53,7 +17,7 @@ Keep the following roles distinct even when they interact:
 
 | Input or process | Epistemic role | It may contribute | It must not be treated as |
 | --- | --- | --- | --- |
-| Narrative Sensemaking | Interpret the request, purpose, premise, latent agency, and framing | `sensemaking`, candidate Questions, purpose tensions | external-world evidence or a substitute for user values |
+| Narrative Sensemaking | Interpret the request, purpose, premise, latent agency, and framing | `context.sensemaking`, candidate Questions, purpose tensions | external-world evidence or a substitute for user values |
 | Research | Discover case-specific reality | Context objects, facts, constraints, existing option patterns, technical possibilities, evidence gaps | the user's preferences or a universal domain ontology |
 | Interview | Resolve user-specific matters the AI cannot responsibly proxy | goals, priorities, acceptable tradeoffs, non-public constraints, value judgments | external evidence or a required ritual for every case |
 | Preset reference model | Critique coverage and reduce arbitrary framing | prompts for Questions, missing criteria or option families | case-specific reality, authority, or a mandatory checklist |
@@ -96,105 +60,23 @@ Interview needed to unblock the dependency, then continue the queue when it is
 efficient to do so. This is an interaction-scheduling rule, not an epistemic
 ranking of Research over Interview.
 
-## Formation workflow
+## Invoke the subskill
 
-### 0. Internal diagnostic Tree
+For every parent request, invoke the subskill for a minimal internal diagnostic.
+Keep it invisible for narrow outputs; show the Tree for moderately complex,
+deep, research-dependent, or explicitly structural requests. This invocation
+policy belongs to the parent and does not require external information gathering.
 
-Generate and retain an internal `tree_mermaid` for every request, including a
-daily request or a request whose alternatives are already clear. This internal
-sketch is a check for a broken split, an omitted material branch, or an
-unimportant Question; it does not imply that visible Formation, Research,
-Interview, or EtD is required.
+Prepare the domain situation first, then the user-oriented interpretation for
+`context.sensemaking`, preserving explicit negations, unknowns, and hypotheses.
+Supply these together with available findings and corrections. When option
+formation is material, run the subskill's Question formation, Tree projection,
+Alternative formation, and Reverse Projection workflow.
 
-For a direct command or tightly specified answer, keep the sketch minimal and
-do not mention it. Show the Tree when the case is even moderately complex,
-deep, research-dependent, has multiple material branches, or when the user asks
-to inspect the structure. An answer-only, command-only, fixed-format, or
-similarly narrow request keeps the Tree internal.
-
-### 1. PREPARE
-
-Start from the raw request. Write a user-facing `sensemaking` narrative and a
-domain-facing Context. Repair a false premise without silently replacing the
-request. Identify whether each material uncertainty calls for Research,
-Interview, a preset coverage check, or more formation work; do not assume a
-fixed tool order. Add Research only when case reality could materially alter
-the option space. Consult a preset reference model only when it can reveal a
-plausible omission or arbitrary framing. Use selective Interview only when a
-user value or private constraint materially changes the choice, applying the
-scheduling rule above to batch user involvement when possible.
-
-Do not build a deep hierarchy before these semantic materials are adequate. Do
-not split Context into fixed facts, constraints, evidence, or source arrays;
-put the needed material in labelled `context.objects` with a case-appropriate
-payload.
-
-### 2. FORM QUESTIONS
-
-Form the smallest useful set of Questions. A Question asks what would have to
-differ for another rational alternative to exist. Its `premise` states where it
-matters, its `splitter` states one material distinction, and its `actions` list
-candidate design or decision moves. Actions are not workflow instructions.
-
-Prioritize a Question when plausible answers would change a strong alternative,
-introduce or eliminate an option family, change a material design principle,
-change viability, or expose that candidate options are not comparable. Keep
-unresolved Questions with `actions: []`; do not ask the user every Question or
-convert uncontested facts into Questions. Independent splitters are separate
-Questions rather than hidden axes in one object.
-
-### 3. PROJECT THE TREE
-
-Render Context and Questions as the Mermaid `tree_mermaid` string. Question
-actions form the Tree skeleton; later Questions are connected only when an
-earlier answer changes which later distinction is meaningful. Normal explanatory
-nodes are optional and should not duplicate semantic claims.
-
-Attach an alternative at an action leaf or annotation when its design logic can
-be explained by that path. If a material alternative or action cannot be
-explained by the current Context and Questions, mark it as an **unexplained
-alternative/action** and return to formation. Never invent a branch solely to
-make the diagram look complete.
-
-Do not maintain separate Expanded and Simplified trees. When an audit needs
-more or less detail, derive a view or excerpt from the same semantic state and
-Mermaid projection. The concise view must not silently delete a material
-distinction.
-
-### 4. FORM ALTERNATIVES
-
-Treat reachable paths as candidate answer bundles, not as an instruction to
-enumerate every combinatorial path. Form alternatives with unique local display
-`label`s and free-form `description`s. Do not add Question or action references;
-the semantic mapping is checked during Tree rendering and Reverse Projection.
-
-A strong alternative is internally coherent, feasible enough to evaluate, at a
-comparable abstraction level, a rational design principle rather than a
-caricature, and materially different from its peers. Cosmetic wording changes
-are not diversity. A status quo, compromise, or maximal option is included only
-when independently rational for the case.
-
-Zero or one provisional alternative is valid while exploring. Before a direct
-comparison or EtD appraisal, require at least two coherent and comparable
-alternatives. If that condition is not met, return to Context or Questions;
-having two labels alone is not sufficient.
-
-### 5. REVERSE PROJECTION
-
-For each material feature of each alternative, identify the Question or Context
-element that explains it. Check both directions:
-
-1. **Alternative to Formation:** an unexplained difference is a hidden
-   assumption, missing Question, missing fact, or missing constraint; update the
-   semantic source and re-project.
-2. **Formation to Alternative:** a Question that creates no material difference
-   may be collapsed, demoted, or retained only as a reassessment trigger.
-
-Also check abstraction mismatch, internal contradiction, infeasible or
-dominated straw-men, duplicated options, unrepresented case-realistic option
-families, and technically reachable but incoherent combinations. Reverse
-Projection is the guard against hidden assumptions and fake diversity before
-EtD.
+Resolve material missing-information needs through Research, Interview, or
+reference-model review according to their epistemic roles and the scheduling
+rules above. Feed the resulting material back for revision; do not mutate a
+Mermaid node or option label as an independent semantic store.
 
 ## Hand off to EtD appraisal
 
@@ -210,52 +92,17 @@ first, create the necessary contrast-specific records, and synthesize
 transparently. Never embed the Question Tree or internal property object into
 Canonical Schema 3.1.0.
 
-## Formation Update from user or EtD feedback
+## Return appraisal feedback
 
-The user corrects formation in ordinary language. Interpret “that split is
-wrong,” “this branch is missing,” or “these options are the same” as a semantic
-revision to Context and/or Questions, then regenerate the Mermaid Tree and
-alternatives. Do not accept direct edits to Mermaid nodes, aliases, or option
-labels as a separate mutation path. Ask one targeted question only when the
-correction is materially ambiguous.
+Supply switching conditions and option-definition defects for Question revision;
+supply facts, constraints, evidence gaps, and feasibility findings for Context
+revision. One finding can affect both. The subskill regenerates projections and
+reports whether the comparison changed. Rerun appraisal only when that change
+materially affects the comparison, operative conditions, or recommendation.
+EtD is therefore a feedback generator for Formation, not a Question resolver.
 
-After appraisal, route feedback by semantic type:
-
-- return to **Questions** for a new decision-sensitive distinction, switching
-  condition, contestable assumption, option granularity defect, or abstraction
-  mismatch;
-- return to **Context** for a fact, hard or soft constraint, evidence gap,
-  feasibility boundary, resource or legal condition, or implementation fact
-  that does not itself define an option axis;
-- update both when the finding genuinely contains both kinds of meaning.
-
-The underlying fact or evidence remains in Context even when its threshold also
-becomes a Question. Re-project before rerunning EtD, and rerun only when the
-regenerated comparison, operative conditions, or recommendation materially
-changes. EtD is therefore a feedback generator for Formation, not a route
-destination that resolves Questions.
-
-## Proportional stopping and operations
-
-Do not attempt exhaustive option-space search. Stop visible Formation when
-another Question, Research step, Interview, or EtD iteration is unlikely to
-change a strong alternative or recommendation, is low-materiality, costs more
-than its expected decision value, or can be learned through a reversible or
-staged action. Continue when a plausible missing family, hidden assumption,
-hard constraint, or switching condition could reverse the choice or materially
-alter implementation.
-
-Clear, low-stakes, answer-only, command-only, or tightly specified requests
-retain their internal diagnostic Tree but should not expose a Formation ritual
-or request unnecessary I/O. Ready alternatives should be compared directly;
-do not invent a third option merely to satisfy a count.
-
-Use ordinary semantic operations: add, revise, merge, or remove a Question;
-update a Context object; project or re-project the Tree; form or re-form
-alternatives; request Research or Interview; or apply EtD feedback. Do not standardize a large mutation language in this release. In particular, avoid
-independent Question levels, resolution states, challenge modes, routing flags,
-or branch-relaxation commands when the same meaning can be represented by the
-three Question properties, Context, and projection state.
+Stop further information gathering or appraisal when its expected decision
+value is low. Preserve unresolved material gaps instead of implying completion.
 
 ## Persistence boundary
 

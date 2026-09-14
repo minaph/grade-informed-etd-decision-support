@@ -1,12 +1,31 @@
 # Migration
 
+## Decision-structuring extraction
+
+Use `skills/decision-structuring/SKILL.md` for the reusable formation model and
+workflow. Its references are relative to its own directory. The old
+`references/formation-properties.md` redirects to that contract, and
+`references/question-formation.md` now contains parent orchestration only.
+Callers supply the case and interpretation, resolve returned information needs,
+and decide how to appraise or present the results. No criterion mapping to
+Generic EtD is required. Question and Alternative properties are unchanged.
+
+## Context interpretation placement
+
+Move any existing top-level `sensemaking` string to `context.sensemaking`,
+immediately after `context.description` and before `context.objects` in the
+formation view. Preserve its content and epistemic status; do not retain a
+second top-level copy. For new drafting, write the domain description first,
+then the interpretation, and check both against the original material.
+This local Formation change does not alter Canonical Schema 3.1.0.
+
 ## Formation contract 0.6.0 to 0.7.0
 
 This change does not alter Canonical Schema 3.1.0 and therefore requires no
 Canonical Record migration. If an external workflow used the previous internal
 Formation notes, translate them to the new property model:
 
-- keep user-oriented interpretation in the free-form `sensemaking` string;
+- keep user-oriented interpretation in the free-form `context.sensemaking` string;
 - put domain material in `context.description` or labelled `context.objects`
   (only the local string `label` is required);
 - express each material splitter as one Question with only `premise`,

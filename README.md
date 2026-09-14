@@ -11,23 +11,42 @@ The skill does not treat every request as a full EtD record. It separates the re
 
 Version 0.7.0 retains the local Decision Formation layer while replacing its
 over-specified state model with a small property contract. `context` and
-`questions` are the semantic source of truth; `sensemaking` remains a flexible
+`questions` are the semantic source of truth; `context.sensemaking` remains a flexible
 user-oriented narrative, and `alternatives` plus `tree_mermaid` are generated
 projections. The exact properties are documented in
-`references/formation-properties.md`.
+`skills/decision-structuring/references/formation-properties.md`.
 
 Narrative Sensemaking, case-specific Research, user Interview, preset reference models such as Domain Packs, and EtD appraisal retain distinct epistemic roles. Research establishes case reality; presets critique coverage; Interview resolves user-specific judgments when material; EtD evaluates formed alternatives and can feed back switching conditions or option-definition defects. Research and Interview are selected as peer epistemic options, but material Interview prompts are normally queued while independent Research and relevant Preset review are completed, then handled in a coherent batch; a dependency may justify a targeted early Interview. The Question Tree and alternatives are derived views rather than independent mutable stores.
 
 This layer is a local GRADE-informed extension, not an official GRADE EtD component. Canonical Schema remains 3.1.0 in this release, and Formation state is not embedded into the Canonical Record. An internal Mermaid diagnostic is generated for every request to catch omissions, but it remains invisible for direct or tightly specified requests. Show it for moderately complex, deep, research-dependent, or explicitly structural requests; do not force Research, Interview, or a visible Formation ritual.
+
+### Reusable decision-structuring subskill
+
+`skills/decision-structuring/SKILL.md` owns the property model and the formation,
+Reverse Projection, and correction workflow. It is maintained in this repository
+and included in the parent manifest, rather than published as a separate Git
+submodule. It can structure supplied material without an EtD criterion model.
+
+The caller owns request interpretation, research and interviews, appraisal,
+and presentation. The subskill returns missing-information needs and material
+changes. Generic EtD can consume its results and supply feedback without a
+fixed schema mapping. Parent-specific orchestration remains in
+`references/question-formation.md`; the old property reference redirects to
+the subskill instead of duplicating the contract.
+
+To invoke it independently, supply `skills/decision-structuring/SKILL.md` and
+its references to the agent, with the case material and interpretation. Ordinary
+use needs no external appraisal method. Substantial model-definition work also
+uses the `conceptual-modeling` skill, supplied by the caller.
 
 ### Formation properties
 
 The internal object has the following deliberately small shape:
 
 ```yaml
-sensemaking: "free-form user-oriented narrative"
 context:
   description: "free-form domain context"
+  sensemaking: "free-form user-oriented narrative"
   objects:
     - label: "unique local name"
       # any case-appropriate payload is allowed

@@ -20,9 +20,10 @@ Never reduce these claims to one boolean. Treat every generated output as a draf
 ## Read references conditionally
 
 - Read `references/grade-core.md` for every case.
-- Read `references/formation-properties.md` for every case to generate the
-  internal formation diagnostic; keep its Tree and property object invisible
-  when the request is narrow or answer-only.
+- Use `skills/decision-structuring/SKILL.md` for every case to generate the
+  internal formation diagnostic. Its references are relative to that subskill.
+  Keep its Tree and property object invisible when the request is narrow or
+  answer-only. The parent supplies interpretation and owns research/interviews.
 - Read `references/narrative-upscaling.md` for `narrative_support` when the request may contain a premise or category mismatch, competing summary lenses, term-use or experience variation, planning or action, a learning intention, or an overapplication risk.
 - Read `references/question-formation.md` when material option formation is
   needed, when the user asks to inspect the structure, or when EtD appraisal
@@ -60,7 +61,7 @@ Choose one output form before drafting.
 ## Internal formation diagnostic
 
 For every request, generate and retain a minimal `tree_mermaid` using
-`references/formation-properties.md`. This is an internal check for omitted or
+`skills/decision-structuring/SKILL.md`. This is an internal check for omitted or
 broken distinctions, not a requirement to expose a decision tree. Show the
 Mermaid Tree for a moderately complex, deep, research-dependent, or explicitly
 structural request; keep it internal for direct commands, tightly specified
@@ -88,8 +89,10 @@ Use for ordinary questions, explanations, comparisons, writing, translation, cod
 Scale depth by stakes, harm, reversibility, affected groups, uncertainty, accountability, and the detail requested. Prefer a direct answer over visible framework scaffolding.
 
 When option formation is material, use the Decision Formation loop in
-`references/question-formation.md`: PREPARE the user-oriented `sensemaking` and
-domain Context, FORM the smallest useful Questions (`premise`, `splitter`,
+`references/question-formation.md` and invoke `skills/decision-structuring/SKILL.md`:
+PREPARE `context.description` first, then
+the user-oriented `context.sensemaking`, followed by labelled `context.objects`;
+FORM the smallest useful Questions (`premise`, `splitter`,
 `actions`), project the Mermaid Tree, FORM coherent alternatives, run Reverse Projection,
 appraise with EtD, and return material switching conditions or
 option-definition defects to Questions or Context before re-projecting. Do not

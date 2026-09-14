@@ -149,8 +149,10 @@
       "category": "property_contract",
       "prompt": "新しい事業の進め方を検討している。形成状態を、説明可能な最小プロパティで組んで。まだ行動候補が決められない問いは無理に埋めないで。",
       "formation_expected": true,
-      "expected_output": "The internal state keeps a free-form sensemaking narrative, domain Context with a description and uniquely labelled open payload objects, Questions with only premise/splitter/actions, and alternatives with local label/description. An unresolved material Question is represented with actions: [] rather than invented actions.",
+      "expected_output": "The internal state keeps domain Context with description first, then a free-form sensemaking narrative, then uniquely labelled open payload objects, Questions with only premise/splitter/actions, and alternatives with local label/description. An unresolved material Question is represented with actions: [] rather than invented actions.",
       "assertions": [
+        "Context contains description, sensemaking, and objects in that order, with no separate top-level sensemaking",
+        "Interpretation preserves the distinction between explicit facts, negations, unknowns, and hypotheses",
         "Questions have no implicit IDs or independent level, resolution, challenge, or routing fields",
         "Context objects require only a unique local string label and do not acquire a fixed source/role ontology",
         "actions: [] is treated as unresolved rather than as permission to invent a workflow",

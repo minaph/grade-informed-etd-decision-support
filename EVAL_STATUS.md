@@ -5,6 +5,15 @@ Mermaid diagnostic. The structural checks below have been updated for that
 contract. A clean-context live with/without-skill comparison of the revised
 Formation cases was completed with `gpt-5.6-luna` (high reasoning).
 
+## Decision-structuring extraction validation
+
+The local `skills/decision-structuring` extraction separates the reusable model
+and workflow from parent research, interview, and appraisal orchestration.
+Package checks cover the subskill metadata, local document links, and YAML
+example contract. The earlier model experiments below predate this extraction;
+they do not establish the behavior of the extracted skill. No new live
+with/without-skill experiment is claimed for this change.
+
 ## Completed in this package
 
 - JSON Schema meta-validation

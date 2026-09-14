@@ -57,32 +57,32 @@ rules:
   proposed_action: retain_conditionally
   rationale: Generate an internal diagnostic Tree for every request but expose the Formation loop only when option quality is material; this extends GRADE-informed decision support without claiming a new official GRADE EtD component.
 - rule_id: formation-questions-source-of-truth
-  current_location: references/question-formation.md and references/formation-properties.md
+  current_location: skills/decision-structuring/references/workflow.md and skills/decision-structuring/references/formation-properties.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: Context plus Questions concentrate semantic state while long-form sensemaking remains interpretable and alternatives or Mermaid remain projections; this reduces drift without a deep state schema.
+  rationale: Context plus Questions concentrate semantic state while long-form context.sensemaking follows context.description and remains explicitly interpretive and alternatives or Mermaid remain projections; this reduces drift without a deep state schema.
 - rule_id: question-tree-as-projection
-  current_location: references/question-formation.md and references/formation-properties.md
+  current_location: skills/decision-structuring/references/workflow.md and skills/decision-structuring/references/formation-properties.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
   rationale: A generated tree_mermaid string supports exploration and audit without creating a second mutable source of truth, stable branch IDs, or a large node-operation vocabulary.
 - rule_id: formation-minimal-question-properties
-  current_location: references/formation-properties.md
+  current_location: skills/decision-structuring/references/formation-properties.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
   rationale: Exactly premise, splitter, and actions preserve the meaning needed for a branch while avoiding independent level, resolution, challenge, and routing fields; actions may be empty while a material splitter is unresolved.
 - rule_id: formation-open-context-objects
-  current_location: references/formation-properties.md
+  current_location: skills/decision-structuring/references/formation-properties.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
   rationale: Require only a unique local label for Context objects so facts, constraints, EtD findings, preset prompts, and domain-specific payloads can coexist without a premature universal ontology.
 - rule_id: formation-alternative-comparison-gate
-  current_location: references/formation-properties.md
+  current_location: skills/decision-structuring/references/formation-properties.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
   rationale: Permit zero or one provisional alternative during exploration, but require at least two coherent and comparable alternatives before comparison or EtD; a count alone cannot validate option quality.
 - rule_id: formation-natural-language-correction
-  current_location: references/formation-properties.md and references/question-formation.md
+  current_location: skills/decision-structuring/references/formation-properties.md and skills/decision-structuring/references/workflow.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
   rationale: Natural-language user corrections can update Context or Questions and trigger re-projection without exposing direct Mermaid mutation or stable internal IDs.
@@ -97,7 +97,7 @@ rules:
   proposed_action: retain_conditionally
   rationale: Version 0.7.0 leaves Canonical Schema 3.1.0 unchanged until repeated audited use demonstrates a need for durable formation provenance.
 - rule_id: formation-information-gathering-scheduling
-  current_location: references/question-formation.md and references/formation-properties.md
+  current_location: references/question-formation.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
   rationale: Research and Interview remain peer epistemic choices, while batching user-facing Interview prompts after independent Research and relevant Preset review reduces repeated user attention; a material dependency permits a targeted early Interview.

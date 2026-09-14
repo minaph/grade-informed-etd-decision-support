@@ -18,6 +18,34 @@ from modeling_dependency import package_files, validate_modeling_dependency
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def validate_decision_subskill(root: Path) -> list[str]:
+    child = root / "skills/decision-structuring"
+    errors = []
+    required = ("SKILL.md", "references/formation-properties.md", "references/workflow.md")
+    for relative in required:
+        path = child / relative
+        if not path.is_file() or not path.resolve().is_relative_to(child.resolve()):
+            errors.append(f"decision-structuring is missing a local document: {relative}")
+    if errors:
+        return errors
+    text = (child / "SKILL.md").read_text(encoding="utf-8")
+    try:
+        meta = yaml.safe_load(text.split("---", 2)[1]) if text.startswith("---\n") else None
+    except (IndexError, yaml.YAMLError):
+        meta = None
+    if (not isinstance(meta, dict) or meta.get("name") != "decision-structuring"
+            or not isinstance(meta.get("description"), str) or not meta["description"].strip()):
+        errors.append("decision-structuring requires matching name and a non-empty description")
+    for document in child.rglob("*.md"):
+        for target in re.findall(r"\[[^\]]*\]\(([^)]+)\)", document.read_text(encoding="utf-8")):
+            if "://" in target or target.startswith("#"):
+                continue
+            destination = (document.parent / target.split("#", 1)[0]).resolve()
+            if not destination.is_relative_to(child.resolve()) or not destination.is_file():
+                errors.append(f"decision-structuring reference is missing or escapes its skill: {target}")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate the Agent Skill package itself.")
     parser.add_argument("--require-skills-ref", action="store_true")
@@ -77,6 +105,7 @@ def main() -> int:
             errors.append(f"manifest hash mismatch: {relative}")
 
     errors.extend(validate_modeling_dependency(ROOT))
+    errors.extend(validate_decision_subskill(ROOT))
 
     eval_result = subprocess.run(
         [sys.executable, str(ROOT / "scripts/validate_evals.py")],
@@ -125,6 +154,12 @@ def main() -> int:
         )
         if child_validation.returncode:
             errors.append("child skills-ref validation failed:\n" + child_validation.stdout + child_validation.stderr)
+        decision_validation = subprocess.run(
+            [executable, "validate", str(ROOT / "skills/decision-structuring")],
+            capture_output=True, text=True, check=False,
+        )
+        if decision_validation.returncode:
+            errors.append("decision-structuring skills-ref validation failed:\n" + decision_validation.stdout + decision_validation.stderr)
     elif args.require_skills_ref:
         errors.append("skills-ref is required but unavailable")
     else:

@@ -26,7 +26,7 @@ layer. An explicit brevity or exact-output constraint overrides expansion.
 
 ## Boundary with Decision Formation
 
-Narrative Upscaling interprets the request; it does not own the option-space model. Store the interpretation as the free-form `sensemaking` string described in `references/formation-properties.md`. When the latent decision pass shows that the supplied alternatives are missing, coarse, extreme, straw-man-like, mismatched in abstraction, or likely to omit a materially different option family, hand that interpretation to `question-formation.md`.
+Narrative Upscaling interprets the request; it does not own the option-space model. First write `context.description` from the supplied domain situation, then store the interpretation as the free-form `context.sensemaking` string described in `skills/decision-structuring/references/formation-properties.md`. Keep inferred background distinct from explicit facts, negations, and unknowns when updating Context. When the latent decision pass shows that the supplied alternatives are missing, coarse, extreme, straw-man-like, mismatched in abstraction, or likely to omit a materially different option family, hand that interpretation to `question-formation.md`.
 
 Do not build a Question Tree inside Narrative Upscaling. The global Formation
 diagnostic may still generate its internal `tree_mermaid` for the request, but

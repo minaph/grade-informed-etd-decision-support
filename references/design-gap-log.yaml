@@ -45,7 +45,7 @@ gaps:
 - gap_id: projection-vs-source-of-truth
   area: formation
   observation: If Question Tree nodes or alternatives become independent mutable stores, semantic drift can occur between Questions, Context, Tree, and option descriptions.
-  current_handling: Treat Context and Questions as the source of truth; treat sensemaking, alternatives, and the internal tree_mermaid string as explanatory or derived views that are regenerated after material updates.
+  current_handling: Treat Context and Questions as the source of truth; keep context.sensemaking as explicitly interpretive material after context.description, and regenerate alternatives and the internal tree_mermaid string after material updates.
   reconsider_when: A real audited workflow demonstrates that a derived projection must carry irreducible state that cannot be represented in Questions or Context without loss.
 - gap_id: formation-provenance-persistence
   area: schema

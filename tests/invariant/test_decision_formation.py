@@ -4,18 +4,22 @@ import json
 from pathlib import Path
 import unittest
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[2]
 
 
 class DecisionFormationContractTests(unittest.TestCase):
     def setUp(self):
         self.skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
-        self.formation = (ROOT / "references/question-formation.md").read_text(encoding="utf-8")
-        self.properties = (ROOT / "references/formation-properties.md").read_text(encoding="utf-8")
+        self.integration = (ROOT / "references/question-formation.md").read_text(encoding="utf-8")
+        self.formation = (ROOT / "skills/decision-structuring/references/workflow.md").read_text(encoding="utf-8")
+        self.properties = (ROOT / "skills/decision-structuring/references/formation-properties.md").read_text(encoding="utf-8")
         self.schema_text = (ROOT / "assets/canonical-etd-schema.json").read_text(encoding="utf-8")
 
     def test_skill_routes_to_question_formation(self):
         self.assertIn("references/question-formation.md", self.skill)
+        self.assertIn("skills/decision-structuring/SKILL.md", self.skill)
         self.assertIn("Reverse Projection", self.skill)
         self.assertIn("Keep Formation state outside Canonical Schema 3.1.0", self.skill)
 
@@ -34,11 +38,23 @@ class DecisionFormationContractTests(unittest.TestCase):
         self.assertIn("`label` as its required property", self.properties)
         self.assertIn("unique local display name", self.properties)
 
-    def test_tree_is_internal_but_visible_for_material_complexity(self):
-        self.assertIn("for every request", self.properties)
-        self.assertIn("Show the Tree when", self.properties)
-        self.assertIn("keep the sketch minimal and", self.properties)
-        self.assertIn("answer-only, command-only, fixed-format", self.properties)
+    def test_documented_object_preserves_contract(self):
+        for text in (self.properties, (ROOT / "README.md").read_text()):
+            example = yaml.safe_load(text.split("```yaml\n", 1)[1].split("```", 1)[0])
+            self.assertEqual({"context", "questions", "alternatives", "tree_mermaid"}, set(example))
+            self.assertEqual(["description", "sensemaking", "objects"], list(example["context"]))
+            for question in example["questions"]:
+                self.assertEqual({"premise", "splitter", "actions"}, set(question))
+                self.assertIsInstance(question["actions"], list)
+            for alternative in example["alternatives"]:
+                self.assertEqual({"label", "description"}, set(alternative))
+            self.assertIsInstance(example["tree_mermaid"], str)
+
+    def test_tree_invocation_and_visibility_belong_to_parent(self):
+        self.assertIn("for every structuring pass", self.properties)
+        self.assertIn("for every case", self.skill)
+        self.assertIn("Show the", self.skill)
+        self.assertIn("answer-only or fixed-format", self.skill)
 
     def test_correction_contract_reprojects_semantic_state(self):
         self.assertIn("ordinary language", self.properties)
@@ -48,20 +64,18 @@ class DecisionFormationContractTests(unittest.TestCase):
 
     def test_epistemic_roles_remain_separate(self):
         for term in ("Narrative Sensemaking", "Research", "Interview", "Preset reference model", "EtD appraisal"):
-            self.assertIn(term, self.formation)
-        self.assertIn("EtD is therefore a feedback generator for Formation", self.formation)
+            self.assertIn(term, self.integration)
+        self.assertIn("EtD is therefore a feedback generator for Formation", self.integration)
 
     def test_information_gathering_selection_and_scheduling_are_separate(self):
-        self.assertIn("Research and Interview as peer candidates", self.formation)
-        self.assertIn("Queue material Interview prompts", self.formation)
-        self.assertIn("Research and Preset review loop", self.formation)
-        self.assertIn("then ask the queued Interview questions", self.formation)
-        self.assertIn("material later Question", self.formation)
-        self.assertIn("depends on its answer", self.formation)
-        self.assertIn("not an epistemic", self.formation)
-        self.assertIn("ranking of Research over Interview", self.formation)
-        self.assertIn("Research and Interview are peer candidates", self.properties)
-        self.assertIn("queued Interview questions as one coherent batch", self.properties)
+        self.assertIn("Research and Interview as peer candidates", self.integration)
+        self.assertIn("Queue material Interview prompts", self.integration)
+        self.assertIn("Research and Preset review loop", self.integration)
+        self.assertIn("then ask the queued Interview questions", self.integration)
+        self.assertIn("material later Question", self.integration)
+        self.assertIn("depends on its answer", self.integration)
+        self.assertIn("not an epistemic", self.integration)
+        self.assertIn("ranking of Research over Interview", self.integration)
         self.assertIn("formation-information-gathering-scheduling", (ROOT / "evals/decision-formation-cases.json").read_text(encoding="utf-8"))
 
     def test_operation_vocabulary_is_not_prematurely_standardized(self):
