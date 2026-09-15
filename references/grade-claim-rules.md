@@ -1,43 +1,17 @@
-# GRADE Claim Rules
+# GRADE に関する表示
 
-Read this file whenever GRADE-rated evidence or formal GRADE EtD labeling is assessed.
+GRADE という名称を使う場合は、根拠の評価、今回の検討方法、人による承認のうち、何について述べているのかを明確にします。
 
-## Layer 1: GRADE evidence assessment
+## 根拠について述べる
 
-`requirements_met` requires:
+資料に GRADE による確実性評価がある場合は、出典と対象となる比較・アウトカムを示します。その評価を今回の対象へ利用できるかは、集団、介入、比較対象、期間などの違いに照らして検討します。資料を引用したことだけで、自ら同じ方法による評価を完了したと表示しません。
 
-- comparative health outcomes in the supported formal scope;
-- critical or important desirable and undesirable outcomes;
-- outcome-level certainty with all domains considered;
-- a consistent initial-to-final calculation or explicit justified override in the form
-  `override: domains=<certainty_domain[,certainty_domain]>; rationale=<case-specific reason>`;
-- artifacts covering search, selection, risk of bias, synthesis, certainty domains, outcome certainty, and Evidence Profile or SoF;
-- integrity and structural checks;
-- methodological approval by a `human_methodologist` or `authorized_panel`.
+## 今回の方法について述べる
 
-## Layer 2: GRADE EtD precheck
+このスキルによる汎用的な支援案は、「GRADE Evidence-to-Decision framework を参考にした意思決定支援案」と表記できます。GRADE 評価済みの根拠を実際に用いた場合は、その旨と対象範囲を補足できます。正式な方法論的適合性の検証を求められた場合は、本スキルの機能範囲を説明し、採用する方法に応じた専門家の検討へつなげます。
 
-`precheck_passed` requires:
+ファイルの存在、パッケージ検査の成功、資料の書式だけでは、方法論的な妥当性を確認したことになりません。根拠が不足する場合は、何が不明で判断にどう影響するかを示し、出典や評価を補作しません。
 
-- a formal GRADE EtD draft profile in the supported scope;
-- a passed evidence structural precheck;
-- explicit criterion judgments and recommendation semantics;
-- an evidence basis for each applicable criterion;
-- no unexplained definite judgment where evidence is absent.
+## 承認について述べる
 
-A precheck does not authorize a public formal claim.
-
-## Layer 3: formal authorization
-
-`authorized` requires an imported, `human_approved` record.
-
-- Evidence-certainty authorization requires a human methodologist or authorized panel.
-- Recommendation or decision authorization requires an authorized panel.
-- Generated records cannot be authorized.
-
-## Artifact capabilities
-
-One artifact may satisfy several requirements. Integrity and structural checks may be automated; methodological approval cannot be supplied by AI or an automated validator.
-
-`calculation_or_override` is bounded to 4,096 characters so validation remains
-available under adversarial or accidentally oversized inputs.
+生成した草案に、人の承認、公式な GRADE EtD、規格適合、最終的な意思決定権限を与えません。承認済みの資料を扱う場合は、実際の承認者、対象、範囲を資料に照らして説明します。原資料の承認を、新しい分析や推奨への承認として引き継ぎません。

@@ -1,103 +1,88 @@
 register_version: 1.0.0
-release_target: 0.7.0
+release_target: 0.8.0
 rules:
-- rule_id: fixed-standard-criteria
-  current_location: assets/canonical-etd-schema.json#/properties/criteria
-  rule_origin: software_governance_requirement
-  proposed_action: retain_conditionally
-  rationale: Retain ten stable Canonical Record slots for backward compatibility; use Reference Profiles for selection and compact non-applicable entries for omitted defaults.
-- rule_id: one-active-contrast
-  current_location: scripts/validate_schema.py
-  rule_origin: local_design_choice
-  proposed_action: retain_conditionally
-  rationale: Retain for Canonical Records and comparative effect assessment; do not impose it on narrative multi-option comparisons.
-- rule_id: full-input-all-criteria
-  current_location: assets/canonical-etd-schema.json#/$defs/criterion_*
-  rule_origin: local_design_choice
-  proposed_action: relax
-  rationale: Require full assessment only for applicable criteria; permit compact reasons for other applicability states.
-- rule_id: controlled-recommendation-direction-strength
-  current_location: scripts/validate_recommendation.py
-  rule_origin: official_grade_requirement
-  proposed_action: retain_conditionally
-  rationale: Require controlled direction and strength for formal GRADE recommendation drafts; the relaxation for non-formal Canonical Records is a local design choice.
-- rule_id: formal-grade-scope
-  current_location: scripts/validate_governance.py
-  rule_origin: local_design_choice
-  proposed_action: retain
-  rationale: This is the implemented capability boundary for version 0.4, not a general GRADE prohibition; qualified human review remains mandatory within the supported module.
-- rule_id: domain-pack-selection-provenance
-  current_location: references/adaptation-rules.md
-  rule_origin: software_governance_requirement
-  proposed_action: retain
-  rationale: Stable identity, version, hash, source basis, and candidate provenance protect auditability without claiming external endorsement.
-- rule_id: ordinary-request-non-trigger
-  current_location: SKILL.md@0.3.0
-  rule_origin: local_design_choice
-  proposed_action: remove
-  rationale: Replace exclusion with proportional narrative support so ordinary requests benefit without receiving a full EtD record.
 - rule_id: narrative-latent-decision-pass
   current_location: references/narrative-upscaling.md and references/generic-etd-model.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: Narrative Upscaling selects purpose-dependent additions and stopping; the generic report model owns evaluation and recommendation. Interpretation supplies case material to both.
-- rule_id: non-applicable-full-object
-  current_location: assets/canonical-etd-schema.json@3.0.0
-  rule_origin: local_design_choice
-  proposed_action: relax
-  rationale: Applicability status and a reason are sufficient unless integration elsewhere requires a target.
+  rationale: Narrative Upscaling selects purpose-dependent additions and stopping;
+    the generic report model owns evaluation and recommendation. Interpretation supplies
+    case material to both.
 - rule_id: separate-formal-claim-layers
-  current_location: scripts/validate_governance.py
+  current_location: references/grade-claim-rules.md
   rule_origin: general_decision_support_principle
   proposed_action: retain
-  rationale: Separating evidence assessment, structural precheck, and human authorization prevents automated overclaiming.
+  rationale: Distinguish source evidence assessment, the present decision method,
+    and actual human approval; generated drafts and package checks cannot confer approval.
 - rule_id: decision-formation-local-extension
   current_location: references/question-formation.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: Generate an internal diagnostic Tree for every request but expose the Formation loop only when option quality is material; this extends GRADE-informed decision support without claiming a new official GRADE EtD component.
+  rationale: Generate an internal diagnostic Tree for every request but expose the
+    Formation loop only when option quality is material; this extends GRADE-informed
+    decision support without claiming a new official GRADE EtD component.
 - rule_id: formation-questions-source-of-truth
   current_location: skills/decision-structuring/references/workflow.md and skills/decision-structuring/references/formation-properties.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: Context plus Questions concentrate semantic state while long-form context.sensemaking follows context.description and remains explicitly interpretive and alternatives or Mermaid remain projections; this reduces drift without a deep state schema.
+  rationale: Context plus Questions concentrate semantic state while long-form context.sensemaking
+    follows context.description and remains explicitly interpretive and alternatives
+    or Mermaid remain projections; this reduces drift without a deep state schema.
 - rule_id: question-tree-as-projection
   current_location: skills/decision-structuring/references/workflow.md and skills/decision-structuring/references/formation-properties.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: A generated tree_mermaid string supports exploration and audit without creating a second mutable source of truth, stable branch IDs, or a large node-operation vocabulary.
+  rationale: A generated tree_mermaid string supports exploration and audit without
+    creating a second mutable source of truth, stable branch IDs, or a large node-operation
+    vocabulary.
 - rule_id: formation-minimal-question-properties
   current_location: skills/decision-structuring/references/formation-properties.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: Exactly premise, splitter, and actions preserve the meaning needed for a branch while avoiding independent level, resolution, challenge, and routing fields; actions may be empty while a material splitter is unresolved.
+  rationale: Exactly premise, splitter, and actions preserve the meaning needed for
+    a branch while avoiding independent level, resolution, challenge, and routing
+    fields; actions may be empty while a material splitter is unresolved.
 - rule_id: formation-open-context-objects
   current_location: skills/decision-structuring/references/formation-properties.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: Require only a unique local label for Context objects so facts, constraints, EtD findings, preset prompts, and domain-specific payloads can coexist without a premature universal ontology.
+  rationale: Require only a unique local label for Context objects so facts, constraints,
+    EtD findings, preset prompts, and domain-specific payloads can coexist without
+    a premature universal ontology.
 - rule_id: formation-alternative-comparison-gate
   current_location: skills/decision-structuring/references/formation-properties.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: Permit zero or one provisional alternative during exploration, but require at least two coherent and comparable alternatives before comparison or EtD; a count alone cannot validate option quality.
+  rationale: Permit zero or one provisional alternative during exploration, but require
+    at least two coherent and comparable alternatives before comparison or EtD; a
+    count alone cannot validate option quality.
 - rule_id: formation-natural-language-correction
-  current_location: skills/decision-structuring/references/formation-properties.md and skills/decision-structuring/references/workflow.md
+  current_location: skills/decision-structuring/references/formation-properties.md
+    and skills/decision-structuring/references/workflow.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: Natural-language user corrections can update Context or Questions and trigger re-projection without exposing direct Mermaid mutation or stable internal IDs.
+  rationale: Natural-language user corrections can update Context or Questions and
+    trigger re-projection without exposing direct Mermaid mutation or stable internal
+    IDs.
 - rule_id: formation-epistemic-role-separation
   current_location: references/question-formation.md
   rule_origin: general_decision_support_principle
   proposed_action: retain
-  rationale: Narrative Sensemaking, case-specific Research, user Interview, preset reference models, and EtD feedback answer different epistemic questions and must not be silently substituted for one another.
-- rule_id: formation-schema-persistence-boundary
-  current_location: references/question-formation.md
-  rule_origin: local_design_choice
-  proposed_action: retain_conditionally
-  rationale: Version 0.7.0 leaves Canonical Schema 3.1.0 unchanged until repeated audited use demonstrates a need for durable formation provenance.
+  rationale: Narrative Sensemaking, case-specific Research, user Interview, preset
+    reference models, and EtD feedback answer different epistemic questions and must
+    not be silently substituted for one another.
 - rule_id: formation-information-gathering-scheduling
   current_location: references/question-formation.md
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: Research and Interview remain peer epistemic choices, while batching user-facing Interview prompts after independent Research and relevant Preset review reduces repeated user attention; a material dependency permits a targeted early Interview.
+  rationale: Research and Interview remain peer epistemic choices, while batching
+    user-facing Interview prompts after independent Research and relevant Preset review
+    reduces repeated user attention; a material dependency permits a targeted early
+    Interview.
+- rule_id: natural-language-domain-models
+  current_location: references/adaptation-rules.md
+  rule_origin: local_design_choice
+  proposed_action: retain
+  rationale: Use purpose, comparison units, conceptual distinctions, and case evidence
+    rather than exhaustive candidate tracking; reconcile meaning when several domains
+    apply.

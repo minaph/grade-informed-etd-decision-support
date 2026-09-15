@@ -1,66 +1,17 @@
-# Evaluation status
+# 評価の実施状況
 
-Package version 0.7.0 introduces the Formation property contract and internal
-Mermaid diagnostic. The structural checks below have been updated for that
-contract. A clean-context live with/without-skill comparison of the revised
-Formation cases was completed with `gpt-5.6-luna` (high reasoning).
+## 0.8.0 の検証範囲
 
-## Generic EtD consolidation
+今回の改訂は、Canonical Record の廃止と、5分野の参照モデルの自然言語による再構成です。パッケージ検査、サブモジュールの固定版、文書参照、公式プロファイルの参照情報、評価ケース定義を検証対象とします。旧保存形式・承認状態・証拠アーティファクトを対象にしていた検査は廃止しました。
 
-The evaluation and report definition reside in
-`references/generic-etd-model.md`. Answer enrichment, topic-specific additions,
-and stopping remain separate rules in `references/narrative-upscaling.md`,
-alongside interpretation and information gathering. Narrative eval
-expectations have been aligned with purpose-dependent reporting; fixed counts
-of lenses, images, variants, and exercises are no longer universal pass criteria.
-The historical results below apply to their earlier prompts and rules, not to
-this revised model. No new live model comparison is claimed for this change.
+評価ケースは、複数案を一つのレポートで比較すること、健康と教育の概念を併用すること、学習成果と参加を分けること、部門間の負担移転、根拠・推論・承認の区別を確認できるよう改訂しました。既存の Narrative Upscaling と選択肢形成のケースも保持します。
 
-## Decision-structuring extraction validation
+単体テストは参照情報や評価定義の整合性を確認します。自然言語の判断の質や、新しい分野資料による性能向上を実証するものではありません。今回の改訂について、新規の実モデルによる反復比較は実施していません。方法論者・分野専門家・当事者による外部評価も未実施です。
 
-The local `skills/decision-structuring` extraction separates the reusable model
-and workflow from parent research, interview, and appraisal orchestration.
-Package checks cover both pinned submodule checkouts, subskill metadata,
-local document links, and the YAML example contract. The earlier model experiments below predate this extraction;
-they do not establish the behavior of the extracted skill. No new live
-with/without-skill experiment is claimed for this change.
+## 過去の実験との関係
 
-## Completed in this package
+旧版では `gpt-5.6-luna` の high reasoning による選択肢形成13ケースの with-skill / without-skill 比較（計26回）が報告されています。保存された応答の採点は with-skill 53/53、without-skill 37/53 でした。各ケース各条件1回であり、時間と総トークンの情報は取得されていません。
 
-- JSON Schema meta-validation
-- Unit, invariant, referential-integrity, governance, and security tests
-- Representative-case validation
-- Failure-case detection
-- Hand-authored record-level metamorphic comparison
-- Eval-definition, output-form, profile, pack, and metamorphic-case validation
-- Local artifact root confinement, size, extension, existence, and SHA-256 checks
-- Separation tests for GRADE evidence assessment, GRADE EtD precheck, and formal human authorization
-- Narrative-upscaling definition checks for premise repair, events and experience, term pragmatics, prior-knowledge learning, and explicit brevity controls
-- Decision Formation definition checks for polarized alternatives, Research versus preset epistemic roles, assumption relaxation, Reverse Projection, EtD feedback routing, and proportionality controls
-- Formation property checks for the minimal Question and Context shapes, empty-action unresolved Questions, alternative comparison cardinality, Mermaid projection, and natural-language correction/reprojection
-- Formation information-gathering scheduling checks for peer Research/Interview selection, queued Interview prompts, independent Research/Preset work, and dependency-triggered early Interview
-- Clean-context live execution of all 13 Decision Formation cases in `evals/decision-formation-cases.json`: one with-skill and one without-skill run per case (26 runs total) using `gpt-5.6-luna` with high reasoning. Strict saved-response grading produced 53/53 assertion passes with the skill and 37/53 without it. The result is qualitative/structural evidence; execution timing and total-token metadata were not captured by the subagent notification channel.
-- Four exploratory clean-context with-skill rounds across four draft iterations for user-derived short prompts, one run per selected prompt per iteration; findings strengthened full-pattern defaults and confirmed term, event, learning, answer-only, and command-only behavior.
-- Final changed-feature comparison in an external workspace: six narrative cases × three repetitions × with/without skill (`final-v0.5.0`), followed by an 18-run with-skill rerun with the same 18 baseline runs reused (`final-v0.5.0-r2`). The first run showed 12/18 with-skill passes; after rule and evidence-grounding fixes, the rerun showed 15/18 with-skill passes. The remaining term case failure was the absence of a small recognition or production test.
-- A final textual rule was added after `final-v0.5.0-r2` to require that small test unless brevity or answer-only constraints apply. That historical wording was not rerun as a model experiment; the current model supersedes it with purpose-dependent use of exercises.
-- `skills-ref` 0.1.5 validation of the installed bytes through a temporary public-name alias was executed during the resumed verification; direct validation of the reconciled `skill-*` path rejects only the directory-name/frontmatter-name mismatch. The package validator now creates the same temporary alias when needed.
+別の旧版では、6つの narrative ケースを各3回、with-skill / without-skill で比較した結果と、同じ baseline を再利用した修正後の再実行が報告されています。with-skill の通過数は初回12/18、再実行15/18でした。その後、必須の練習問題などの規則自体を改訂しています。
 
-## Defined but not executed here
-
-- Further clean-context live Agent repetitions beyond the completed final comparison and rerun
-- Further with-skill versus without-skill comparisons beyond the completed final comparison
-- Repeated output-form and profile/pack selection measurement
-- Prompt-driven metamorphic runs
-- Tool-trace, latency, and token collection
-- Old-version versus new-version comparison
-- Train/validation prompt split
-
-## External human gates not completed
-
-- Real GRADE methodologist review of real evidence products
-- Authorized panel review of recommendation wording and scope
-- Domain-expert and affected-stakeholder evaluation
-
-The included formal artifacts are test fixtures for state transitions. They are not real systematic reviews, GRADE Evidence Profiles, or endorsements. Passing validators demonstrates structural consistency only.
-
-Release CI must still run `validate_skill_package.py --require-skills-ref`; the validator now supplies a temporary public-name alias when the installed directory has a reconciled `skill-*` name. The consolidated report model should not be described as experimentally confirmed by the historical runs.
+これらの結果は当時の定義に対するもので、現在の Generic EtD、分離後のサブスキル、再構成した分野資料の性能を示しません。詳細な履歴はコミット `7851cce1b0f535765103b870331798c3b3af0873` の本ファイルに残っています。

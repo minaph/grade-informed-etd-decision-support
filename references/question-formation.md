@@ -83,15 +83,11 @@ Mermaid node or option label as an independent semantic store.
 Once the alternatives pass Reverse Projection and the two-or-more comparison
 gate, evaluate and report them using [Generic EtD model](generic-etd-model.md)
 for generic reports, or the selected official profile for a GRADE case.
-Decision Formation does not alter criteria, evidence rules, Domain Pack rules,
-formal-claim boundaries, or Canonical Record validation. A Domain Pack remains
-a preset reference model, never case evidence or authority.
-
-For `narrative_support`, compare multiple formed alternatives in ordinary
-language. For `canonical_record`, retain one active contrast; form alternatives
-first, create the necessary contrast-specific records, and synthesize
-transparently. Never embed the Question Tree or internal property object into
-Canonical Schema 3.1.0.
+Decision Formation does not alter the report model, domain definitions, or
+formal-claim boundaries. A Domain Pack remains a preset reference model,
+never case evidence or authority. Compare multiple formed alternatives in
+ordinary language, making clear which alternatives, populations, outcomes,
+and time horizons each evidence claim concerns.
 
 ## Return appraisal feedback
 
@@ -104,12 +100,3 @@ EtD is therefore a feedback generator for Formation, not a Question resolver.
 
 Stop further information gathering or appraisal when its expected decision
 value is low. Preserve unresolved material gaps instead of implying completion.
-
-## Persistence boundary
-
-In version 0.7.0, Decision Formation remains internal or narrative-side.
-Canonical Schema remains 3.1.0, and `tree_mermaid`, Questions, alternatives,
-and reverse-projection history are not persisted in the Canonical Record. Add a
-separate provenance structure only after repeated audited workflows show that
-long-lived formation history cannot be reconstructed from the semantic case
-materials.

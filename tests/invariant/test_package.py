@@ -10,7 +10,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from validate_skill_package import validate_decision_subskill
+from validate_skill_package import validate_decision_subskill, validate_local_references
 
 
 class PackageValidationTests(unittest.TestCase):
@@ -32,6 +32,16 @@ class PackageValidationTests(unittest.TestCase):
             with (child / "SKILL.md").open("a") as stream:
                 stream.write("\n[Outside](../../outside.md)\n")
             self.assertTrue(validate_decision_subskill(root))
+
+    def test_parent_references_reject_missing_or_escaped_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "SKILL.md").write_text("[Guide](guide.md)\n")
+            self.assertTrue(validate_local_references(root))
+            (root / "guide.md").write_text("Guide")
+            self.assertEqual([], validate_local_references(root))
+            (root / "SKILL.md").write_text("[Outside](../outside.md)\n")
+            self.assertTrue(validate_local_references(root))
 
     def test_package_validator(self):
         completed = subprocess.run(

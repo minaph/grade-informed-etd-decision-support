@@ -1,111 +1,21 @@
-# Migration
+# 0.8.0 への移行
 
-## Generic EtD report definition
+## Canonical Record の廃止
 
-Use `references/generic-etd-model.md` for generic evaluation and reporting.
-The entrypoint and related references now route to this single definition.
-`references/narrative-upscaling.md` remains a separate rule for answer
-enrichment, topic-specific additions, and stopping. The generic model owns
-evaluation and recommendation; it refers to Narrative Upscaling for enrichment. Narrative evaluation
-cases now assess purpose-dependent additions rather than fixed counts of
-lenses, images, variants, or exercises.
+Canonical Record の作成・保存形式・検証を廃止しました。JSON Schema、YAML テンプレート、証拠・推奨・承認・参照整合性の専用バリデーター、およびそれらに依存するテスト用記録を削除しています。正式 GRADE の自動事前検査と Schema 3.0/3.1 の互換性検査も提供しません。
 
-Canonical Schema 3.1.0, its stored `generic.etd` profile slots, and record
-validators are unchanged. These are record-format requirements, not the generic
-report model. No migration of existing stored records is required.
+旧形式と検証機構は、廃止直前のコミット `7851cce1b0f535765103b870331798c3b3af0873` に残っています。既存の記録は利用者側で保持してください。この改訂は既存記録を変換・削除するものではなく、新版で旧記録の妥当性を検証することもありません。旧版の検査結果は当時の構造上の整合性を示すもので、方法論的な承認ではありません。
 
-## Decision-structuring independent repository
+## 今後の成果物
 
-`skills/decision-structuring` is now a pinned Git submodule sourced from
-`https://github.com/minaph/decision-structuring.git`. After updating this parent,
-run `git submodule update --init --recursive` to obtain both dependencies.
-The decision-structuring files are no longer covered by the parent manifest;
-its gitlink and clean checkout are validated instead. The skill entrypoint and
-reference paths are unchanged, so callers need no model-data migration.
+[Generic EtD モデル](references/generic-etd-model.md) に沿って、目的、状況、選択肢、評価、根拠、不確実性、推奨を文章や表で説明します。追跡可能性が必要な場合は、判断を支える出典と条件を明示します。機械可読形式が必要な場合は依頼側の契約に合わせます。本スキルは代替の汎用スキーマを定めません。
 
-## Decision-structuring extraction
+ドメインパックは `references/domain-*.yaml` から同名の Markdown 文書へ移しました。候補 ID、ハッシュ、保存欄への対応、候補の全件評価、1パック制限は引き継ぎません。参照元を新しい文書へ変更し、対象・概念・根拠の区別に従って使ってください。教育実践と学術研究の判断対象も分けています。
 
-Use `skills/decision-structuring/SKILL.md` for the reusable formation model and
-workflow. Its references are relative to its own directory. The old
-`references/formation-properties.md` redirects to that contract, and
-`references/question-formation.md` now contains parent orchestration only.
-Callers supply the case and interpretation, resolve returned information needs,
-and decide how to appraise or present the results. No criterion mapping to
-Generic EtD is required. Question and Alternative properties are unchanged.
+公式プロファイルの YAML は外部テンプレートの参照情報として残します。`generic.etd` の互換性項目と保存欄への対応は削除しました。`validate_profiles.py` は参照情報だけを検査し、個別記録を引数に取りません。
 
-## Context interpretation placement
+## 維持するもの
 
-Move any existing top-level `sensemaking` string to `context.sensemaking`,
-immediately after `context.description` and before `context.objects` in the
-formation view. Preserve its content and epistemic status; do not retain a
-second top-level copy. For new drafting, write the domain description first,
-then the interpretation, and check both against the original material.
-This local Formation change does not alter Canonical Schema 3.1.0.
+Generic EtD と別規則の Narrative Upscaling、独立した Decision Structuring と概念モデリング、親スキルの調査・聞き取り・評価の連携を維持します。根拠の出所、推論と価値判断、不確実性、実際の承認の範囲を区別する原則も継続します。
 
-## Formation contract 0.6.0 to 0.7.0
-
-This change does not alter Canonical Schema 3.1.0 and therefore requires no
-Canonical Record migration. If an external workflow used the previous internal
-Formation notes, translate them to the new property model:
-
-- keep user-oriented interpretation in the free-form `context.sensemaking` string;
-- put domain material in `context.description` or labelled `context.objects`
-  (only the local string `label` is required);
-- express each material splitter as one Question with only `premise`,
-  `splitter`, and `actions`; use `actions: []` when unresolved;
-- express provisional or formed alternatives as local `label` plus
-  `description`; require two coherent, comparable alternatives only when
-  comparison or EtD begins;
-- regenerate the internal `tree_mermaid` string after semantic changes rather
-  than preserving node or option IDs.
-- treat Research and Interview as peer choices, but queue material Interview
-  prompts while independent Research and relevant Preset review are completed;
-  batch the prompts unless a material Question dependency requires a targeted
-  early Interview.
-
-The previous shallow Formation Context, Question Tree views, and assumption
-lists are not persistence requirements. Do not add them to Canonical Schema.
-
-## Schema 3.0.0 to 3.1.0
-
-Valid Schema 3.0.0 records remain supported and do not need immediate migration.
-
-If a Schema 3.0 record selects a legacy Domain Pack that does not define
-`scope.included_use_cases` and a complete assessment for every current candidate,
-prefer leaving the record on Schema 3.0. To migrate it, choose one explicit path:
-
-- detach the legacy Pack by setting `domain_packs_considered: []`,
-  `candidate_assessments: []`, `domain_pack_ids: []`, and
-  `domain_pack_use_case: null`; or
-- replace it with a current `academic` or `software_engineering` Pack, select one
-  included use case, and record a selected-or-excluded assessment for every Pack
-  candidate.
-
-Do not copy a selected legacy Pack unchanged into a Schema 3.1 record.
-
-For a new or migrated Schema 3.1.0 record:
-
-1. change `schema_version` to `3.1.0`;
-2. add a registry-backed top-level `profile_id`;
-3. add `adaptation.domain_pack_ids`, matching selected `domain_packs_considered` entries in order;
-4. add `adaptation.domain_pack_use_case`: use one value from the selected pack's `scope.included_use_cases`, or `null` when no pack is selected;
-5. select at most one Domain Pack;
-6. optionally replace non-applicable full criterion objects with compact applicability and reason objects;
-7. run `validate_profiles.py` and `validate_all.py`.
-
-Do not assign an official `grade.*` profile by inference when question family, perspective, or conclusion form is unknown. Use `generic.etd` and record the limitation.
-
-## Schema 2.x to 3.0.0
-
-1. Set `schema_version: 3.0.0`.
-2. Replace `formal_grade` with `formal_grade_etd_draft` where applicable.
-3. Remove `grade_claim_allowed`, `grade_claim_reason`, and `grade_claim_assessment`.
-4. Add `grade_evidence_assessment`, `grade_etd_assessment`, `formal_grade_claim_authorization`, and `etd_framework`.
-5. Replace focal/comparator fields with `contrasts` and `active_contrast_id`.
-6. Add `contrast_id` to every effect estimate and certainty assessment.
-7. Add outcome role, type, and population-importance rationale.
-8. Replace certainty `rating` with initial and final ratings, domain effects, and calculation or override.
-9. Separate artifact integrity, structural completeness, and methodological review.
-10. Add explicit criterion evidence bases and language-neutral machine codes.
-11. Add Domain Pack version, SHA-256, candidate assessments, and composition notes.
-12. Leave template `created_at` null and set it only when generating a case record.
+開発環境では `jsonschema` が不要になります。パッケージ検証と評価ケース定義の検証には引き続き PyYAML を使います。過去の変更経緯と検証状況は上記コミットから確認できます。

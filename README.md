@@ -1,15 +1,10 @@
 # grade-informed-etd-decision-support
 
-Version 0.7.0 applies GRADE Evidence-to-Decision principles through two output forms:
-
-- `narrative_support` for ordinary answers and artifacts, with proportional and natural-language decision support;
-- `canonical_record` for auditable, machine-readable decisions and optional formal GRADE prechecks.
-
-The skill does not treat every request as a full EtD record. It separates the requested deliverable from the amount of visible decision scaffolding needed.
+Version 0.8.0 は、GRADE EtD を参考にしたレポート形式の概念モデルを用い、日常的・分野横断的な評価、説明、推奨を支援します。依頼された成果物と詳しさに合わせ、根拠、価値判断、条件を説明します。
 
 ## Decision Formation
 
-Version 0.7.0 retains the local Decision Formation layer while replacing its
+The skill retains the local Decision Formation layer while replacing its
 over-specified state model with a small property contract. `context` and
 `questions` are the semantic source of truth; `context.sensemaking` remains a flexible
 user-oriented narrative, and `alternatives` plus `tree_mermaid` are generated
@@ -18,7 +13,7 @@ projections. The exact properties are documented in
 
 Narrative Sensemaking, case-specific Research, user Interview, preset reference models such as Domain Packs, and EtD appraisal retain distinct epistemic roles. Research establishes case reality; presets critique coverage; Interview resolves user-specific judgments when material; EtD evaluates formed alternatives and can feed back switching conditions or option-definition defects. Research and Interview are selected as peer epistemic options, but material Interview prompts are normally queued while independent Research and relevant Preset review are completed, then handled in a coherent batch; a dependency may justify a targeted early Interview. The Question Tree and alternatives are derived views rather than independent mutable stores.
 
-This layer is a local GRADE-informed extension, not an official GRADE EtD component. Canonical Schema remains 3.1.0 in this release, and Formation state is not embedded into the Canonical Record. An internal Mermaid diagnostic is generated for every request to catch omissions, but it remains invisible for direct or tightly specified requests. Show it for moderately complex, deep, research-dependent, or explicitly structural requests; do not force Research, Interview, or a visible Formation ritual.
+This layer is a local GRADE-informed extension, not an official GRADE EtD component. An internal Mermaid diagnostic is generated for every request to catch omissions, but it remains invisible for direct or tightly specified requests. Show it for moderately complex, deep, research-dependent, or explicitly structural requests; do not force Research, Interview, or a visible Formation ritual.
 
 ### Reusable decision-structuring subskill
 
@@ -113,67 +108,42 @@ previously spread across the entrypoint and Narrative Upscaling reference.
 for choosing supplementary explanation, examples, experience accounts, and
 learning support, including when to stop expanding. It also guides request
 interpretation and information gathering. Decision Structuring remains a
-separate subskill. Canonical Record formats, official GRADE profiles, and their
-validators retain their own scope and compatibility requirements.
+separate subskill.
 
-## Reference Profiles
 
-`references/official-grade-profiles.yaml` records the public GRADEpro defaults for:
+## 分野別の参照モデル
 
-- clinical recommendations from individual and population perspectives;
-- coverage decisions;
-- health-system and public-health recommendations and decisions;
-- test recommendations from individual and population perspectives;
-- test coverage decisions.
+ドメインパックは自然言語の参照モデルです。対象と比較単位、判断に必要な概念の区別、根拠と適用限界を示します。
 
-The registry entry `generic.etd` retains the existing Canonical Record slots
-for compatibility. Ordinary report criteria are defined in
-`references/generic-etd-model.md`, not by that slot list.
+- [学術研究](references/domain-academic.md): 課題の優先順位、研究資源の配分、計画の質、成果の共有。
+- [ソフトウェア工学](references/domain-software-engineering.md): 構成・技術の選定、変更方針、安全な開発、品質のトレードオフ。
+- [教育](references/domain-education.md): 学習成果、参加機会、教育実践と方針。
+- [健康・医療](references/domain-health.md): 健康アウトカム、医療、公衆衛生、提供体制。
+- [組織・製品・業務](references/domain-organization.md): 利用者と働く人への価値、負担の分布、実施能力。
 
-## Domain Packs
+候補の全件評価や保存欄への対応づけは求めません。複数分野が関わる場合は、[適用の指針](references/adaptation-rules.md) に沿って対象と概念の意味を照合します。外部資料から得た観点とローカルな整理、事例について得た根拠を区別します。
 
-The initial non-health packs are:
+## GRADE 関連資料
 
-- `academic`: research priority and resource allocation, plan quality and feasibility, and output or method sharing;
-- `software_engineering`: architecture and major technology selection, change strategy, secure development, and quality-attribute tradeoffs.
+[公式プロファイル](references/official-grade-profiles.yaml) は、GRADEpro の公開テンプレートについて、臨床、償還、保健医療システム・公衆衛生、検査の用途と視点の違いを示す参照情報です。汎用レポートの必須項目を定めたり、方法論的な適合性を自動判定したりするものではありません。
 
-Each pack distinguishes public external sources from local mappings. Pack use is not certification, formal GRADE use, ethics approval, security assurance, or external endorsement. New Schema 3.1 records select at most one pack.
+GRADE 評価済みの根拠を使ったこと、今回の検討方法、人による承認は分けて説明します。[方法論上の位置づけ](references/grade-core.md) と [表示の指針](references/grade-claim-rules.md) を参照してください。
 
-## Canonical Record compatibility
+## 検証
 
-New records use Schema 3.1.0 with:
-
-- `profile_id`;
-- `adaptation.domain_pack_ids`;
-- `adaptation.domain_pack_use_case`, set to an included use case of the selected pack or `null` when no pack is selected;
-- compact entries for `not_applicable`, `outside_mandate`, and `integrated_elsewhere` criteria;
-- profile-aware and pack-aware validation.
-
-Valid Schema 3.0.0 records remain accepted. Canonical Records retain one active contrast. Non-formal records may leave recommendation direction and strength null when those controlled GRADE semantics do not fit.
-
-Legacy Schema 3.0 Domain Packs are not automatically upgraded: keep the record
-on 3.0, detach the old Pack selection, or replace it with a current Pack and
-assess every current candidate. See `MIGRATION.md`.
-
-## Formal GRADE boundaries
-
-The skill keeps separate:
-
-1. GRADE evidence-certainty assessment;
-2. a structural GRADE EtD precheck;
-3. formal claim authorization by a qualified human workflow.
-
-A generated record cannot authorize itself. The implemented formal module remains limited to comparative health-intervention recommendations. Test profiles are registered for reference selection, but the linked-evidence diagnostic workflow is not implemented.
-
-## Validation
+文書を利用するだけなら Python は不要です。開発時の検証には Python 3.10+、`requirements.txt` の依存パッケージ、および `skills-ref` または `agentskills` を用意します。
 
 ```bash
 python -m pip install -r requirements.txt
-python scripts/validate_profiles.py --registry-only
-python scripts/validate_all.py assets/canonical-etd-template.yaml
-python -m unittest discover -s tests -p 'test_*.py'
+python scripts/update_manifest.py
+python scripts/validate_profiles.py
 python scripts/validate_evals.py
+python -m unittest discover -s tests -p 'test_*.py'
 python scripts/validate_skill_package.py --require-skills-ref
 ```
 
-Validator success proves structural consistency, not methodological correctness, official GRADE compliance, or decision authority.
+検証対象は、パッケージ情報、ローカル文書の参照、依存先の固定版、ハッシュ一覧、公式プロファイルの参照情報、評価ケースの定義です。意思決定の内容や正式 GRADE の方法論的適合性を承認する検証ではありません。モデルを実行する評価の実施状況は [EVAL_STATUS.md](EVAL_STATUS.md) に記載します。
+
+## 0.8.0 での廃止
+
+Canonical Record、その保存形式、専用バリデーター、正式 GRADE の自動事前検査、旧形式の互換性検査を廃止しました。変更の影響と旧版の参照方法は [MIGRATION.md](MIGRATION.md) を確認してください。

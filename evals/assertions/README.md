@@ -1,1 +1,1 @@
-Assertions in `evals/evals.json` are intended for with-skill and without-skill execution in clean contexts. They are not satisfied merely by unit-testing hand-authored YAML.
+Assertions describe observable behavior of generated answers. Grade actual outputs in clean-context with-skill and without-skill runs. Package checks verify definition integrity, not answer quality or methodological approval.

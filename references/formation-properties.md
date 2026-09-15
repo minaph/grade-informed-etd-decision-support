@@ -10,6 +10,5 @@ Keep the sketch minimal and invisible for direct, answer-only, command-only,
 or fixed-format requests. Show the Tree for moderately complex, deep,
 research-dependent, or explicitly structural requests.
 
-The parent owns invocation, visibility, and Canonical Record persistence policy.
-Formation state remains outside Canonical Schema 3.1.0. For research, interviews,
+The parent owns invocation and visibility. For research, interviews,
 and appraisal integration, use [the parent workflow](question-formation.md).

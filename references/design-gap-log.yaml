@@ -1,59 +1,65 @@
 log_version: 1.0.0
 status: observational
-release_target: 0.7.0
+release_target: 0.8.0
 gaps:
-- gap_id: criteria-axis-mixing
-  area: schema
-  observation: Fixed standard criterion properties coexist with domain-specific additional criteria.
-  current_handling: Map domain candidates to standard slots or additional_criteria and preserve provenance.
-  reconsider_when: The same unmappable concept recurs in at least two domain packs and two cases.
-- gap_id: decision-type-axis-mixing
-  area: schema
-  observation: decision_type mixes domain, institutional use, and conclusion semantics.
-  current_handling: Use profile_id for question family, perspective, and conclusion form without changing decision_type.
-  reconsider_when: Profile validation repeatedly requires exceptions across distinct profiles.
-- gap_id: evidence-question-axis-mixing
-  area: schema
-  observation: evidence_question_type mixes method families and domain scope.
-  current_handling: Retain the existing enum for compatibility and use profile question_family for routing.
-  reconsider_when: A supported formal module beyond comparative health interventions is implemented.
 - gap_id: narrative-depth
   area: output
-  observation: Rigid depth levels are not evidenced, but short prompts repeatedly underapply decision support when they hide premise, framing, pragmatic, experiential, or learning variation.
-  current_handling: Use references/narrative-upscaling.md for purpose-dependent answer enrichment and stopping; use references/generic-etd-model.md for evaluation and recommendation.
-  reconsider_when: Clean-context evaluation after version 0.5 shows repeated underapplication or overapplication in at least two query families.
+  observation: Rigid depth levels are not evidenced, but short prompts repeatedly
+    underapply decision support when they hide premise, framing, pragmatic, experiential,
+    or learning variation.
+  current_handling: Use references/narrative-upscaling.md for purpose-dependent answer
+    enrichment and stopping; use references/generic-etd-model.md for evaluation and
+    recommendation.
+  reconsider_when: Clean-context evaluation after version 0.5 shows repeated underapplication
+    or overapplication in at least two query families.
 - gap_id: multiple-domain-pack-composition
   area: adaptation
-  observation: Pack composition may create duplicate or conflicting criteria and evidence methods.
-  current_handling: Schema 3.1 allows at most one selected pack; legacy 3.0 records remain valid.
-  reconsider_when: At least two real cases require the same pair of packs and document a stable composition rule.
-- gap_id: generic-recommendation-semantics
-  area: conclusion
-  observation: for/against and strong/conditional do not fit every non-GRADE decision or artifact-creation task.
-  current_handling: Use references/generic-etd-model.md for generic recommendations; references/recommendation-rules.md governs Canonical direction and strength fields.
-  reconsider_when: Multiple canonical non-GRADE decision classes require controlled conclusion semantics.
+  observation: Pack composition may create duplicate or conflicting criteria and evidence
+    methods.
+  current_handling: Use relevant natural-language domain references; reconcile comparison
+    units, meanings, and evidence methods without duplicate counting.
+  reconsider_when: A concrete case loses a material distinction or produces conflicting
+    meanings that cannot be resolved by case-level explanation.
 - gap_id: alternative-formation-bias
   area: formation
-  observation: EtD appraisal can be internally careful while remaining biased by coarse, extreme, straw-man-like, mismatched, or materially incomplete alternatives supplied before appraisal.
-  current_handling: Use Decision Formation before appraisal when option quality is material; form Questions from shallow Context, derive coherent strong alternatives, and run Reverse Projection before EtD.
-  reconsider_when: Clean-context formation evals show repeated failure to discover materially distinct viable alternatives or repeated unnecessary option expansion.
+  observation: EtD appraisal can be internally careful while remaining biased by coarse,
+    extreme, straw-man-like, mismatched, or materially incomplete alternatives supplied
+    before appraisal.
+  current_handling: Use Decision Formation before appraisal when option quality is
+    material; form Questions from shallow Context, derive coherent strong alternatives,
+    and run Reverse Projection before EtD.
+  reconsider_when: Clean-context formation evals show repeated failure to discover
+    materially distinct viable alternatives or repeated unnecessary option expansion.
 - gap_id: question-state-over-modeling
   area: formation
-  observation: Independent Question levels, resolution states, challenge states, and routing states can duplicate meaning already available from the Question text, actions, Tree projection, and external I/O state.
-  current_handling: Use exactly premise, splitter, and actions for Questions; allow actions to be empty for unresolved material questions and derive any display state from Context, projection, and Research or Interview needs.
-  reconsider_when: At least two persistent workflows require interoperable Question state that cannot be reconstructed reliably from semantic content and projection state.
+  observation: Independent Question levels, resolution states, challenge states, and
+    routing states can duplicate meaning already available from the Question text,
+    actions, Tree projection, and external I/O state.
+  current_handling: Use exactly premise, splitter, and actions for Questions; allow
+    actions to be empty for unresolved material questions and derive any display state
+    from Context, projection, and Research or Interview needs.
+  reconsider_when: At least two persistent workflows require interoperable Question
+    state that cannot be reconstructed reliably from semantic content and projection
+    state.
 - gap_id: projection-vs-source-of-truth
   area: formation
-  observation: If Question Tree nodes or alternatives become independent mutable stores, semantic drift can occur between Questions, Context, Tree, and option descriptions.
-  current_handling: Treat Context and Questions as the source of truth; keep context.sensemaking as explicitly interpretive material after context.description, and regenerate alternatives and the internal tree_mermaid string after material updates.
-  reconsider_when: A real audited workflow demonstrates that a derived projection must carry irreducible state that cannot be represented in Questions or Context without loss.
-- gap_id: formation-provenance-persistence
-  area: schema
-  observation: Some future workflows may need durable Question, reverse-projection, and formation-update provenance, but no repeated persistence need has yet justified changing Canonical Schema 3.1.0.
-  current_handling: Keep Decision Formation internal or narrative-side in version 0.7.0 and leave Canonical Schema 3.1.0 unchanged.
-  reconsider_when: At least two real longitudinal or audited decisions require persistent formation provenance across reassessment cycles.
+  observation: If Question Tree nodes or alternatives become independent mutable stores,
+    semantic drift can occur between Questions, Context, Tree, and option descriptions.
+  current_handling: Treat Context and Questions as the source of truth; keep context.sensemaking
+    as explicitly interpretive material after context.description, and regenerate
+    alternatives and the internal tree_mermaid string after material updates.
+  reconsider_when: A real audited workflow demonstrates that a derived projection
+    must carry irreducible state that cannot be represented in Questions or Context
+    without loss.
 - gap_id: information-gathering-scheduling
   area: formation
-  observation: Research and Interview can be epistemically appropriate at the same time, but scattering user questions through the formation pass increases repeated user attention.
-  current_handling: Select Research and Interview as peer candidates by materiality; queue material Interview prompts, complete independent Research and relevant Preset review first, and batch the prompts unless a material Question dependency requires a targeted early Interview.
-  reconsider_when: Repeated audited workflows show that the queue or dependency rule delays a material decision, asks redundant questions, or requires a durable scheduler that cannot be reconstructed from the formation state.
+  observation: Research and Interview can be epistemically appropriate at the same
+    time, but scattering user questions through the formation pass increases repeated
+    user attention.
+  current_handling: Select Research and Interview as peer candidates by materiality;
+    queue material Interview prompts, complete independent Research and relevant Preset
+    review first, and batch the prompts unless a material Question dependency requires
+    a targeted early Interview.
+  reconsider_when: Repeated audited workflows show that the queue or dependency rule
+    delays a material decision, asks redundant questions, or requires a durable scheduler
+    that cannot be reconstructed from the formation state.

@@ -1,19 +1,8 @@
 registry_id: grade-etd-reference-profiles
-version: 1.0.0
+version: 2.0.0
 status: reference
 last_verified: 2026-07-29
 criteria_vocabulary:
-  canonical:
-  - problem
-  - desirable_effects
-  - undesirable_effects
-  - certainty_of_effects
-  - values
-  - balance_of_effects
-  - resources
-  - equity
-  - acceptability
-  - feasibility
   extension:
   - resource_certainty
   - cost_effectiveness
@@ -22,26 +11,7 @@ criteria_vocabulary:
   - certainty_test_effects
   - certainty_management_effects
   - certainty_test_result_management
-source_catalog:
-- source_id: gradepro.etd_templates
-  title: EtD templates
-  authority: GRADEpro
-  normative_status: official_grade
-  url: https://help.gradepro.org/support/solutions/articles/204000076809-etd-templates
-  note: Public template comparison; profiles below encode the published defaults, not immutable minimum requirements.
-- source_id: gradepro.user_guide
-  title: GRADEpro GDT User Guide
-  authority: GRADEpro
-  normative_status: official_grade
-  url: https://gdt.gradepro.org/app/help/user_guide/index.html
-  note: Defines the intended question, perspective, and conclusion use of each template and states that organisations may modify templates.
-profiles:
-- profile_id: generic.etd
-  status: local_extension
-  question_family: general_decision
-  perspective: case_defined
-  conclusion_form: case_defined
-  include_criteria:
+  common:
   - problem
   - desirable_effects
   - undesirable_effects
@@ -52,9 +22,22 @@ profiles:
   - equity
   - acceptability
   - feasibility
-  exclude_criteria: []
-  source_refs: []
-  interpretation_note: Canonical compatibility profile for non-GRADE records. Report-model definitions and candidate criteria are in references/generic-etd-model.md; this slot list is not a narrative checklist.
+source_catalog:
+- source_id: gradepro.etd_templates
+  title: EtD templates
+  authority: GRADEpro
+  normative_status: official_grade
+  url: https://help.gradepro.org/support/solutions/articles/204000076809-etd-templates
+  note: Public template comparison; profiles below encode the published defaults,
+    not immutable minimum requirements.
+- source_id: gradepro.user_guide
+  title: GRADEpro GDT User Guide
+  authority: GRADEpro
+  normative_status: official_grade
+  url: https://gdt.gradepro.org/app/help/user_guide/index.html
+  note: Defines the intended question, perspective, and conclusion use of each template
+    and states that organisations may modify templates.
+profiles:
 - profile_id: grade.clinical.population_recommendation
   status: reference
   question_family: management
@@ -74,9 +57,6 @@ profiles:
   - acceptability
   - feasibility
   exclude_criteria: []
-  extension_mappings:
-    resource_certainty: additional:grade.resource_certainty
-    cost_effectiveness: additional:grade.cost_effectiveness
   source_refs:
   - gradepro.etd_templates
   - gradepro.user_guide
@@ -152,18 +132,11 @@ profiles:
   - acceptability
   - feasibility
   exclude_criteria: []
-  extension_mappings:
-    test_accuracy: additional:grade.test_accuracy
-    certainty_test_accuracy: additional:grade.certainty_test_accuracy
-    certainty_test_effects: additional:grade.certainty_test_effects
-    certainty_management_effects: additional:grade.certainty_management_effects
-    certainty_test_result_management: additional:grade.certainty_test_result_management
-    resource_certainty: additional:grade.resource_certainty
-    cost_effectiveness: additional:grade.cost_effectiveness
   source_refs:
   - gradepro.etd_templates
   - gradepro.user_guide
-  capability_note: Registered for faithful reference selection; the current formal validator does not implement the linked-evidence diagnostic workflow.
+  capability_note: Reference metadata only; this skill does not implement formal methodological
+    verification.
 - profile_id: grade.tests.individual_recommendation
   status: reference
   extends: grade.tests.population_recommendation
@@ -175,7 +148,8 @@ profiles:
   source_refs:
   - gradepro.etd_templates
   - gradepro.user_guide
-  capability_note: Registered for faithful reference selection; the current formal validator does not implement the linked-evidence diagnostic workflow.
+  capability_note: Reference metadata only; this skill does not implement formal methodological
+    verification.
 - profile_id: grade.tests.coverage_decision
   status: reference
   extends: grade.tests.population_recommendation
@@ -187,4 +161,5 @@ profiles:
   source_refs:
   - gradepro.etd_templates
   - gradepro.user_guide
-  capability_note: Registered for faithful reference selection; the current formal validator does not implement the linked-evidence diagnostic workflow.
+  capability_note: Reference metadata only; this skill does not implement formal methodological
+    verification.

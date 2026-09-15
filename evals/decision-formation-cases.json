@@ -46,7 +46,7 @@
       "formation_expected": true,
       "expected_output": "The deployment assumption is represented as a material Question and relaxing the active branch can reveal a staged or otherwise materially distinct alternative.",
       "assertions": [
-        "the contestable assumption is represented through a Question rather than a duplicate canonical assumption list",
+        "the contestable assumption is represented through a Question rather than a duplicate independent assumption list",
         "the active branch reflects the current working assumption",
         "relaxing the assumption may reveal a latent strong alternative",
         "facts that are not contestable are not converted into Questions unnecessarily"

@@ -1,43 +1,27 @@
-# Adaptation Rules
+# 分野別の参照モデルを使う
 
-## Purpose
+分野別の参照モデル（ドメインパック）は、その分野で判断に必要になりうる対象、関係、評価の区別を示します。事例の資料を読むときや、選択肢・評価項目の見落としを点検するときに使います。共通の報告方法は [Generic EtD モデル](generic-etd-model.md)、モデルの選択・改訂は [適用の指針](preset-routing.md) に従います。
 
-This reference governs Canonical Record adaptation and Domain Pack mapping.
-For generic report criteria and case-specific additions, use
-[Generic EtD model](generic-etd-model.md). Canonical constraints below apply
-when that record format is requested, not as additional report-model fields.
+## 目的に合う区別を選ぶ
 
-## Case derivation
+最初に、誰が何を判断するのか、何を一つの選択肢として比べるのか、誰にどの期間の影響を見るのかを整理します。そのうえで、分野資料の対象範囲と照合します。例えば研究計画への人員配分と研究者個人の採用評価は、どちらも研究に関係しますが、対象と判断目的が異なります。
 
-Derive and justify the owner, mandate, perspective, jurisdiction, population, options, active contrast, outcome roles and importance, evidence designs, equity subgroups, baseline risk, thresholds, constraints, information gaps, implementation, and monitoring.
+分野資料の概念は検討の候補です。全項目の採点や採否一覧の作成は求めません。重要な観点を扱えない場合は、対象外と判断した理由、または不足している情報と判断への影響を説明します。資料に観点が載っていることを、その事例に問題や効果が存在する証拠にしません。
 
-## Reference Profile selection
+## 定義と事例の根拠を分ける
 
-Choose the profile by question family, perspective, and conclusion form. Use an official `grade.*` profile only when those facts fit a health question. Use `generic.etd` otherwise. Do not guess an official profile.
+参照資料は、何を区別して検討するかを支えます。個別の効果、費用、負担、実行可能性は、事例に関する資料や聞き取りから確かめます。外部資料の主張、そこから採用した観点、このスキルで追加した整理、事例についての推論を区別します。
 
-## Decision Formation boundary
+情報を得ていない場合、調べても不明な場合、該当しない場合、否定する根拠がある場合は、必要に応じて書き分けます。数値や評価が食い違うときは、対象、時点、評価基準が同じか確認してから競合として扱います。
 
-When Decision Formation is active, keep curated preset references and case-specific research separate:
+## 複数分野の意味を照合する
 
-- a Domain Pack or other preset reference model critiques coverage, suggests candidate criteria or option families, and reduces omission or arbitrary framing;
-- query-time Research establishes case-specific facts, constraints, existing patterns, and technical possibilities.
+一つの事例に複数の分野資料を使えます。概念を合わせるときは、名称だけでなく、対象者、比較単位、期間、評価の意味を照合します。同じ効果を別名で扱っているなら統合し、異なる影響なら区別を残します。金銭や時間の提供と、それによって人が経験する負担は関連していても同一ではありません。
 
-Neither is automatically authoritative over the other. A pack is not case evidence, and case-specific findings do not silently rewrite the pack. When they diverge, use the difference to revise Formation Context or add, revise, merge, or remove a material Question according to the claim type.
+例えば学校の感染対策では、健康上の利益と学習機会への影響を別々に捉えます。両者を支える根拠の評価方法と限界を示し、健康に関する確実性評価を学習成果へ転用しません。影響をまとめる際は、どの価値を優先したかを説明します。
 
-Do not compose multiple Domain Packs merely to expand the option space. The existing one-pack rule for Schema 3.1 remains unchanged. Cross-domain needs discovered during Formation remain case context or unresolved gaps unless a later version defines a stable composition rule.
+定義が両立しない場合は、一方を黙って優先せず、今回使う意味と理由を示します。事例の情報不足は調査・聞き取りへ、必要な区別を表現できない問題は概念モデリングへ戻します。選択肢の成立条件が変われば、[選択肢形成](question-formation.md) の Context または Questions に反映します。通常の利用から共有定義を自動更新しません。
 
-## Domain Pack candidate selection
+## 報告へ反映する
 
-Each Domain Pack contains stable candidate IDs. For each material candidate record selection, reason, case evidence, and resulting record paths.
-
-Do not adopt all pack candidates automatically. Absence of selection is not evidence of irrelevance; record a reason when a plausible high-impact candidate is excluded.
-
-For new Schema 3.1 records, select at most one pack. Preserve the pack version, SHA-256, source basis, candidate source references, and normative status. A pack candidate may map to a standard criterion or an `additional_criteria` path.
-
-## Cross-domain needs
-
-Do not compose packs in Schema 3.1. Record the unrepresented need and conflict in the case and `design-gap-log.yaml` when recurrent. Legacy Schema 3.0 records that already compose packs remain valid and must preserve provenance and separate health from non-health certainty methods.
-
-## Contrast discipline
-
-A Canonical Record has one active contrast. For A, B, C, and current practice, create the required pairwise or policy-relevant contrast records and synthesize them transparently. Narrative support may compare several options directly.
+選んだ観点を、各候補の評価と推奨理由に結び付けます。分野資料の利用だけを根拠に、正式 GRADE、規格適合、倫理承認、セキュリティ保証、外部機関の支持を主張しません。実施計画や継続監視は、分野資料を読んだだけでは成果物に追加せず、依頼に含まれる場合に別途扱います。

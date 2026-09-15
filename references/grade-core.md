@@ -1,38 +1,19 @@
-# Core Methodological Position
+# GRADE に関する方法論上の位置づけ
 
-## Scope
+日常的・分野横断的な評価と報告には [Generic EtD モデル](generic-etd-model.md) を使います。この文書は、GRADE による評価を含む資料を扱うときの位置づけを定めます。
 
-For ordinary generic EtD evaluation and reports, use
-[Generic EtD model](generic-etd-model.md). This reference covers GRADE evidence,
-formal claims, and Canonical Record compatibility. The report model owns its
-criteria, recommendation principles, and reporting depth.
+## 根拠の評価と意思決定を区別する
 
-## Separate claims
+GRADE で評価されたエビデンスを利用しても、今回の意思決定過程全体が正式な GRADE EtD になるわけではありません。資料が扱う比較、対象集団、アウトカム、期間と、その確実性評価が及ぶ範囲を確認します。別の比較やアウトカムに、元の評価をそのまま付け替えません。
 
-The record distinguishes:
+このスキルは、資料に示された評価の説明と、根拠を用いた意思決定支援案の作成を支援します。正式 GRADE の方法論的適合性や承認を自動判定する機能は提供しません。診断・検査など専門的な証拠の連鎖を必要とする問題でも、参照モデルがあることと、その評価方法を実行できることを区別します。
 
-- whether GRADE requirements for evidence certainty are met;
-- whether a GRADE EtD recommendation or decision passes structural prechecks;
-- whether a qualified human workflow authorizes the formal public claim.
+## 公式テンプレートの参照
 
-These states are not interchangeable.
+[公式プロファイルの参照情報](official-grade-profiles.yaml) は、GRADEpro の公開資料に基づくテンプレートの違いを保持します。質問の種類、個人または集団の視点、推奨または決定という用途を照合して参照します。必要な情報が不明なら、対応を断定せず、不足と今回の扱いを説明します。
 
-## Implemented formal scope
+同ファイルは外部資料の参照情報であり、汎用レポートの必須項目一覧ではありません。出典に記された範囲とローカルな拡張を分け、正式な用途では採用する方法と資料の版を確認します。
 
-The formal module in this version supports comparative health-intervention recommendations with patient-important desirable and undesirable outcomes.
+## 表示と承認
 
-The module does not implement the specialized evidence chains required for diagnostic tests, screening, prognosis, model-based HTA, network meta-analysis, or GRADE-CERQual.
-
-## Evidence certainty
-
-For a supported formal assessment, record an active contrast, critical or important health outcomes, initial certainty, explicit downgrade and upgrade domains, final certainty, calculation path, and an Evidence Profile or Summary of Findings capability.
-
-GRADE-rated evidence may be used in a GRADE-informed decision process. This does not make the EtD process itself formal GRADE EtD.
-
-## EtD profiles and criteria
-
-Use the published GRADEpro template differences in `official-grade-profiles.yaml` as Reference Profiles. Treat them as sourced template defaults because GRADEpro permits organizations to modify templates.
-
-Canonical Records retain the ten standard slots for compatibility. A non-applicable slot may contain only applicability and a reason. Additional criteria use the fixed extension array.
-
-The diagnostic/test profiles are registered for accurate reference selection, but the current formal module does not implement their linked-evidence chain.
+どの根拠が GRADE で評価されたのか、今回どの方法を用いたのか、誰が何を承認したのかを、それぞれ説明します。具体的な表記は [GRADE に関する表示](grade-claim-rules.md) に従います。

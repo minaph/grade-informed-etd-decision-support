@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import json
 import re
 import shutil
 import subprocess
@@ -11,7 +10,6 @@ import tempfile
 from pathlib import Path
 
 import yaml
-from jsonschema import Draft202012Validator
 
 from modeling_dependency import DECISION_PATH, package_files, validate_modeling_dependency, validate_pinned_skill
 
@@ -46,6 +44,20 @@ def validate_decision_subskill(root: Path) -> list[str]:
     return errors
 
 
+def validate_local_references(root: Path) -> list[str]:
+    errors = []
+    for relative, path in package_files(root).items():
+        if path.suffix != ".md":
+            continue
+        for target in re.findall(r"\[[^\]]*\]\(([^)]+)\)", path.read_text(encoding="utf-8")):
+            if "://" in target or target.startswith("#"):
+                continue
+            destination = (path.parent / target.split("#", 1)[0]).resolve()
+            if not destination.is_relative_to(root.resolve()) or not destination.is_file():
+                errors.append(f"missing or escaped local reference: {relative}: {target}")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate the Agent Skill package itself.")
     parser.add_argument("--require-skills-ref", action="store_true")
@@ -74,12 +86,6 @@ def main() -> int:
     if "$SKILL_DIR" in text:
         errors.append("use skill-root-relative paths rather than $SKILL_DIR")
 
-    schema = json.loads((ROOT / "assets/canonical-etd-schema.json").read_text(encoding="utf-8"))
-    try:
-        Draft202012Validator.check_schema(schema)
-    except Exception as exc:
-        errors.append(f"invalid JSON Schema: {exc}")
-
     manifest_path = ROOT / "MANIFEST.sha256"
     manifest_entries: dict[str, str] = {}
     for line_number, line in enumerate(manifest_path.read_text(encoding="utf-8").splitlines(), 1):
@@ -104,6 +110,7 @@ def main() -> int:
         if expected is not None and expected.lower() != actual:
             errors.append(f"manifest hash mismatch: {relative}")
 
+    errors.extend(validate_local_references(ROOT))
     errors.extend(validate_modeling_dependency(ROOT))
     errors.extend(validate_pinned_skill(ROOT, DECISION_PATH))
     errors.extend(validate_decision_subskill(ROOT))
@@ -172,7 +179,7 @@ def main() -> int:
         print(f"ERROR PACKAGE: {error}")
     if errors:
         return 1
-    print("OK: package frontmatter, schema, profiles, domain packs, and eval definitions are valid")
+    print("OK: package frontmatter, references, dependency pins, manifest, and eval definitions are valid")
     return 0
 
 

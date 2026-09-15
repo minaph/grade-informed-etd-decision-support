@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.0
+
+- Canonical Record と専用の保存・検証機構、正式 GRADE の自動事前検査、旧形式の互換性を廃止。
+- 5分野のドメインパックを、対象単位・概念の区別・根拠と限界を示す自然言語の参照モデルへ再構成。
+- 保存欄への対応、候補の全件評価、1パック制限を廃止し、複数分野の意味を照合する適用規則へ変更。
+- 公式プロファイルを参照情報として維持し、入口・評価定義・開発時の検証を更新。
+
 ## 0.7.0
 
 - Reworked Decision Formation around a small property contract in `references/formation-properties.md`.
