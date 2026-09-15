@@ -4,3 +4,6 @@
 [submodule "skills/decision-structuring"]
 	path = skills/decision-structuring
 	url = https://github.com/minaph/decision-structuring.git
+[submodule "skills/evidence-based-writing"]
+	path = skills/evidence-based-writing
+	url = https://github.com/minaph/evidence-based-writing.git

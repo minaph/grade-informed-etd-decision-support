@@ -191,7 +191,7 @@
       "prompt": "日本デザイン学会に属する下部学会は？",
       "expected_output": "The organizational relation is answered with calibrated evidence. Where framing matters, the report takes a defensible explanatory position and explains its scope without imposing a fixed number of lenses.",
       "files": [
-        "references/generic-etd-model.md",
+        "references/models/generic-etd-model.md",
         "references/narrative-upscaling.md"
       ],
       "assertions": [
@@ -208,7 +208,7 @@
       "prompt": "下鴨神社での古本販売",
       "expected_output": "The event and intended activity are interpreted without silently assuming attendance rather than selling. Current material facts are verified, and the report gives a clear position with reasons and conditions when the available information supports one.",
       "files": [
-        "references/generic-etd-model.md",
+        "references/models/generic-etd-model.md",
         "references/narrative-upscaling.md"
       ],
       "assertions": [
@@ -226,7 +226,7 @@
       "prompt": "generalとgenericの違いは？",
       "expected_output": "A concise explanation adopts a useful position on the present-day distinction and illustrates use. History or exercises appear only when they serve the request.",
       "files": [
-        "references/generic-etd-model.md",
+        "references/models/generic-etd-model.md",
         "references/narrative-upscaling.md"
       ],
       "assertions": [
@@ -244,7 +244,7 @@
       "prompt": "jqのDSLを学習したい。JavaScriptには慣れています。",
       "expected_output": "The response uses JavaScript knowledge to recommend an approach to learning jq, explains the deciding differences, and supplies a useful example or exercise at the requested depth.",
       "files": [
-        "references/generic-etd-model.md",
+        "references/models/generic-etd-model.md",
         "references/narrative-upscaling.md"
       ],
       "assertions": [
@@ -262,7 +262,7 @@
       "prompt": "generalとgenericの違いを一文だけで答えて。",
       "expected_output": "One concise sentence answers the semantic distinction without unsolicited etymology, usage survey, decision scaffolding, or follow-up questions.",
       "files": [
-        "references/generic-etd-model.md",
+        "references/models/generic-etd-model.md",
         "references/narrative-upscaling.md"
       ],
       "assertions": [
@@ -278,13 +278,72 @@
       "prompt": "{\"users\":[{\"name\":\"A\"}]} から名前を抜くjqコマンドだけ教えて。",
       "expected_output": "Only the directly usable jq command is returned, with no forced lesson, alternatives, tradeoff analysis, or visible framework.",
       "files": [
-        "references/generic-etd-model.md",
+        "references/models/generic-etd-model.md",
         "references/narrative-upscaling.md"
       ],
       "assertions": [
         "the jq command is correct",
         "no curriculum or unrelated alternatives are added",
         "no EtD terminology or follow-up question appears"
+      ]
+    },
+    {
+      "id": "modeling-practical-definition-ja",
+      "category": "model_application",
+      "prompt": "地域イベントの記録で「主催者」「運営担当」「協力者」が混同されています。何を一件として数えるかと関係を整理してください。参加先のおすすめは不要です。",
+      "expected_output": "The answer adopts a justified conceptual definition that separates actors and roles, explains its application and unknowns, and avoids an unrelated recommendation or forced EtD comparison.",
+      "files": [
+        "skills/conceptual-modeling/SKILL.md"
+      ],
+      "assertions": [
+        "Model definition and case facts are distinguished",
+        "Identity and multiple roles are handled without assuming one person has one role",
+        "The answer takes a position on the conceptual definition in light of the recording purpose, without recommending an event to attend or forcing a visible comparison"
+      ]
+    },
+    {
+      "id": "writing-preserve-evidence-ja",
+      "category": "report_writing",
+      "prompt": "この調査メモを短い報告にしてください。「部署Aで導入後の作業時間が減った。比較対象なし。部署Bは未測定。担当者は効果を感じると話した。」全社で有効と断定せず、分かることと分からないことを伝えてください。",
+      "expected_output": "A concise report preserves the distinction between observed change, a participant report, unmeasured outcomes, and causal uncertainty.",
+      "files": [
+        "skills/evidence-based-writing/SKILL.md"
+      ],
+      "assertions": [
+        "The measured scope remains department A",
+        "Unmeasured department B is not treated as no effect",
+        "Temporal change and the participant report are not upgraded to proven causality",
+        "The report does not invent values, references, or an organization-wide effect"
+      ]
+    },
+    {
+      "id": "latent-decision-exploration-ja",
+      "category": "request_interpretation",
+      "prompt": "地域の手づくり市ってどんな感じ？",
+      "expected_output": "Infer plausible attendance and selling purposes, use them to identify useful event and experience information, and preserve uncertainty about the user intention.",
+      "files": [
+        "references/narrative-upscaling.md",
+        "references/question-formation.md"
+      ],
+      "assertions": [
+        "Does not exclude the request merely because no decision is explicit",
+        "Develops useful inquiry from unstated goals or values without requiring clarification before all independent work",
+        "Keeps attending and selling as hypotheses rather than confirmed user plans",
+        "Does not invent an event identity, current facts, or user priorities"
+      ]
+    },
+    {
+      "id": "explicit-nondecision-scope-ja",
+      "category": "request_interpretation",
+      "prompt": "意思決定の支援を求めているのではありません。以下の発言を、目的、価値、行動、理解の立場の選択に読み替えず、そのまま鑑賞する非・意思決定的な解釈を求めます。背後の判断や潜在目的も推定しないでください。",
+      "expected_output": "Recognize the sufficiently explicit non-decision interpretation request as outside this skill and stop applying its decision workflow.",
+      "files": [
+        "SKILL.md"
+      ],
+      "assertions": [
+        "Recognizes the explicit non-decision requirement rather than inventing another latent goal",
+        "Does not equate mere brevity or fixed output format with this scope exclusion",
+        "Does not claim that the independent subskills share this scope limitation"
       ]
     }
   ]

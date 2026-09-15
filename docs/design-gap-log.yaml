@@ -8,7 +8,7 @@ gaps:
     underapply decision support when they hide premise, framing, pragmatic, experiential,
     or learning variation.
   current_handling: Use references/narrative-upscaling.md for purpose-dependent answer
-    enrichment and stopping; use references/generic-etd-model.md for evaluation and
+    enrichment and stopping; use references/models/generic-etd-model.md for evaluation and
     recommendation.
   reconsider_when: Clean-context evaluation after version 0.5 shows repeated underapplication
     or overapplication in at least two query families.

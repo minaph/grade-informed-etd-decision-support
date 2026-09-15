@@ -7,7 +7,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from modeling_dependency import DECISION_PATH, MODELING_PATH, package_files, validate_pinned_skill
+from modeling_dependency import DECISION_PATH, MODELING_PATH, WRITING_PATH, package_files, validate_pinned_skill
 
 
 class ModelingDependencyTests(unittest.TestCase):
@@ -81,6 +81,10 @@ class ModelingDependencyTests(unittest.TestCase):
 
 class DecisionDependencyTests(ModelingDependencyTests):
     skill_path = DECISION_PATH
+
+
+class WritingDependencyTests(ModelingDependencyTests):
+    skill_path = WRITING_PATH
 
 
 if __name__ == "__main__":

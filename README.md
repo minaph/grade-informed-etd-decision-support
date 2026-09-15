@@ -1,48 +1,52 @@
-# grade-informed-etd-decision-support
+# 概念モデリングの実務応用
 
-Version 0.8.0 は、GRADE EtD を参考にしたレポート形式の概念モデルを用い、日常的・分野横断的な評価、説明、推奨を支援します。依頼された成果物と詳しさに合わせ、根拠、価値判断、条件を説明します。
+概念モデリング技術を基礎として、その日常生活や他分野への応用を扱うスキルです。状況や概念を整理し、参照モデルを実際の事例へ適用するとともに、意思決定やレポート作成まで支援します。モデリングを実務的に日常利用する際に必要となる、情報収集、選択肢の整理、評価、説明の関心をつなぐことを目的とします。
 
-## Decision Formation
+Version 0.9.0。スキル識別子とリポジトリ名は、既存の参照との互換性のため `grade-informed-etd-decision-support` を維持しています。入口は [SKILL.md](SKILL.md) です。
 
-The skill retains the local Decision Formation layer while replacing its
-over-specified state model with a small property contract. `context` and
-`questions` are the semantic source of truth; `context.sensemaking` remains a flexible
-user-oriented narrative, and `alternatives` plus `tree_mermaid` are generated
-projections. The exact properties are documented in
-`skills/decision-structuring/references/formation-properties.md`.
+## 意思決定として扱う立場
 
-Narrative Sensemaking, case-specific Research, user Interview, preset reference models such as Domain Packs, and EtD appraisal retain distinct epistemic roles. Research establishes case reality; presets critique coverage; Interview resolves user-specific judgments when material; EtD evaluates formed alternatives and can feed back switching conditions or option-definition defects. Research and Interview are selected as peer epistemic options, but material Interview prompts are normally queued while independent Research and relevant Preset review are completed, then handled in a coherent batch; a dependency may justify a targeted early Interview. The Question Tree and alternatives are derived views rather than independent mutable stores.
+このスキルは、日常的な話題や多分野の話題を、基本的に意思決定として扱う立場を採用しています。知的な話題でも、どの観点から理解し、どの説明や概念定義を採用するかを「ある立場をとる」という行為・判断として扱います。この接続を、概念モデリングを実務の関心に応用する際の中心に置きます。
 
-This layer is a local GRADE-informed extension, not an official GRADE EtD component. An internal Mermaid diagnostic is generated for every request to catch omissions, but it remains invisible for direct or tightly specified requests. Show it for moderately complex, deep, research-dependent, or explicitly structural requests; do not force Research, Interview, or a visible Formation ritual.
+これは、このスキルが支援する対象と方法の選択です。あらゆる知的活動が本質的に意思決定であると主張するものではありません。指示の背後にある意思決定構造を推定し、明示されていない目標や価値も仮説として補って推論・調査を進めます。非・意思決定的な関心には助力できませんが、この探索を行うスキル自身によるスコープ判断には限界があります。詳細な指示から非・意思決定的な解釈を求めていることが明確になって初めて、対象外と判断します。基礎となる概念モデリング技術そのものの適用範囲を、この境界に限定するものでもありません。
 
-### Reusable decision-structuring subskill
+意思決定として扱うことは、毎回の回答に比較表や行動提案を追加することを意味しません。説明や定義そのものが、採用した立場を表す成果物になります。事実認定は根拠に従い、出力の詳しさは依頼に合わせます。
 
-`skills/decision-structuring/SKILL.md` owns the property model and the formation,
-Reverse Projection, and correction workflow. It is maintained independently in
-`minaph/decision-structuring` and pinned here as a Git submodule. The parent
-manifest excludes its files; package validation checks the pinned commit,
-initialization, clean checkout, metadata, and local references.
+この立場の選択に関する設計判断は、本 README と [docs/](docs/README.md) に記録します。`docs/` は設計の検討・改訂用であり、通常利用時の参照ルートには含めません。理由と適用境界は [意思決定を軸とする実務応用](docs/decision-oriented-application.md) にまとめています。
 
-The caller owns request interpretation, research and interviews, appraisal,
-and presentation. The subskill returns missing-information needs and material
-changes. Generic EtD can consume its results and supply feedback without a
-fixed schema mapping. Parent-specific orchestration remains in
-`references/question-formation.md`.
+## サブスキルの役割
 
-Initialize both dependencies with `git submodule update --init --recursive`.
-A normal source ZIP does not include their contents. For independent use, clone
-`https://github.com/minaph/decision-structuring.git` and register that checkout
-as the `decision-structuring` skill. Substantial model-definition work also uses
-`conceptual-modeling`, supplied by the caller.
+| サブスキル | 担当する技術 |
+| --- | --- |
+| [conceptual-modeling](skills/conceptual-modeling/SKILL.md) | 概念モデルの要件整理、適合性の評価、定義、適用、改訂の基礎 |
+| [decision-structuring](skills/decision-structuring/SKILL.md) | Context、Questions、Alternatives、Tree による意思決定の構造化 |
+| [evidence-based-writing](skills/evidence-based-writing/SKILL.md) | 主張、根拠、条件、用語、文章構造を保った文書作成と推敲 |
 
-Maintain the independent checkout separately from the parent's pinned checkout.
-Commit and push changes in the independent repository, fetch that commit in
-`skills/decision-structuring`, check it out, then stage the gitlink and validate
-and commit the parent. Do not edit the pinned checkout as a separate copy.
+親スキルは、利用目的に合うモデルと技術を選び、調査・聞き取りと成果物への反映を担当します。文章作成のサブスキルは、与えられた根拠を正確に伝えるために使います。必要な資料の収集や、個別の主張の検証を代替しません。
 
-### Formation properties
+## 参照モデルと運用規則
 
-The internal object has the following deliberately small shape:
+資料の構造と設置意図は [references/README.md](references/README.md) にまとめています。`models/` には分野モデルと Generic EtD、`models/etd/` には公式 GRADE EtD を志向する文書群を置きます。
+
+[Generic EtD](references/models/generic-etd-model.md) は、評価・比較・推奨を報告するためのモデルです。[Narrative Upscaling](references/narrative-upscaling.md) は、背景、具体例、経験、学習支援をどこまで加えるかという別規則です。文章の記述品質には `evidence-based-writing` を使います。モデルの定義だけを求める依頼などに、評価や推奨を一律に追加しません。
+
+## 依存先の取得と管理
+
+三つのサブスキルは独立したリポジトリで管理し、親は Git サブモジュールとして使用コミットを固定します。取得後に次を実行してください。
+
+```bash
+git submodule update --init --recursive
+```
+
+通常のソース ZIP にはサブモジュールの内容が含まれません。Git の管理情報と初期化済みの依存先を含む作業ディレクトリを利用してください。
+
+`evidence-based-writing` の独立リポジトリは `minaph/evidence-based-writing` です。今回のローカル登録では、`~/.agents/skills/evidence-based-writing` から `~/Projects/evidence-based-writing` を参照します。親は `skills/evidence-based-writing` の固定版を使うため、独立チェックアウトの更新が親へ自動反映されることはありません。
+
+更新は独立リポジトリでレビュー・コミット・公開した後、親のサブモジュールで対象コミットを取得して切り替えます。変更した Git リンクをステージし、親のハッシュ一覧とパッケージを検証します。親の manifest はサブモジュール内のファイルを含めず、依存先は固定コミットとして別に検査します。
+
+## 意思決定構造化との連携
+
+選択肢の形成には [親の連携手順](references/question-formation.md) を使います。Context と Questions を元に、Alternatives と Mermaid Tree を生成します。Context は description、sensemaking、objects の順に整理します。プロパティの正式な定義は独立サブスキルに置きます。
 
 ```yaml
 context:
@@ -61,89 +65,19 @@ alternatives:
 tree_mermaid: "generated Mermaid string"
 ```
 
-`actions: []` is an unresolved Question, not a cue to invent a branch. During
-exploration there may be zero or one provisional alternative; comparison or EtD
-requires at least two coherent, comparable alternatives. Users correct the
-semantic state in ordinary language, after which the Tree and alternatives are
-re-generated. Labels are local names rather than stable IDs, and no fixed
-`source`/`role` schema is imposed on Context objects.
+`actions: []` は未解決の問いを表し、探索中の選択肢はゼロまたは一つでも構いません。実際の比較には、内容と単位のそろった二つ以上の候補が必要です。利用者の自然言語による訂正を Context または Questions へ反映し、投影を再生成します。
 
-## 概念モデリングスキルの利用と管理
+親は各依頼で最小の内部 Tree を用いて区別の不足を確認します。直接的な回答や固定形式の依頼では表示せず、この診断だけを理由に調査、聞き取り、比較や評価を追加しません。
 
-概念モデリングスキルは、`https://github.com/minaph/conceptual-modeling` で独立して管理しています。親スキルは、`skills/conceptual-modeling` にGitサブモジュール（submodule）として配置し、使用するコミットを固定します。`SKILL.md` が入口で、聞き取りの文書と、適用評価・定義・改訂をまとめた文書を参照できます。概念モデリングスキルは、単独でも利用できます。
+## 検証と適用限界
 
-親スキルは、`references/preset-routing.md` に沿って、モデルの選択と意思決定への反映を担当します。能力質問（CQ）はモデルの表現要件に属し、意思決定の問い（Questions）は現在の状況と作業目的に属します。モデルの選択では、必要な意味との対応、モデル定義の裏付け、事例の情報を分けて確認します。個別の参照モデルには、それぞれの定義と記録形式を適用します。
-
-### 取得と利用
-
-親リポジトリを取得した後は、次のコマンドで固定版の依存先を初期化します。親と依存先を一度に取得する場合は、Gitの再帰的なクローンも利用できます。
-
-```bash
-git submodule update --init --recursive
-```
-
-完全な利用環境を用意するには、Gitの管理情報を含む作業ディレクトリと、初期化済みのサブモジュールを使います。親のソースZIPや通常の `git archive` には、依存先の内容が含まれません。概念モデリングスキルを単独で使う場合は、リポジトリ全体を利用アプリケーションのスキル探索場所へ配置するか、`SKILL.md` を明示します。サブモジュールとしての配置と、単独スキルとしての登録は、それぞれ行います。
-
-### 使用版の更新
-
-開発用の独立リポジトリと、親スキルが使う固定版の作業ディレクトリを分けて管理します。更新時は、レビューした変更を独立リポジトリでコミットして公開し、親のサブモジュールでそのコミットを取得します。その後、対象コミットへ切り替え、参照コミットを記録するGitリンク（gitlink）をステージして、親側の検証とコミットを行います。通常の利用では、親が記録したコミットを使います。
-
-### 検証と変更前の記録
-
-親のファイルのハッシュ一覧（manifest）と、依存先の固定コミットは分けて検証します。パッケージ検証では、Gitリンク、初期化状態、コミットの一致、未記録の変更、依存先のスキル情報と文書参照を確認します。`skills-ref` パッケージのコマンド（`skills-ref` または `agentskills`）が使える場合は、親と依存先の形式検査も実行します。
-
-親のファイルを変更した後は、`python scripts/update_manifest.py` でハッシュ一覧を更新します。依存先の版を変更した場合は、`git add skills/conceptual-modeling` でGitリンクをステージしてから検証します。検証にはGitの管理情報と、初期化済みのサブモジュールを使います。
-
-旧 `references/model-design.md` と改訂ガイドの内容は、独立スキルと親のモデル選択文書へ引き継ぎました。分離前の文書は、コミット `58ecb5d` で確認できます。
-
-## Generic EtD report model
-
-[Generic EtD model](references/generic-etd-model.md) is the single definition of
-report content, evaluation items, evidence and uncertainty, recommendation, and
-reporting depth for ordinary requests. Understanding and explanation are also
-covered as taking a position. It collects the common reporting guidance
-previously spread across the entrypoint and Narrative Upscaling reference.
-
-[Narrative Upscaling](references/narrative-upscaling.md) is a separate rule
-for choosing supplementary explanation, examples, experience accounts, and
-learning support, including when to stop expanding. It also guides request
-interpretation and information gathering. Decision Structuring remains a
-separate subskill.
-
-
-## 分野別の参照モデル
-
-ドメインパックは自然言語の参照モデルです。対象と比較単位、判断に必要な概念の区別、根拠と適用限界を示します。
-
-- [学術研究](references/domain-academic.md): 課題の優先順位、研究資源の配分、計画の質、成果の共有。
-- [ソフトウェア工学](references/domain-software-engineering.md): 構成・技術の選定、変更方針、安全な開発、品質のトレードオフ。
-- [教育](references/domain-education.md): 学習成果、参加機会、教育実践と方針。
-- [健康・医療](references/domain-health.md): 健康アウトカム、医療、公衆衛生、提供体制。
-- [組織・製品・業務](references/domain-organization.md): 利用者と働く人への価値、負担の分布、実施能力。
-
-候補の全件評価や保存欄への対応づけは求めません。複数分野が関わる場合は、[適用の指針](references/adaptation-rules.md) に沿って対象と概念の意味を照合します。外部資料から得た観点とローカルな整理、事例について得た根拠を区別します。
-
-## GRADE 関連資料
-
-[公式プロファイル](references/official-grade-profiles.yaml) は、GRADEpro の公開テンプレートについて、臨床、償還、保健医療システム・公衆衛生、検査の用途と視点の違いを示す参照情報です。汎用レポートの必須項目を定めたり、方法論的な適合性を自動判定したりするものではありません。
-
-GRADE 評価済みの根拠を使ったこと、今回の検討方法、人による承認は分けて説明します。[方法論上の位置づけ](references/grade-core.md) と [表示の指針](references/grade-claim-rules.md) を参照してください。
-
-## 検証
-
-文書を利用するだけなら Python は不要です。開発時の検証には Python 3.10+、`requirements.txt` の依存パッケージ、および `skills-ref` または `agentskills` を用意します。
+文書を使うだけなら Python は不要です。開発時の検証には Python 3.10+、`requirements.txt` の依存パッケージ、および `skills-ref` または `agentskills` を用います。
 
 ```bash
 python -m pip install -r requirements.txt
 python scripts/update_manifest.py
-python scripts/validate_profiles.py
-python scripts/validate_evals.py
 python -m unittest discover -s tests -p 'test_*.py'
 python scripts/validate_skill_package.py --require-skills-ref
 ```
 
-検証対象は、パッケージ情報、ローカル文書の参照、依存先の固定版、ハッシュ一覧、公式プロファイルの参照情報、評価ケースの定義です。意思決定の内容や正式 GRADE の方法論的適合性を承認する検証ではありません。モデルを実行する評価の実施状況は [EVAL_STATUS.md](EVAL_STATUS.md) に記載します。
-
-## 0.8.0 での廃止
-
-Canonical Record、その保存形式、専用バリデーター、正式 GRADE の自動事前検査、旧形式の互換性検査を廃止しました。変更の影響と旧版の参照方法は [MIGRATION.md](MIGRATION.md) を確認してください。
+検証はパッケージ情報、文書参照、依存先の固定版、ハッシュ一覧、公式プロファイルと評価ケースの定義を対象にします。モデルの判断品質や GRADE の方法論的適合性、人による承認を保証するものではありません。実施した評価と限界は [EVAL_STATUS.md](EVAL_STATUS.md)、旧保存形式の廃止は [MIGRATION.md](MIGRATION.md) を参照してください。

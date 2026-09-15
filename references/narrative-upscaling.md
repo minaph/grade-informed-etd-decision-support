@@ -7,7 +7,7 @@ an answer beyond its literal minimum. It selects background, explanatory
 perspectives, examples, experience accounts, or learning support that help
 fulfil the user's purpose.
 
-The [Generic EtD model](generic-etd-model.md) defines evaluation, evidence and
+The [Generic EtD model](models/generic-etd-model.md) defines evaluation, evidence and
 uncertainty, recommendation, and the content needed to justify a report's
 position. Use that model when evaluating and reporting a position or action.
 Narrative Upscaling determines which supplementary material would help the
@@ -18,11 +18,17 @@ separate report format.
 
 ## Decide whether to expand
 
-Start with the requested deliverable and the user's stated purpose. Consider
+Start with the requested deliverable and infer the decision structure behind
+the request. Use stated purposes and hypothesize unstated action goals, values,
+and alternatives. Carry plausible interpretations into reasoning and targeted
+research; do not wait for the user to state a decision explicitly. Keep these
+hypotheses distinct from confirmed intentions and revise them with new material
+or user corrections. Consider
 an addition when it would resolve a misleading premise, explain a material
 variation, prevent a likely misunderstanding, or help the user apply or learn
 what was requested. Identify that contribution before adding the material.
-A short prompt alone does not justify expansion.
+A short prompt warrants interpreting latent purposes, but its length alone
+does not justify adding material without a useful contribution.
 
 Consider differences between formal definitions and actual use, alternative
 explanatory perspectives, historical development, experience across settings,
@@ -50,7 +56,7 @@ multiple lenses to satisfy a count.
 Select details according to the intended activity, such as visiting or selling.
 Access, conditions, crowding, images, and dated experience accounts can clarify
 what participation involves. Connect them to useful preparation or choices
-when the request calls for that help. Distinguish reported past experiences
+when stated or inferred purposes make that help useful. Distinguish reported past experiences
 from expectations for the current event; do not turn a brief query into a full
 itinerary by default.
 
@@ -65,7 +71,8 @@ every terminology answer.
 
 ### Learning
 
-Use stated prior knowledge as a bridge. Choose among a contrast with familiar
+Use stated prior knowledge as a bridge and infer plausible learning goals when
+they are unstated. Choose among a contrast with familiar
 concepts, a minimal working example, a short sequence, practice, feedback, and
 a transfer task according to the learner's goal and requested depth. Explain
 how to check an exercise when one is included. Pacing or difficulty can be
@@ -83,7 +90,8 @@ of the generic report model or of every expansion.
 ## Connect interpretation to decision structuring
 
 First prepare `context.description` from the supplied situation, then the
-interpretation for `context.sensemaking`. Follow
+interpretation for `context.sensemaking`, including hypothesized goals, values,
+and alternative intentions that can guide research and Questions. Follow
 [the parent formation workflow](question-formation.md) when options or
 explanatory positions need structuring. Decision Structuring owns Questions,
 Alternatives, and the Tree. Narrative Upscaling can identify a missing

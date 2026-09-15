@@ -9,7 +9,7 @@
         "the basis for allocation can be traced to sources and judgments"
       ],
       "expected_domain_references": [
-        "references/domain-academic.md"
+        "references/models/academic.md"
       ],
       "expected_concepts": [
         "Scientific or scholarly value",
@@ -26,7 +26,7 @@
         "resource allocation is conditional on capacity evidence"
       ],
       "expected_domain_references": [
-        "references/domain-academic.md"
+        "references/models/academic.md"
       ],
       "expected_concepts": [
         "Scientific or scholarly value",
@@ -42,7 +42,7 @@
         "openness is bounded by law, ethics, and context"
       ],
       "expected_domain_references": [
-        "references/domain-academic.md"
+        "references/models/academic.md"
       ],
       "expected_concepts": [
         "Methodological credibility",
@@ -56,7 +56,7 @@
         "human-subject rules are not generalized to all research"
       ],
       "expected_domain_references": [
-        "references/domain-academic.md"
+        "references/models/academic.md"
       ],
       "expected_concepts": [
         "Ethics and integrity",
@@ -71,7 +71,7 @@
         "feasibility does not overwrite scholarly value"
       ],
       "expected_domain_references": [
-        "references/domain-academic.md"
+        "references/models/academic.md"
       ],
       "expected_concepts": [
         "Scientific or scholarly value",
@@ -86,7 +86,7 @@
         "stop or modify conditions are explicit"
       ],
       "expected_domain_references": [
-        "references/domain-academic.md"
+        "references/models/academic.md"
       ],
       "expected_concepts": [
         "Scientific or scholarly value",
@@ -101,7 +101,7 @@
         "recommendation is conditional on team and operational evidence"
       ],
       "expected_domain_references": [
-        "references/domain-software-engineering.md"
+        "references/models/software-engineering.md"
       ],
       "expected_concepts": [
         "Fitness for purpose",
@@ -119,7 +119,7 @@
         "lock-in claims use case evidence"
       ],
       "expected_domain_references": [
-        "references/domain-software-engineering.md"
+        "references/models/software-engineering.md"
       ],
       "expected_concepts": [
         "Security risk",
@@ -135,7 +135,7 @@
         "pack is not a threat model or security assurance"
       ],
       "expected_domain_references": [
-        "references/domain-software-engineering.md"
+        "references/models/software-engineering.md"
       ],
       "expected_concepts": [
         "Security risk",
@@ -150,7 +150,7 @@
         "performance evidence does not overwrite maintainability"
       ],
       "expected_domain_references": [
-        "references/domain-software-engineering.md"
+        "references/models/software-engineering.md"
       ],
       "expected_concepts": [
         "Architectural quality tradeoffs",
@@ -165,7 +165,7 @@
         "NIST cloud lock-in source is not generalized without case evidence"
       ],
       "expected_domain_references": [
-        "references/domain-software-engineering.md"
+        "references/models/software-engineering.md"
       ],
       "expected_concepts": [
         "Fitness for purpose",
@@ -180,7 +180,7 @@
         "reversibility and stop conditions are explicit"
       ],
       "expected_domain_references": [
-        "references/domain-software-engineering.md"
+        "references/models/software-engineering.md"
       ],
       "expected_concepts": [
         "Implementation feasibility",
@@ -205,7 +205,7 @@
         "Material risks and adoption conditions are explicit; monitoring is not imposed solely because stakes are high"
       ],
       "expected_domain_references": [
-        "references/domain-software-engineering.md"
+        "references/models/software-engineering.md"
       ],
       "expected_concepts": [
         "Security risk",
@@ -250,7 +250,7 @@
         "only team-size-sensitive judgments may change"
       ],
       "expected_domain_references": [
-        "references/domain-software-engineering.md"
+        "references/models/software-engineering.md"
       ]
     },
     {
@@ -271,7 +271,7 @@
         "only team-size-sensitive judgments may change"
       ],
       "expected_domain_references": [
-        "references/domain-software-engineering.md"
+        "references/models/software-engineering.md"
       ]
     },
     {
@@ -292,7 +292,7 @@
         "budget alone does not change scholarly value"
       ],
       "expected_domain_references": [
-        "references/domain-academic.md"
+        "references/models/academic.md"
       ]
     },
     {
@@ -313,15 +313,15 @@
         "budget alone does not change scholarly value"
       ],
       "expected_domain_references": [
-        "references/domain-academic.md"
+        "references/models/academic.md"
       ]
     },
     {
       "case_id": "cross_domain_school",
       "query": "学校の感染対策について、健康と学習機会の両方から比較してください。",
       "expected_domain_references": [
-        "references/domain-health.md",
-        "references/domain-education.md"
+        "references/models/health.md",
+        "references/models/education.md"
       ],
       "expected_concepts": [
         "Health outcomes",
@@ -338,7 +338,7 @@
       "case_id": "education_participation_learning",
       "query": "教材の利用時間は増えましたが理解度は未測定です。導入を評価してください。",
       "expected_domain_references": [
-        "references/domain-education.md"
+        "references/models/education.md"
       ],
       "expected_concepts": [
         "Participation",
@@ -353,7 +353,7 @@
       "case_id": "organization_work_transfer",
       "query": "新ツールで営業の工数は減りましたが、サポート部門の作業が増えました。全社導入すべきですか。",
       "expected_domain_references": [
-        "references/domain-organization.md"
+        "references/models/organization.md"
       ],
       "expected_concepts": [
         "Work transfer",

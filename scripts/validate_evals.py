@@ -7,6 +7,11 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 
+DOMAIN_REFERENCES = {
+    f'references/models/{name}.md'
+    for name in ('academic', 'education', 'health', 'organization', 'software-engineering')
+}
+
 
 REQUIRED_OUTPUT_CASES = {
     'narrative-category-repair-ja', 'narrative-event-experience-ja',
@@ -55,7 +60,7 @@ def validate_cases(cases: list[dict], *, id_key: str, required: tuple[str, ...],
                 path = (root / relative).resolve()
                 if not path.is_relative_to(root.resolve()) or not path.is_file():
                     errors.append(f'{case_id}: missing or escaped reference: {relative}')
-                if field == 'expected_domain_references' and not relative.startswith('references/domain-'):
+                if field == 'expected_domain_references' and relative not in DOMAIN_REFERENCES:
                     errors.append(f'{case_id}: not a domain reference: {relative}')
         pair = item.get('pair_id')
         if pair:
@@ -72,7 +77,7 @@ def main() -> int:
     domain_cases = json.loads((ROOT / 'evals/profile-and-pack-cases.json').read_text())['cases']
     formation = json.loads((ROOT / 'evals/decision-formation-cases.json').read_text())['cases']
     meta = yaml.safe_load((ROOT / 'SKILL.md').read_text().split('---', 2)[1])
-    registry = yaml.safe_load((ROOT / 'references/official-grade-profiles.yaml').read_text())
+    registry = yaml.safe_load((ROOT / 'references/models/etd/official-grade-profiles.yaml').read_text())
     profile_ids = {item['profile_id'] for item in registry['profiles']}
     errors = []
     if evals.get('skill_name') != meta.get('name'):
@@ -109,8 +114,7 @@ def main() -> int:
     if positive < 6 or negative < 2:
         errors.append('Formation coverage needs at least six positive and two non-activation cases')
     domains = {path for case in domain_cases for path in case.get('expected_domain_references', [])}
-    expected_domains = {p.relative_to(ROOT).as_posix() for p in (ROOT / 'references').glob('domain-*.md')}
-    if not expected_domains or not expected_domains <= domains:
+    if not DOMAIN_REFERENCES <= domains:
         errors.append('Missing domain-reference evaluation coverage')
     for error in errors:
         print('ERROR EVAL:', error)

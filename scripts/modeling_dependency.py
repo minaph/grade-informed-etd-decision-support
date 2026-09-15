@@ -9,7 +9,8 @@ import yaml
 
 MODELING_PATH = Path("skills/conceptual-modeling")
 DECISION_PATH = Path("skills/decision-structuring")
-SUBMODULE_PATHS = {MODELING_PATH, DECISION_PATH}
+WRITING_PATH = Path("skills/evidence-based-writing")
+SUBMODULE_PATHS = {MODELING_PATH, DECISION_PATH, WRITING_PATH}
 
 
 def package_files(root: Path) -> dict[str, Path]:

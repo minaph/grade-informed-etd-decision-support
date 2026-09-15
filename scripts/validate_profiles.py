@@ -7,7 +7,7 @@ from typing import Any
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-REGISTRY_PATH = ROOT / 'references/official-grade-profiles.yaml'
+REGISTRY_PATH = ROOT / 'references/models/etd/official-grade-profiles.yaml'
 
 
 def load_registry() -> dict[str, Any]:

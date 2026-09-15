@@ -11,7 +11,7 @@ from pathlib import Path
 
 import yaml
 
-from modeling_dependency import DECISION_PATH, package_files, validate_modeling_dependency, validate_pinned_skill
+from modeling_dependency import SUBMODULE_PATHS, package_files, validate_pinned_skill
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -111,8 +111,8 @@ def main() -> int:
             errors.append(f"manifest hash mismatch: {relative}")
 
     errors.extend(validate_local_references(ROOT))
-    errors.extend(validate_modeling_dependency(ROOT))
-    errors.extend(validate_pinned_skill(ROOT, DECISION_PATH))
+    for skill_path in sorted(SUBMODULE_PATHS):
+        errors.extend(validate_pinned_skill(ROOT, skill_path))
     errors.extend(validate_decision_subskill(ROOT))
 
     eval_result = subprocess.run(
@@ -156,18 +156,14 @@ def main() -> int:
                 temp_dir.cleanup()
         if completed.returncode:
             errors.append("skills-ref validation failed:\n" + completed.stdout + completed.stderr)
-        child_validation = subprocess.run(
-            [executable, "validate", str(ROOT / "skills/conceptual-modeling")],
-            capture_output=True, text=True, check=False,
-        )
-        if child_validation.returncode:
-            errors.append("child skills-ref validation failed:\n" + child_validation.stdout + child_validation.stderr)
-        decision_validation = subprocess.run(
-            [executable, "validate", str(ROOT / "skills/decision-structuring")],
-            capture_output=True, text=True, check=False,
-        )
-        if decision_validation.returncode:
-            errors.append("decision-structuring skills-ref validation failed:\n" + decision_validation.stdout + decision_validation.stderr)
+        for skill_path in sorted(SUBMODULE_PATHS):
+            child_validation = subprocess.run(
+                [executable, "validate", str(ROOT / skill_path)],
+                capture_output=True, text=True, check=False,
+            )
+            if child_validation.returncode:
+                errors.append(f"{skill_path.name} skills-ref validation failed:\n"
+                              + child_validation.stdout + child_validation.stderr)
     elif args.require_skills_ref:
         errors.append("skills-ref is required but unavailable")
     else:

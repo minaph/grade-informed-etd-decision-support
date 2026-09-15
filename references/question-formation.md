@@ -17,7 +17,7 @@ Keep the following roles distinct even when they interact:
 
 | Input or process | Epistemic role | It may contribute | It must not be treated as |
 | --- | --- | --- | --- |
-| Narrative Sensemaking | Interpret the request, purpose, premise, latent agency, and framing | `context.sensemaking`, candidate Questions, purpose tensions | external-world evidence or a substitute for user values |
+| Narrative Sensemaking | Infer the decision structure behind the request, including latent agency and framing | `context.sensemaking`, hypothesized goals and values, candidate Questions, alternative intentions | external-world evidence or confirmed user preferences |
 | Research | Discover case-specific reality | Context objects, facts, constraints, existing option patterns, technical possibilities, evidence gaps | the user's preferences or a universal domain ontology |
 | Interview | Resolve user-specific matters the AI cannot responsibly proxy | goals, priorities, acceptable tradeoffs, non-public constraints, value judgments | external evidence or a required ritual for every case |
 | Preset reference model | Critique coverage and reduce arbitrary framing | prompts for Questions, missing criteria or option families | case-specific reality, authority, or a mandatory checklist |
@@ -26,6 +26,12 @@ Keep the following roles distinct even when they interact:
 Research and preset models can disagree without either being automatically
 privileged. Route the disagreement to Context or Questions according to the
 kind of claim at issue.
+
+Use hypothesized goals and values to develop Questions and guide research even
+when the request states no decision. Retain consequential alternative
+interpretations and revise them as evidence or user corrections arrive. Ask
+about a user's priorities when resolving them is material; inference can guide
+exploration without constituting confirmation of those priorities.
 
 能力質問（CQ）はモデル定義の表現要件に属し、意思決定の問い（Questions）は現在の状況と作業目的に属します。
 モデルを選ぶ際は、`references/preset-routing.md` に沿って、能力質問と定義が重要な区別を表現できるか確認します。
@@ -81,7 +87,7 @@ Mermaid node or option label as an independent semantic store.
 ## Hand off to EtD appraisal
 
 Once the alternatives pass Reverse Projection and the two-or-more comparison
-gate, evaluate and report them using [Generic EtD model](generic-etd-model.md)
+gate, evaluate and report them using [Generic EtD model](models/generic-etd-model.md)
 for generic reports, or the selected official profile for a GRADE case.
 Decision Formation does not alter the report model, domain definitions, or
 formal-claim boundaries. A Domain Pack remains a preset reference model,

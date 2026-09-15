@@ -1,10 +1,9 @@
 interface:
-  display_name: GRADE-informed EtD Decision Support
-  short_description: Proportional EtD support for decisions and everyday answers
-  icon_small: assets/icon.svg
-  icon_large: assets/icon.svg
-  default_prompt: Use $grade-informed-etd-decision-support to turn this request into
-    proportional, actionable decision support.
+  display_name: "概念モデリングの実務応用"
+  short_description: "概念モデリングを日常生活や各分野の判断・説明・レポート作成へ応用する"
+  icon_small: "assets/icon.svg"
+  icon_large: "assets/icon.svg"
+  default_prompt: "$grade-informed-etd-decision-support を使い、この状況を目的に合うモデルで整理し、必要な比較や説明を根拠と条件が分かる形にまとめてください。"
 policy:
   products:
   - chatgpt
