@@ -1,3 +1,6 @@
+name: "official-grade-profiles"
+description: "公式GRADE EtDの問い・視点・結論形式に応じた参照プロファイルと出典を選ぶ。実行可能な評価手法ではない。"
+kind: "registry"
 registry_id: grade-etd-reference-profiles
 version: 2.0.0
 status: reference

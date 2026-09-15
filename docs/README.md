@@ -4,6 +4,7 @@
 
 - [意思決定を軸とする実務応用](decision-oriented-application.md)：日常的・多分野の話題を意思決定として扱う立場と、その適用境界。
 - [レポートモデルと運用指示の分離](report-model-decomposition.md)：単独利用できるモデルの境界と、運用側での併用方針。
+- [指示の詳しさによらない一般ルーティング](general-routing.md)：一般手順への吸収と、モデル選択用メタデータ。
 - [規則の由来と採用理由](rule-origin-register.yaml)：既存規則の由来、扱い、理由。
 - [未解決の設計課題](design-gap-log.yaml)：観察された課題、現在の対応、再検討の条件。
 

@@ -2,12 +2,12 @@ register_version: 1.0.0
 release_target: 0.8.0
 rules:
 - rule_id: narrative-latent-decision-pass
-  current_location: references/narrative-upscaling.md and references/models/
+  current_location: SKILL.md and references/models/
   rule_origin: local_design_choice
   proposed_action: retain_conditionally
-  rationale: Narrative Upscaling iterates interpretation, research, and selection
-    of standalone report models; it combines them with Generic EtD when evaluation
-    and recommendation are needed. Model definitions do not require that integration.
+  rationale: The general SKILL workflow supplements underspecified instructions
+    and iterates research and selection from the same model set used for detailed
+    requests. It combines standalone models with Generic EtD when needed.
 - rule_id: separate-formal-claim-layers
   current_location: references/models/etd/grade-claim-rules.md
   rule_origin: general_decision_support_principle

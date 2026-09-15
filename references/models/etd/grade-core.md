@@ -1,3 +1,9 @@
+---
+name: "grade-core"
+description: "GRADEの根拠、公式プロファイルとの関係、方法論的な適用限界を確認する。通常の説明モデルの前提ではない。"
+kind: "methodology"
+---
+
 # GRADE に関する方法論上の位置づけ
 
 日常的・分野横断的な評価と報告には [Generic EtD モデル](../generic-etd-model.md) を使います。この文書は、GRADE による評価を含む資料を扱うときの位置づけを定めます。

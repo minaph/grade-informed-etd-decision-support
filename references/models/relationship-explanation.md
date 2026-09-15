@@ -1,3 +1,9 @@
+---
+name: "relationship-explanation"
+description: "対象間の所属・部分・協力・歴史的関係・分類を、文脈と時点を示して説明する。種類と個体、関係の不在と未確認を区別する。"
+kind: "report-model"
+---
+
 # 関係・分類の説明モデル
 
 ## 目的と単位

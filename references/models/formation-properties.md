@@ -1,3 +1,9 @@
+---
+name: "formation-properties"
+description: "Context・Questions・Alternatives・Tree の正式な定義を持つ独立した意思決定構造化サブスキルへの参照窓口。定義の複製ではない。"
+kind: "redirect"
+---
+
 # Decision Formation Property Model
 
 The property contract now lives in the reusable

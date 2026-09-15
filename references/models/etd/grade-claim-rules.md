@@ -1,3 +1,9 @@
+---
+name: "grade-claim-rules"
+description: "GRADE評価や公式表示、根拠の確実性、人による承認について何を主張できるかを区別する。"
+kind: "methodology"
+---
+
 # GRADE に関する表示
 
 GRADE という名称を使う場合は、根拠の評価、今回の検討方法、人による承認のうち、何について述べているのかを明確にします。

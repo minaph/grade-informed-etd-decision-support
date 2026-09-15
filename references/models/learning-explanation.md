@@ -1,3 +1,9 @@
+---
+name: "learning-explanation"
+description: "既有知識から新しい内容へ橋渡しし、説明・練習・確認・応用を構成する。提示した説明と実際に確認できた習得を区別する。"
+kind: "report-model"
+---
+
 # 学習を支える説明モデル
 
 ## 目的と単位

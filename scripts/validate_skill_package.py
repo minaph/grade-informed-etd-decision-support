@@ -12,6 +12,7 @@ from pathlib import Path
 import yaml
 
 from modeling_dependency import SUBMODULE_PATHS, package_files, validate_pinned_skill
+from list_models import model_catalog
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -111,6 +112,8 @@ def main() -> int:
             errors.append(f"manifest hash mismatch: {relative}")
 
     errors.extend(validate_local_references(ROOT))
+    _, model_errors = model_catalog(ROOT)
+    errors.extend(model_errors)
     for skill_path in sorted(SUBMODULE_PATHS):
         errors.extend(validate_pinned_skill(ROOT, skill_path))
     errors.extend(validate_decision_subskill(ROOT))

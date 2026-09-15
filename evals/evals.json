@@ -192,7 +192,7 @@
       "expected_output": "The organizational relation is answered with calibrated evidence. Where framing matters, the report takes a defensible explanatory position and explains its scope without imposing a fixed number of lenses.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md",
+        "SKILL.md",
         "references/models/relationship-explanation.md"
       ],
       "assertions": [
@@ -210,7 +210,7 @@
       "expected_output": "The event and intended activity are interpreted without silently assuming attendance rather than selling. Current material facts are verified, and the report gives a clear position with reasons and conditions when the available information supports one.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md",
+        "SKILL.md",
         "references/models/experience-report.md"
       ],
       "assertions": [
@@ -229,7 +229,7 @@
       "expected_output": "A concise explanation adopts a useful position on the present-day distinction and illustrates use. History or exercises appear only when they serve the request.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md",
+        "SKILL.md",
         "references/models/term-explanation.md"
       ],
       "assertions": [
@@ -248,7 +248,7 @@
       "expected_output": "The response uses JavaScript knowledge to recommend an approach to learning jq, explains the deciding differences, and supplies a useful example or exercise at the requested depth.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md",
+        "SKILL.md",
         "references/models/learning-explanation.md"
       ],
       "assertions": [
@@ -267,7 +267,7 @@
       "expected_output": "One concise sentence answers the semantic distinction without unsolicited etymology, usage survey, decision scaffolding, or follow-up questions.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md",
+        "SKILL.md",
         "references/models/term-explanation.md"
       ],
       "assertions": [
@@ -284,7 +284,7 @@
       "expected_output": "Only the directly usable jq command is returned, with no forced lesson, alternatives, tradeoff analysis, or visible framework.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md",
+        "SKILL.md",
         "references/models/artifact-guide.md"
       ],
       "assertions": [
@@ -328,7 +328,7 @@
       "prompt": "地域の手づくり市ってどんな感じ？",
       "expected_output": "Infer plausible attendance and selling purposes, use them to identify useful event and experience information, and preserve uncertainty about the user intention.",
       "files": [
-        "references/narrative-upscaling.md",
+        "SKILL.md",
         "references/question-formation.md",
         "references/models/experience-report.md"
       ],
@@ -442,6 +442,70 @@
         "Does not invent successful execution or unsupported environment requirements",
         "Provides usage without forced alternatives or a maintenance plan",
         "The model is usable without Generic EtD, Decision Structuring, or report-composition as a prerequisite; do not force all model headings into the answer"
+      ]
+    },
+    {
+      "id": "routing-vague-event-ja",
+      "category": "general_routing",
+      "prompt": "市の雰囲気を知りたい。",
+      "expected_output": "Use the shared catalog to select experience-report provisionally, explore relevant activity hypotheses, and preserve uncertainty.",
+      "files": [
+        "SKILL.md",
+        "references/models/experience-report.md"
+      ],
+      "assertions": [
+        "Uses the same model collection as a detailed event query",
+        "Can infer attendance or selling as hypotheses without demanding all details first",
+        "Does not invent a specific event or current schedule"
+      ],
+      "pair_id": "event-detail-routing",
+      "detail_level": "低詳細"
+    },
+    {
+      "id": "routing-detailed-event-ja",
+      "category": "general_routing",
+      "prompt": "架空の市の資料です。前年の来場者は「正午は混雑」、出店者は「搬入に時間がかかった」と報告。今年は会場が変わります。来場を検討しているので、過去の経験と今回の見通しを分けて説明してください。出店の助言は不要です。",
+      "expected_output": "Select experience-report from the shared catalog and apply the supplied purpose and conditions.",
+      "files": [
+        "SKILL.md",
+        "references/models/experience-report.md"
+      ],
+      "assertions": [
+        "Uses the same model collection as an underspecified event query",
+        "Uses the stated attendance purpose rather than reopening selling as an equally likely user intention",
+        "Separates past reports from uncertain current expectations"
+      ],
+      "pair_id": "event-detail-routing",
+      "detail_level": "高詳細"
+    },
+    {
+      "id": "routing-short-specific-ja",
+      "category": "general_routing",
+      "prompt": "次の架空用語の違いを一文で。「受付＝申込みの受領」「承認＝審査後の許可」。",
+      "expected_output": "Apply term-explanation directly and honor the one-sentence constraint.",
+      "files": [
+        "SKILL.md",
+        "references/models/term-explanation.md"
+      ],
+      "assertions": [
+        "Does not classify the request as ambiguous merely because it is short",
+        "Does not require every model, Python execution, Generic EtD, or clarification",
+        "Preserves the supplied definitions in one sentence"
+      ]
+    },
+    {
+      "id": "routing-long-ambiguous-ja",
+      "category": "general_routing",
+      "prompt": "社内資料について相談です。関係する部署が多く、これまでに何度も打合せをしています。資料もいくつかあります。見せ方も気になっていますし、読みやすくしたい気持ちもあります。でも中身について考え直す余地もありそうです。こういうとき、いい感じにしたいです。",
+      "expected_output": "Recognize that the deliverable and purpose remain underspecified despite the long input; develop hypotheses and a targeted clarification need.",
+      "files": [
+        "SKILL.md",
+        "references/models/report-composition.md"
+      ],
+      "assertions": [
+        "Does not infer that a long request has a settled deliverable",
+        "Keeps rewriting versus revising the underlying content as provisional interpretations",
+        "Uses the shared catalog and does not fabricate the unseen document content"
       ]
     }
   ]

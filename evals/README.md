@@ -1,6 +1,6 @@
 # Agent evaluations
 
-`evals.json` defines report-quality, methodological-boundary, source-integrity, comparison, and Narrative Upscaling cases. `trigger_queries.json` records routing expectations and capability limits. `profile-and-pack-cases.json` tests domain-reference selection, conceptual distinctions, and responses to controlled changes. `decision-formation-cases.json` tests alternative formation, epistemic roles, the minimal property contract, correction, Reverse Projection, and proportionality.
+`evals.json` defines report-quality, methodological-boundary, source-integrity, comparison, and underspecified-request / answer-enrichment cases. `trigger_queries.json` records routing expectations and capability limits. `profile-and-pack-cases.json` tests domain-reference selection, conceptual distinctions, and responses to controlled changes. `decision-formation-cases.json` tests alternative formation, epistemic roles, the minimal property contract, correction, Reverse Projection, and proportionality.
 
 Domain expectations identify reference documents and concepts in ordinary language. They do not require stable candidate IDs or an assessment of every concept in a document. A reference can guide coverage but cannot establish a case fact.
 
