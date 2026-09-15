@@ -192,7 +192,8 @@
       "expected_output": "The organizational relation is answered with calibrated evidence. Where framing matters, the report takes a defensible explanatory position and explains its scope without imposing a fixed number of lenses.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md"
+        "references/narrative-upscaling.md",
+        "references/models/relationship-explanation.md"
       ],
       "assertions": [
         "the literal question is answered before broadening",
@@ -209,7 +210,8 @@
       "expected_output": "The event and intended activity are interpreted without silently assuming attendance rather than selling. Current material facts are verified, and the report gives a clear position with reasons and conditions when the available information supports one.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md"
+        "references/narrative-upscaling.md",
+        "references/models/experience-report.md"
       ],
       "assertions": [
         "material current schedule and constraints are checked against an official source rather than extrapolated from an earlier year",
@@ -227,7 +229,8 @@
       "expected_output": "A concise explanation adopts a useful position on the present-day distinction and illustrates use. History or exercises appear only when they serve the request.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md"
+        "references/narrative-upscaling.md",
+        "references/models/term-explanation.md"
       ],
       "assertions": [
         "the present-day contrast and useful examples are clear",
@@ -245,7 +248,8 @@
       "expected_output": "The response uses JavaScript knowledge to recommend an approach to learning jq, explains the deciding differences, and supplies a useful example or exercise at the requested depth.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md"
+        "references/narrative-upscaling.md",
+        "references/models/learning-explanation.md"
       ],
       "assertions": [
         "JavaScript knowledge is used as a bridge rather than ignored",
@@ -263,7 +267,8 @@
       "expected_output": "One concise sentence answers the semantic distinction without unsolicited etymology, usage survey, decision scaffolding, or follow-up questions.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md"
+        "references/narrative-upscaling.md",
+        "references/models/term-explanation.md"
       ],
       "assertions": [
         "the response is one sentence",
@@ -279,7 +284,8 @@
       "expected_output": "Only the directly usable jq command is returned, with no forced lesson, alternatives, tradeoff analysis, or visible framework.",
       "files": [
         "references/models/generic-etd-model.md",
-        "references/narrative-upscaling.md"
+        "references/narrative-upscaling.md",
+        "references/models/artifact-guide.md"
       ],
       "assertions": [
         "the jq command is correct",
@@ -323,7 +329,8 @@
       "expected_output": "Infer plausible attendance and selling purposes, use them to identify useful event and experience information, and preserve uncertainty about the user intention.",
       "files": [
         "references/narrative-upscaling.md",
-        "references/question-formation.md"
+        "references/question-formation.md",
+        "references/models/experience-report.md"
       ],
       "assertions": [
         "Does not exclude the request merely because no decision is explicit",
@@ -344,6 +351,97 @@
         "Recognizes the explicit non-decision requirement rather than inventing another latent goal",
         "Does not equate mere brevity or fixed output format with this scope exclusion",
         "Does not claim that the independent subskills share this scope limitation"
+      ]
+    },
+    {
+      "id": "standalone-report-composition-ja",
+      "category": "standalone_report_model",
+      "prompt": "次の指定モデルだけを使って回答してください。他のスキルやモデルの読み込みは前提にしません。\n架空の催し案内です。「予約が必要」という主張、予約画面の操作図、来場者の感想を一つの案内にまとめる場合、それぞれが何を説明し、何の根拠になるか整理してください。操作図には予約義務の規定は写っていません。",
+      "expected_output": "Distinguish the central answer, supporting source, illustration, and experience without imposing a format.",
+      "files": [
+        "references/models/report-composition.md"
+      ],
+      "assertions": [
+        "Does not treat the operation image as proof of a reservation requirement",
+        "Connects each passage to a reader purpose and distinguishes content role from medium",
+        "Marks the missing source for the reservation claim without inventing it",
+        "The model is usable without Generic EtD, Decision Structuring, or other models as prerequisites; do not force all model headings into the answer"
+      ]
+    },
+    {
+      "id": "standalone-relationship-explanation-ja",
+      "category": "standalone_report_model",
+      "prompt": "次の指定モデルだけを使って回答してください。他のスキルやモデルの読み込みは前提にしません。\n架空の資料で、規約には「研究会Bは協会Aの内部組織」、広報には「団体CはAと共同開催」とあります。BとCをAの下部組織として並べてよいですか。Cの規約は不明です。",
+      "expected_output": "Explain the different relationships with calibrated uncertainty.",
+      "files": [
+        "references/models/relationship-explanation.md"
+      ],
+      "assertions": [
+        "Identifies B as internal and C as a co-organizer",
+        "Does not infer membership or non-membership for C from co-organizing alone",
+        "Explains the queried relation without requiring another model",
+        "The model is usable without Generic EtD, Decision Structuring, or report-composition as a prerequisite; do not force all model headings into the answer"
+      ]
+    },
+    {
+      "id": "standalone-experience-report-ja",
+      "category": "standalone_report_model",
+      "prompt": "次の指定モデルだけを使って回答してください。他のスキルやモデルの読み込みは前提にしません。\n架空の市について、前年の来場者は「正午は混雑」、出店者は「搬入に時間がかかった」と記しています。今年は会場が変わります。どんな体験になりそうか説明してください。",
+      "expected_output": "Describe role-specific past experiences and conditional future expectations.",
+      "files": [
+        "references/models/experience-report.md"
+      ],
+      "assertions": [
+        "Retains year and participant roles",
+        "Does not guarantee this year congestion or loading time",
+        "Distinguishes observed reports from synthesis and forecasts",
+        "The model is usable without Generic EtD, Decision Structuring, or report-composition as a prerequisite; do not force all model headings into the answer"
+      ]
+    },
+    {
+      "id": "standalone-term-explanation-ja",
+      "category": "standalone_report_model",
+      "prompt": "次の指定モデルだけを使って回答してください。他のスキルやモデルの読み込みは前提にしません。\n架空の社内用語集では「受付」は申込みの受領、「承認」は審査後の許可です。別資料の「受付へ行く」は窓口を指します。この三つの使い方を説明してください。",
+      "expected_output": "Explain contextual senses and the receiving-versus-approval distinction.",
+      "files": [
+        "references/models/term-explanation.md"
+      ],
+      "assertions": [
+        "Distinguishes the word from its multiple senses",
+        "Does not generalize the local glossary into a universal definition",
+        "Labels any invented examples as illustrations rather than usage evidence",
+        "The model is usable without Generic EtD, Decision Structuring, or report-composition as a prerequisite; do not force all model headings into the answer"
+      ]
+    },
+    {
+      "id": "standalone-learning-explanation-ja",
+      "category": "standalone_report_model",
+      "prompt": "次の指定モデルだけを使って回答してください。他のスキルやモデルの読み込みは前提にしません。\n表計算のフィルタを知っている人に、架空の検索機能「条件欄に色=赤と入れると赤い行だけ表示する」を教えてください。一つ練習を付けて。学習者の回答はまだありません。",
+      "expected_output": "Bridge prior knowledge to a concrete exercise with a check, without claiming learning success.",
+      "files": [
+        "references/models/learning-explanation.md"
+      ],
+      "assertions": [
+        "Uses filtering knowledge as a bridge",
+        "Includes a way to check the exercise",
+        "Does not claim mastery or tested educational effectiveness",
+        "Does not impose a full curriculum",
+        "The model is usable without Generic EtD, Decision Structuring, or report-composition as a prerequisite; do not force all model headings into the answer"
+      ]
+    },
+    {
+      "id": "standalone-artifact-guide-ja",
+      "category": "standalone_report_model",
+      "prompt": "次の指定モデルだけを使って回答してください。他のスキルやモデルの読み込みは前提にしません。\n架空のツールの仕様に items --format json は一覧をJSON形式で出力するとあります。まだ実行していません。使い方を簡潔に説明してください。",
+      "expected_output": "Provide the documented invocation and expected output while preserving execution uncertainty.",
+      "files": [
+        "references/models/artifact-guide.md"
+      ],
+      "assertions": [
+        "Distinguishes documented expected output from actual verification",
+        "Does not invent successful execution or unsupported environment requirements",
+        "Provides usage without forced alternatives or a maintenance plan",
+        "The model is usable without Generic EtD, Decision Structuring, or report-composition as a prerequisite; do not force all model headings into the answer"
       ]
     }
   ]

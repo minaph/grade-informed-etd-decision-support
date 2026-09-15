@@ -1,138 +1,57 @@
 # Narrative Upscaling
 
-## Purpose and relationship to the report model
+## 役割
 
-Narrative Upscaling is a separate rule for deciding whether and how to enrich
-an answer beyond its literal minimum. It selects background, explanatory
-perspectives, examples, experience accounts, or learning support that help
-fulfil the user's purpose.
+ユーザーの指示の背後にある意思決定構造を推定し、理解・利用・学習に役立つ内容を探索して回答へ組み込む運用指示です。レポートの記述内容は目的に合うモデルで定義し、この文書ではモデルの選択、調査、併用、拡充の範囲を扱います。モデルの内容は、回答の中心にも補足にも使えます。
 
-The [Generic EtD model](models/generic-etd-model.md) defines evaluation, evidence and
-uncertainty, recommendation, and the content needed to justify a report's
-position. Use that model when evaluating and reporting a position or action.
-Narrative Upscaling determines which supplementary material would help the
-reader understand or use the answer, and how far that expansion should go.
-An expansion may improve understanding even when it does not change the
-recommendation. These rules do not add evaluation criteria or require a
-separate report format.
+## 目的を推定し、モデルを暫定的に選ぶ
 
-## Decide whether to expand
+依頼された答えや成果物を起点に、明示されていない行動目標、価値、選択肢を仮説として補い、推論と調査へ進めます。目的が明示されるまで探索を止める必要はありません。仮説と確認済みの意向を区別し、資料や利用者の訂正に応じて更新します。
 
-Start with the requested deliverable and infer the decision structure behind
-the request. Use stated purposes and hypothesize unstated action goals, values,
-and alternatives. Carry plausible interpretations into reasoning and targeted
-research; do not wait for the user to state a decision explicitly. Keep these
-hypotheses distinct from confirmed intentions and revise them with new material
-or user corrections. Consider
-an addition when it would resolve a misleading premise, explain a material
-variation, prevent a likely misunderstanding, or help the user apply or learn
-what was requested. Identify that contribution before adding the material.
-A short prompt warrants interpreting latent purposes, but its length alone
-does not justify adding material without a useful contribution.
+例えば短い催しの問い合わせでは、来場と出店のどちらもあり得ます。一方に決めつけず、共通して役立つ情報と、目的によって変わる情報を分けます。短い指示からも潜在的な目的を探索しますが、短さだけを理由に回答を膨らませません。
 
-Consider differences between formal definitions and actual use, alternative
-explanatory perspectives, historical development, experience across settings,
-and variables the user can influence. Select the dimensions that serve this
-request; do not apply all of them as a checklist.
+次の対応から、今回必要なモデルを暫定的に選びます。全モデルを読む必要はありません。モデルが示す区別から不足情報を見つけ、調査結果を受けて解釈とモデル選択を見直します。より詳しい適合性の検討には [モデル選択の指針](preset-routing.md) を使います。
 
-Preserve the literal answer or requested artifact. Respect explicit brevity,
-answer-only, command-only, and fixed-format constraints. Repair a false premise
-without silently substituting a different question. For a terse event query,
-preserve plausible intentions such as attending versus selling until the
-available material or a targeted clarification distinguishes them.
+| 今回説明すること | 参照するモデル |
+| --- | --- |
+| 回答全体の構成、各記述が何に貢献するか | [レポート構成](models/report-composition.md) |
+| 所属、下位組織、関連、分類などの違い | [関係・分類の説明](models/relationship-explanation.md) |
+| 催しや活動の条件、当事者の経験、参加の見通し | [出来事・経験](models/experience-report.md) |
+| 語の意味、使い分け、場面による用法 | [用語・概念の説明](models/term-explanation.md) |
+| 既有知識からの理解、練習、応用 | [学習を支える説明](models/learning-explanation.md) |
+| 成果物や手順の使い方、結果、成立・失敗条件 | [成果物・手順の利用説明](models/artifact-guide.md) |
 
-## Select additions for the topic
+各モデルは単独で適用できます。共通のレポート構成モデルも、他モデルの必須の前提ではありません。選んだモデルの項目を埋めるために調査や記述を増やさず、誤解の解消、重要な違いの説明、利用・学習への接続に必要な内容を選びます。
 
-### Organizations and categories
+## 必要な情報を調べ、解釈を更新する
 
-Clarify the relationship being asked about before introducing nearby categories.
-Distinguish membership, association, historical relationships, and functional
-similarity when conflating them would mislead the reader. Add a contrasting
-perspective only if it changes how the subject is understood. Do not manufacture
-multiple lenses to satisfy a count.
+Research は事例の事実、Interview は利用者固有の価値や非公開の制約を扱います。推定した目標や価値は探索に使い、確認された選好と区別します。聞き取りの時期は [親の形成手順](question-formation.md) に従い、独立して進められる調査を行いつつ、重要な問いをまとめます。
 
-### Events and experiences
+調査では、モデルで表したい区別に合う情報源を選びます。
 
-Select details according to the intended activity, such as visiting or selling.
-Access, conditions, crowding, images, and dated experience accounts can clarify
-what participation involves. Connect them to useful preparation or choices
-when stated or inferred purposes make that help useful. Distinguish reported past experiences
-from expectations for the current event; do not turn a brief query into a full
-itinerary by default.
+- 組織や分類の関係には、規約、公式の構成資料、対象時点の記録などを使います。
+- 出来事には、現在の公式情報に加え、経験差を説明する日付のある報告や画像を必要に応じて使います。
+- 用語の使用には、辞書、コーパス、実際の用例などを使います。
+- 学習内容や成果物の動作には、仕様、資料、利用可能な実例や確認結果を使います。
 
-### Terms and concepts
+開催日時、価格、製品仕様、提供状況など、変わり得る事実は現在の一次資料で確認します。資料の日付と対象時点を保ちます。利用者の現在地などの私的情報は推定せず、提供された、または利用を認められた情報を使います。資料の不足や競合を仮定の事実で埋めません。
 
-Begin with the distinction needed to understand or use the terms. Add examples,
-usage settings, register, or reception when they illuminate that distinction.
-Include history or etymology only when it explains the contrast; it must not
-substitute for evidence of present-day meaning. A recognition or production
-question is useful when learning or practice is intended, not mandatory for
-every terminology answer.
+## モデルを組み合わせ、判断へつなげる
 
-### Learning
+複数モデルを使う場合は、各モデルが今回何を説明するかを決めます。例えば、用語の使い分けを既知の概念から教えるなら用語モデルと学習モデルを、成果物を例に学習するなら利用説明モデルと学習モデルを使えます。同じ内容をモデルごとに繰り返さず、一つの説明に必要な区別をまとめます。
 
-Use stated prior knowledge as a bridge and infer plausible learning goals when
-they are unstated. Choose among a contrast with familiar
-concepts, a minimal working example, a short sequence, practice, feedback, and
-a transfer task according to the learner's goal and requested depth. Explain
-how to check an exercise when one is included. Pacing or difficulty can be
-made adjustable where that helps the learner. Return a requested command or
-fix without imposing a curriculum.
+立場や行為の評価・比較・推奨を報告する場合は、[Generic EtD](models/generic-etd-model.md) を組み合わせます。経験モデルで整理した役割別の参加条件を、参加方法の評価に使うことなどができます。出所、時点、仮説、適用条件は引き継ぎ、経験談をそのまま一般的な効果や本人の選好に置き換えません。モデル間の固定の項目対応は設けません。
 
-### Artifacts and actions
+Generic EtD は、説明モデルを使うための前提ではありません。各モデルで説明が成立する場合に、比較や推奨を一律に追加しません。逆に、推奨を変えなくても、経験や例が読者の理解・利用を助けるなら含められます。
 
-Deliver the requested artifact or action. Add explanations, usage examples,
-variants, or failure conditions when they change how the result can be
-understood or used. An implementation plan or continuing learning programme
-belongs to the requested task when explicitly needed; it is not a requirement
-of the generic report model or of every expansion.
+選択肢や説明上の立場の構造化が必要になった場合は、[親の形成手順](question-formation.md) に接続します。与えられた状況から `context.description` を先に書き、推定した目標・価値・別解釈を `context.sensemaking` に整理します。重要な区別を Context または Questions へ返し、Alternatives と Tree を再生成します。投影だけを直接変更しません。
 
-## Connect interpretation to decision structuring
+## 回答をまとめ、拡充を終える
 
-First prepare `context.description` from the supplied situation, then the
-interpretation for `context.sensemaking`, including hypothesized goals, values,
-and alternative intentions that can guide research and Questions. Follow
-[the parent formation workflow](question-formation.md) when options or
-explanatory positions need structuring. Decision Structuring owns Questions,
-Alternatives, and the Tree. Narrative Upscaling can identify a missing
-perspective or distinction, but passes that material back for structuring
-rather than editing projections. Use the generic model for any resulting
-comparison and recommendation, without repeating its evaluation rules here.
+依頼された回答や成果物を届け、依頼された行為がある場合は許可された範囲で遂行します。説明を作ることを、行為を実施したことの代わりにしません。前提を修正するときは、その修正が分かる形で元の問いに答えます。
 
-## Gather material by the information need
+明示された簡潔さ、回答のみ、コマンドのみ、固定形式の制約を守ります。これらは内部の目的推定を止める理由ではありませんが、探索した内容をすべて表示する理由にもなりません。文章の作成・推敲には [evidence-based-writing](../skills/evidence-based-writing/SKILL.md) を使います。
 
-Research addresses case reality; Interview addresses user-specific values and
-private constraints. Follow the scheduling rules in `question-formation.md`.
-For time-sensitive facts across domains, such as prices, product specifications,
-or service availability, verify current primary sources and retain the dates
-needed to establish which conditions the evidence describes.
+依頼に答えたうえで、追加の記述が重要な誤解、違い、利用や学習を説明しなくなったら拡充を終えます。重複、根拠の弱い断定、私的領域への不要な踏み込み、主題から外れる内容を取り除きます。調査も、有用な記述や重要な不確実性の解消につながらなくなった時点で止め、残る限界を示します。
 
-- For organizational relations, check the named relationship and distinguish
-  formal membership from related, historical, or functional relationships.
-- For events, verify current identity, date, venue, and constraints when needed.
-  Use dated reports or images when they help establish experience differences;
-  preserve their date and context instead of treating an old edition as current.
-- For term usage, use dictionaries, corpora, or other usage sources when available
-  to check claims about frequency, register, collocations, or reception.
-  Identify illustrative linguistic judgment when usage evidence is unavailable.
-- For learning, use the stated prior knowledge and available goals. Return a
-  material missing goal or constraint through the parent interview workflow.
-
-Do not infer private information such as the user's current location. Use it
-only when supplied or authorized. Report source conflicts and missing evidence
-rather than filling them with assumed facts.
-
-## Stop expanding
-
-Stop when the literal request is satisfied and another addition would not
-resolve a relevant misunderstanding, explain a consequential difference, or
-help the user apply or learn the answer. Remove repeated, weakly supported,
-invasive, or tangential additions. Prefer one example with a clear purpose to
-several examples that repeat the same point.
-
-Stop gathering when further information would not support a useful addition
-or resolve a material uncertainty within the requested scope. Missing evidence
-may limit an expansion; it is not a reason to invent detail. Do not expose a
-criteria table, a Tree, or other framework scaffolding merely because this
-rule was used. Apply the caller's separate Tree-visibility policy when a
-structuring view is requested or otherwise warranted.
+モデルの使用だけを理由に、表、Tree、枠組みの用語を表示しません。Tree の表示は親スキルの規則に従います。詳細な旅程、実施計画、継続的な学習・監視は自動的に付けず、依頼の目的と範囲に応じて扱います。

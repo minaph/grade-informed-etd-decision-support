@@ -2,6 +2,8 @@
 
 ## 0.9.0
 
+- Narrative Upscaling から6つの単独利用できるレポートモデルを分離し、モデル選択・調査・Generic EtD との併用を運用側に整理。
+
 - 親の目的を、概念モデリングを基礎とする日常生活・他分野への実務応用へ更新。
 - `evidence-based-writing` を独立公開し、文章作成・推敲のサブスキルとして固定版を参照。
 - `references/models/` と `models/etd/` を用途に応じて整理し、参照資料の README を追加。

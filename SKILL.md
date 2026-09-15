@@ -85,11 +85,12 @@ When evaluation or recommendation is needed, use `references/models/generic-etd-
 items, evidence and uncertainty, recommendation, and reporting depth. Its model
 also covers understanding and explanation as taking a position.
 
-Use `references/narrative-upscaling.md` as the separate rule for deciding
-whether and how to enrich the answer with background, examples, experience, or
-learning support. It also guides interpretation and targeted information
-gathering. Use the generic model for evaluation and recommendation, and
-Decision Structuring for the option structure.
+Use `references/narrative-upscaling.md` to infer latent purposes, select the
+standalone report models it lists, and iterate interpretation and targeted
+research. It coordinates their use for explanation, experience, learning,
+and artifact guidance, combining them with Generic EtD when evaluation or
+recommendation is needed. The report models do not require Generic EtD.
+Use Decision Structuring for the option structure.
 
 When option formation is material, use the Decision Formation loop in
 `references/question-formation.md` and invoke `skills/decision-structuring/SKILL.md`:

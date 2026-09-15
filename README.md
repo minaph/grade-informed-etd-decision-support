@@ -28,7 +28,7 @@ Version 0.9.0。スキル識別子とリポジトリ名は、既存の参照と�
 
 資料の構造と設置意図は [references/README.md](references/README.md) にまとめています。`models/` には分野モデルと Generic EtD、`models/etd/` には公式 GRADE EtD を志向する文書群を置きます。
 
-[Generic EtD](references/models/generic-etd-model.md) は、評価・比較・推奨を報告するためのモデルです。[Narrative Upscaling](references/narrative-upscaling.md) は、背景、具体例、経験、学習支援をどこまで加えるかという別規則です。文章の記述品質には `evidence-based-writing` を使います。モデルの定義だけを求める依頼などに、評価や推奨を一律に追加しません。
+[Generic EtD](references/models/generic-etd-model.md) は、評価・比較・推奨を報告するためのモデルです。レポート構成、関係・分類、経験、用語、学習、成果物の利用説明には、それぞれ単独で使えるモデルを置きます。[Narrative Upscaling](references/narrative-upscaling.md) は、潜在的な目的を推定して調査を進め、必要なモデルを選び、Generic EtD などとの併用と拡充の範囲を決める運用規則です。文章の記述品質には `evidence-based-writing` を使います。モデルの定義だけを求める依頼などに、評価や推奨を一律に追加しません。
 
 ## 依存先の取得と管理
 
