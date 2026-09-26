@@ -38,7 +38,7 @@ Version 0.9.0。スキル識別子とリポジトリ名は、既存の参照と�
 git submodule update --init --recursive
 ```
 
-GitHub が自動生成する「Source code (zip)」にはサブモジュールの内容が含まれません。GitHub Releases に添付する `grade-informed-etd-decision-support.zip` には、固定したサブモジュールの内容も含まれます。スキルの利用には、この添付ZIPを展開して使用できます。開発・更新・Gitの固定コミットを検査する場合は、Gitで取得して依存先を初期化した作業ディレクトリを使用してください。
+GitHub が自動生成する「Source code (zip)」にはサブモジュールの内容が含まれません。GitHub Releases の添付ZIPには、固定したサブモジュールから必要な手順と参照資料を収録します。配布版では子の入口を `GUIDE.md` に変換し、親の `SKILL.md` 一つから利用します。開発・更新・Gitの固定コミットを検査する場合は、Gitで取得して依存先を初期化した作業ディレクトリを使用してください。
 
 `evidence-based-writing` の独立リポジトリは `minaph/evidence-based-writing` です。今回のローカル登録では、`~/.agents/skills/evidence-based-writing` から `~/Projects/evidence-based-writing` を参照します。親は `skills/evidence-based-writing` の固定版を使うため、独立チェックアウトの更新が親へ自動反映されることはありません。
 
@@ -53,9 +53,33 @@ git submodule update --init --recursive
 python3 scripts/package_release.py
 ```
 
-既定の出力先は `dist/grade-informed-etd-decision-support.zip` です。`--output /path/to/package.zip` で変更できます。出力先は `.zip` 拡張子が必要で、Git内部情報のある場所や管理対象ファイルへの上書きはできません。展開先には `grade-informed-etd-decision-support/` ディレクトリが一つ作成されます。
+既定の出力先は `dist/grade-informed-etd-decision-support.zip` です。`--output /path/to/package.zip` で変更できます。出力先は `.zip` 拡張子が必要で、Git内部情報のある場所や管理対象ファイルへの上書きはできません。
 
-梱包対象は親リポジトリとサブモジュールのGit管理対象ファイルです。ドキュメント、評価資料、テスト、スクリプトも含めます。未追跡ファイル、Git内部情報、キャッシュ、仮想環境、生成物、環境ファイルや秘密鍵などは除外します。新規ファイルを含める場合は、先に `git add` してください。親リポジトリの管理対象ファイルは作業ツリーの内容を使用します。サブモジュールが未初期化、固定コミットと異なる、または管理対象ファイルに未コミットの変更がある場合は失敗します。
+出力内容はCodex・Claude・Gemini Sparkで共通です。親の `SKILL.md`、親の `references/`、三つの子の `GUIDE.md` と `references/` に限定します。MarkdownとYAMLのみを収録し、公式GRADEプロファイルも保持します。Git設定、隠しファイル、開発文書、テスト、評価資料、Pythonスクリプト、依存パッケージ一覧、CI設定、元のハッシュ一覧は含めません。
+
+変換は梱包時だけ行い、原本の `SKILL.md` とサブモジュールは変更しません。子のfrontmatterを除き、親と参照資料のリンクを更新し、Git初期化や開発用コマンドの案内を同梱文書の参照へ置き換えます。子は配布版では独立スキルとして登録されず、親が読む手順書になります。
+
+入力はGit管理対象に限ります。新規の手順・参照資料を追加する場合は、先に `git add` してください。親の内容は作業ツリーから読みます。サブモジュールが未初期化、固定コミットと異なる、または管理対象ファイルに未コミットの変更がある場合は失敗します。必要な資料の欠落や変換後の参照切れも、ZIP作成時に検査します。
+
+### 利用先とZIPの構造
+
+| 利用先 | 添付ファイル | 導入方法 |
+| --- | --- | --- |
+| Codex | `grade-informed-etd-decision-support.zip` | 展開した同名フォルダをスキルの探索先へ配置する。例: `~/.agents/skills/grade-informed-etd-decision-support/` |
+| Claude Web | `grade-informed-etd-decision-support.zip` | フォルダを一つ含むZIPを、スキルのアップロード画面へ追加する |
+| Gemini Spark | `grade-informed-etd-decision-support-gemini.zip` | `SKILL.md` がZIP直下にある版を、SparkのSkills画面へ追加する |
+
+既定の `--layout folder` は `grade-informed-etd-decision-support/` の下に全資料を置きます。Gemini Spark向けは次で生成します。
+
+```bash
+python3 scripts/package_release.py --layout flat --output dist/grade-informed-etd-decision-support-gemini.zip
+```
+
+`--layout flat` は `SKILL.md`、`references/`、`skills/` をZIP直下に置きます。両ZIPの文書内容は同一で、外側のフォルダの有無だけが異なります。各ZIPに `SKILL.md` は一つだけ含まれます。
+
+構造の根拠は、[Codexのスキル仕様](https://learn.chatgpt.com/docs/build-skills)、[Claudeのカスタムスキル作成案内](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills)、[Gemini Sparkのスキル要件](https://support.google.com/gemini/answer/17094296?hl=en)を参照してください。ローカルの検証は構造・収録内容・参照整合性を対象とし、各サービスでのアップロード結果やモデルによる手順の実行結果は別途確認が必要です。
+
+### GitHub Release
 
 [リリースワークフロー](.github/workflows/release.yml) は、`v` と数字で始まるタグ（例: `v0.9.1`）をpushすると実行されます。リリースする変更をコミットしてから、次のようにタグを作成・pushしてください。例のバージョン番号は実際に公開する版に置き換えます。
 
@@ -70,9 +94,9 @@ git push origin v0.9.1
 gh workflow run release.yml --ref main -f tag=v0.9.1
 ```
 
-ワークフローは指定タグとサブモジュールを取得し、テスト後にZIPとSHA-256チェックサムをGitHub Releaseへ添付します。タグは事前にリモートに存在する必要があり、そのタグに梱包スクリプトとテストが含まれている必要があります。既存Releaseに対して再実行した場合は、同名の添付ファイルを置き換えます。
+ワークフローは指定タグとサブモジュールを取得し、テスト後に両形式のZIPとそれぞれのSHA-256チェックサムをGitHub Releaseへ添付します。タグは事前にリモートに存在する必要があり、そのタグに現在の梱包スクリプトとテストが含まれている必要があります。既存Releaseに対して再実行した場合は、同名の添付ファイルを置き換えます。旧コミットのタグを指定すると、その時点の梱包処理が実行されます。
 
-添付されたZIPと `.zip.sha256` を同じディレクトリへダウンロードすると、Linuxでは `sha256sum -c grade-informed-etd-decision-support.zip.sha256`、macOSでは `shasum -a 256 -c grade-informed-etd-decision-support.zip.sha256` で確認できます。ZIPにはGit内部情報を含めないため、展開先ではGitの固定コミットを検査する開発用検証は実行できません。
+添付されたZIPと対応する `.zip.sha256` を同じディレクトリへダウンロードすると、Linuxでは `sha256sum -c grade-informed-etd-decision-support.zip.sha256`、macOSでは `shasum -a 256 -c grade-informed-etd-decision-support.zip.sha256` で確認できます。Gemini版はファイル名を `grade-informed-etd-decision-support-gemini.zip.sha256` に置き換えます。チェックサムはZIPの外に添付するため、スキルのアップロードにはZIPだけを使用します。配布版には開発用検証器やGit情報を含めません。生成元はReleaseのタグと、そのコミットで固定したサブモジュールから追跡してください。
 
 ## 意思決定構造化との連携
 

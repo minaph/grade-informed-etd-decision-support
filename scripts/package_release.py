@@ -1,31 +1,18 @@
-"""Build a release ZIP from the current Git worktree."""
+"""Build portable skill ZIPs from the current Git worktree."""
 from __future__ import annotations
 
 import argparse
 import os
 from pathlib import Path, PurePosixPath
-import stat
 import subprocess
 import sys
 import tempfile
 import zipfile
 
+from portable_content import build_portable_files, is_runtime_path
+
 
 ARCHIVE_ROOT = "grade-informed-etd-decision-support"
-EXCLUDED_DIRECTORIES = {
-    ".git",
-    "__pycache__",
-    ".mypy_cache",
-    ".pytest_cache",
-    ".ruff_cache",
-    ".test-deps",
-    ".tox",
-    ".venv",
-    "build",
-    "dist",
-    "venv",
-}
-PRIVATE_FILE_SUFFIXES = {".key", ".pem", ".p12", ".pfx", ".ppk"}
 
 
 class PackageError(RuntimeError):
@@ -56,21 +43,6 @@ def _safe_relative(path: str) -> PurePosixPath:
     return relative
 
 
-def _is_excluded(relative: PurePosixPath) -> bool:
-    if any(part in EXCLUDED_DIRECTORIES for part in relative.parts):
-        return True
-    name = relative.name.lower()
-    return (
-        name == ".env"
-        or name.startswith(".env.")
-        or name == ".ds_store"
-        or name == ".coverage"
-        or name in {"id_rsa", "id_dsa", "id_ecdsa", "id_ed25519"}
-        or name.endswith(".zip")
-        or any(name.endswith(suffix) for suffix in PRIVATE_FILE_SUFFIXES)
-    )
-
-
 def _index_entries(root: Path) -> list[tuple[str, str, PurePosixPath]]:
     entries: list[tuple[str, str, PurePosixPath]] = []
     seen: set[PurePosixPath] = set()
@@ -92,16 +64,6 @@ def _index_entries(root: Path) -> list[tuple[str, str, PurePosixPath]]:
     return entries
 
 
-def _write_symlink(archive: zipfile.ZipFile, source: Path, destination: str, root: Path) -> None:
-    target = os.readlink(source)
-    if Path(target).is_absolute() or not (root / source.relative_to(root).parent / target).resolve(strict=False).is_relative_to(root):
-        raise PackageError(f"symlink escapes its repository: {source}")
-    info = zipfile.ZipInfo(destination)
-    info.create_system = 3
-    info.external_attr = (stat.S_IFLNK | 0o777) << 16
-    archive.writestr(info, target.encode("utf-8"))
-
-
 def _require_clean_submodule(repository: Path) -> None:
     """Reject tracked changes while allowing untracked files to remain excluded."""
     staged = _git(repository, "diff", "--cached", "--quiet", "--ignore-submodules=none")
@@ -119,30 +81,15 @@ def _require_clean_submodule(repository: Path) -> None:
         raise PackageError(f"cannot inspect submodule worktree: {repository}: {detail}")
 
 
-def _add_repository(
-    archive: zipfile.ZipFile,
-    repository: Path,
-    prefix: PurePosixPath,
-) -> int:
-    written = 0
+def _collect_repository(repository: Path, prefix: PurePosixPath, files: dict[str, bytes]) -> None:
     for mode, object_id, relative in _index_entries(repository):
         source = repository.joinpath(*relative.parts)
-        archive_relative = prefix.joinpath(relative)
-        if _is_excluded(archive_relative):
-            continue
-        if mode == "120000":
-            if not source.is_symlink():
-                raise PackageError(f"tracked symlink is missing: {source}")
-            _write_symlink(archive, source, archive_relative.as_posix(), repository)
-            written += 1
-            continue
-        if not source.resolve(strict=False).is_relative_to(repository.resolve()):
-            raise PackageError(f"tracked path escapes its repository: {source}")
+        packaged = prefix.joinpath(relative)
         if mode == "160000":
-            if source.is_symlink() or not source.is_dir():
+            if source.is_symlink() or not source.is_dir() or not (source / ".git").exists():
                 raise PackageError(f"submodule is not initialized: {source}")
-            if not (source / ".git").exists():
-                raise PackageError(f"submodule is not initialized: {source}")
+            if not source.resolve().is_relative_to(repository.resolve()):
+                raise PackageError(f"submodule escapes its repository: {source}")
             child_root = Path(_git_output(source, "rev-parse", "--show-toplevel").strip()).resolve()
             if child_root != source.resolve():
                 raise PackageError(f"submodule is not initialized: {source}")
@@ -150,17 +97,39 @@ def _add_repository(
             if actual != object_id:
                 raise PackageError(f"submodule pin mismatch: {source} is {actual}, expected {object_id}")
             _require_clean_submodule(source)
-            written += _add_repository(archive, source, archive_relative)
+            _collect_repository(source, packaged, files)
             continue
-        if not source.is_file() or source.is_symlink():
-            raise PackageError(f"tracked file is missing or unsafe: {source}")
-        archive.write(source, archive_relative.as_posix())
-        written += 1
-    return written
+        if not is_runtime_path(packaged):
+            continue
+        if source.is_symlink():
+            raise PackageError(f"runtime file cannot be a symlink: {source}")
+        if not source.resolve(strict=False).is_relative_to(repository.resolve()) or not source.is_file():
+            raise PackageError(f"runtime file is missing or escapes its repository: {source}")
+        key = packaged.as_posix()
+        if key in files:
+            raise PackageError(f"duplicate runtime file: {key}")
+        files[key] = source.read_bytes()
 
 
-def build_archive(root: Path, output: Path) -> Path:
-    """Create an atomic ZIP containing tracked files and pinned submodules."""
+def _collect_runtime_files(root: Path) -> dict[str, bytes]:
+    files: dict[str, bytes] = {}
+    _collect_repository(root, PurePosixPath(), files)
+    if not files:
+        raise PackageError("Git worktree has no runtime files")
+    return files
+
+
+def _archive_name(path: str, layout: str) -> str:
+    relative = _safe_relative(path)
+    if layout == "folder":
+        return PurePosixPath(ARCHIVE_ROOT).joinpath(relative).as_posix()
+    return relative.as_posix()
+
+
+def build_archive(root: Path, output: Path, layout: str = "folder") -> Path:
+    """Create an atomic portable ZIP in the requested layout."""
+    if layout not in {"folder", "flat"}:
+        raise PackageError(f"unsupported archive layout: {layout}")
     root = root.resolve()
     top_level = _git_output(root, "rev-parse", "--show-toplevel").strip()
     if Path(top_level).resolve() != root:
@@ -175,9 +144,14 @@ def build_archive(root: Path, output: Path) -> Path:
         output_relative = output.relative_to(root)
         if ".git" in output_relative.parts:
             raise PackageError(f"archive output cannot be inside .git: {output}")
+        if any(mode == "160000" and output_relative.is_relative_to(relative)
+               for mode, _, relative in _index_entries(root)):
+            raise PackageError(f"archive output cannot be inside a submodule: {output}")
         tracked_output = _git(root, "ls-files", "--error-unmatch", "--", output_relative.as_posix())
         if tracked_output.returncode == 0:
             raise PackageError(f"archive output would overwrite a source path: {output}")
+
+    portable_files = build_portable_files(_collect_runtime_files(root))
     output.parent.mkdir(parents=True, exist_ok=True)
     descriptor, temporary_name = tempfile.mkstemp(
         dir=output.parent,
@@ -188,9 +162,8 @@ def build_archive(root: Path, output: Path) -> Path:
     temporary = Path(temporary_name)
     try:
         with zipfile.ZipFile(temporary, "w", compression=zipfile.ZIP_DEFLATED, strict_timestamps=False) as archive:
-            written = _add_repository(archive, root, PurePosixPath(ARCHIVE_ROOT))
-            if not written:
-                raise PackageError("Git worktree has no packageable tracked files")
+            for path, content in sorted(portable_files.items()):
+                archive.writestr(_archive_name(path, layout), content)
         os.replace(temporary, output)
     except Exception:
         temporary.unlink(missing_ok=True)
@@ -200,18 +173,24 @@ def build_archive(root: Path, output: Path) -> Path:
 
 def main() -> int:
     root = Path(__file__).resolve().parents[1]
-    parser = argparse.ArgumentParser(description="Create a release ZIP from tracked Git files.")
+    parser = argparse.ArgumentParser(description="Create a portable skill ZIP from tracked Git files.")
     parser.add_argument(
         "--output",
         type=Path,
         default=Path("dist") / f"{ARCHIVE_ROOT}.zip",
         help="archive path relative to the repository root (default: %(default)s)",
     )
+    parser.add_argument(
+        "--layout",
+        choices=("folder", "flat"),
+        default="folder",
+        help="place files below the package folder or directly in the ZIP root",
+    )
     args = parser.parse_args()
     output = args.output if args.output.is_absolute() else root / args.output
     try:
-        archive = build_archive(root, output)
-    except PackageError as error:
+        archive = build_archive(root, output, args.layout)
+    except (PackageError, ValueError) as error:
         print(f"ERROR: {error}", file=sys.stderr)
         return 1
     print(f"Created {archive}")
