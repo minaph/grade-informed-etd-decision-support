@@ -38,11 +38,41 @@ Version 0.9.0。スキル識別子とリポジトリ名は、既存の参照と�
 git submodule update --init --recursive
 ```
 
-通常のソース ZIP にはサブモジュールの内容が含まれません。Git の管理情報と初期化済みの依存先を含む作業ディレクトリを利用してください。
+GitHub が自動生成する「Source code (zip)」にはサブモジュールの内容が含まれません。GitHub Releases に添付する `grade-informed-etd-decision-support.zip` には、固定したサブモジュールの内容も含まれます。スキルの利用には、この添付ZIPを展開して使用できます。開発・更新・Gitの固定コミットを検査する場合は、Gitで取得して依存先を初期化した作業ディレクトリを使用してください。
 
 `evidence-based-writing` の独立リポジトリは `minaph/evidence-based-writing` です。今回のローカル登録では、`~/.agents/skills/evidence-based-writing` から `~/Projects/evidence-based-writing` を参照します。親は `skills/evidence-based-writing` の固定版を使うため、独立チェックアウトの更新が親へ自動反映されることはありません。
 
-更新は独立リポジトリでレビュー・コミット・公開した後、親のサブモジュールで対象コミットを取得して切り替えます。変更した Git リンクをステージし、親のハッシュ一覧とパッケージを検証します。親の manifest はサブモジュール内のファイルを含めず、依存先は固定コミットとして別に検査します。
+更新は独立リポジトリでレビュー・コミット・公開した後、親のサブモジュールで対象コミットを取得して切り替えます。変更した Git リンクをステージし、親のハッシュ一覧とパッケージを検証します。親の manifest はGit管理対象の親ファイルを記録し、サブモジュール内のファイルを含めません。新規ファイルは `git add` してからハッシュ一覧を更新してください。依存先は固定コミットとして別に検査します。
+
+## ZIPの作成とリリース
+
+Python 3.10以上とGitを使用して、リポジトリのルートで次を実行します。
+
+```bash
+git submodule update --init --recursive
+python3 scripts/package_release.py
+```
+
+既定の出力先は `dist/grade-informed-etd-decision-support.zip` です。`--output /path/to/package.zip` で変更できます。出力先は `.zip` 拡張子が必要で、Git内部情報のある場所や管理対象ファイルへの上書きはできません。展開先には `grade-informed-etd-decision-support/` ディレクトリが一つ作成されます。
+
+梱包対象は親リポジトリとサブモジュールのGit管理対象ファイルです。ドキュメント、評価資料、テスト、スクリプトも含めます。未追跡ファイル、Git内部情報、キャッシュ、仮想環境、生成物、環境ファイルや秘密鍵などは除外します。新規ファイルを含める場合は、先に `git add` してください。親リポジトリの管理対象ファイルは作業ツリーの内容を使用します。サブモジュールが未初期化、固定コミットと異なる、または管理対象ファイルに未コミットの変更がある場合は失敗します。
+
+[リリースワークフロー](.github/workflows/release.yml) は、`v` と数字で始まるタグ（例: `v0.9.1`）をpushすると実行されます。リリースする変更をコミットしてから、次のようにタグを作成・pushしてください。例のバージョン番号は実際に公開する版に置き換えます。
+
+```bash
+git tag v0.9.1
+git push origin v0.9.1
+```
+
+既存のタグを指定して手動実行することもできます。
+
+```bash
+gh workflow run release.yml --ref main -f tag=v0.9.1
+```
+
+ワークフローは指定タグとサブモジュールを取得し、テスト後にZIPとSHA-256チェックサムをGitHub Releaseへ添付します。タグは事前にリモートに存在する必要があり、そのタグに梱包スクリプトとテストが含まれている必要があります。既存Releaseに対して再実行した場合は、同名の添付ファイルを置き換えます。
+
+添付されたZIPと `.zip.sha256` を同じディレクトリへダウンロードすると、Linuxでは `sha256sum -c grade-informed-etd-decision-support.zip.sha256`、macOSでは `shasum -a 256 -c grade-informed-etd-decision-support.zip.sha256` で確認できます。ZIPにはGit内部情報を含めないため、展開先ではGitの固定コミットを検査する開発用検証は実行できません。
 
 ## 意思決定構造化との連携
 

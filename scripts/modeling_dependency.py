@@ -15,19 +15,47 @@ SUBMODULE_PATHS = {MODELING_PATH, DECISION_PATH, WRITING_PATH}
 
 def package_files(root: Path) -> dict[str, Path]:
     """The parent manifest covers its files; Git pins the child separately."""
+    root = root.resolve()
+    tracked = git(root, "ls-files", "-z")
+    if tracked.returncode:
+        return _package_files_without_git(root)
+
+    files = {}
+    for name in tracked.stdout.split("\0"):
+        if not name:
+            continue
+        relative = Path(name)
+        if relative in SUBMODULE_PATHS or not _is_package_file(relative):
+            continue
+        files["./" + relative.as_posix()] = root / relative
+    return files
+
+
+def _is_package_file(relative: Path) -> bool:
+    """Ignore generated metadata even if it was accidentally staged."""
+    if relative == Path("MANIFEST.sha256") or relative.suffix in {".pyc", ".zip"}:
+        return False
+    return not any(part in {".git", "__pycache__", ".test-deps", "dist", "build"} for part in relative.parts)
+
+
+def _package_files_without_git(root: Path) -> dict[str, Path]:
+    """Keep validation helpers usable in isolated temporary directories."""
     files = {}
     for directory, dirs, names in os.walk(root):
         current = Path(directory)
         dirs[:] = [
             name for name in dirs
-            if name not in {".git", "__pycache__", ".test-deps"}
-            and (current / name).relative_to(root) not in SUBMODULE_PATHS
+            if _is_package_file((current / name).relative_to(root))
+            and not any((current / name).relative_to(root).is_relative_to(child) for child in SUBMODULE_PATHS)
         ]
         for name in names:
             path = current / name
-            if name == ".git" or path.suffix == ".pyc" or path == root / "MANIFEST.sha256":
+            relative = path.relative_to(root)
+            if not path.is_file() or not _is_package_file(relative):
                 continue
-            files["./" + path.relative_to(root).as_posix()] = path
+            if any(relative.is_relative_to(child) for child in SUBMODULE_PATHS):
+                continue
+            files["./" + relative.as_posix()] = path
     return files
 
 

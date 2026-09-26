@@ -44,7 +44,7 @@ class ModelingDependencyTests(unittest.TestCase):
         self.assertEqual(self.validate(), [])
         (self.root / "note.md").write_text("parent")
         files = package_files(self.root)
-        self.assertEqual(set(files), {"./.gitmodules", "./note.md"})
+        self.assertEqual(set(files), {"./.gitmodules"})
 
     def test_missing_initialization(self):
         self.git(self.root, "submodule", "deinit", "--force", "--", self.skill_path.as_posix())
